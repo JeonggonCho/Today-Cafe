@@ -1,4 +1,4 @@
-{% extends '!base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 
@@ -8,5 +8,9 @@
 
 
 {% block content %}
-
+<form action="{% url 'accounts:update' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="확인">
+</form>
 {% endblock content %}

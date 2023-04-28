@@ -1,4 +1,4 @@
-{% extends '!base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 
@@ -8,5 +8,51 @@
 
 
 {% block content %}
+    <div>
+    <h3>DETAIL</h3>
+    <p>게시글 작성자 -
+      <a href="{% url 'accounts:profile' post.user.username %}">{{post.user}}</a>
+    </p>
+    <p>
+      게시글 번호 -
+      {{post.pk}}
+    </p>
+    <p>
+      게시글 제목 -
+      {{post.title}}
+    </p>
+    <p>
+      게시글 내용 -
+      {{post.content}}
+    </p>
+    <a href="{% url 'posts:index' %}">[back]</a>
+  </div>
+  <hr>
+  <form action="{% url 'posts:comments_create' post.pk %}" method="POST">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <input type="submit" value="댓글 작성">
+  </form>
+  <hr>
 
+  {% for comment in comments %}
+    <div>
+      <p>댓글 작성자 -
+        <a href="{% url 'accounts:profile' comment.user.username %}">{{comment.user}}</a>
+      </p>
+      <p>댓글 번호 -
+        {{ comment.pk }}</p>
+      <p>
+        댓글 내용 -
+        {{comment.content}}
+      </p>
+      {% if comment.user == user %}
+        <form action="{% url 'posts:comments_delete' post.pk comment.pk %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" value="댓글 삭제">
+        </form>
+      {% endif %}
+    </div>
+    <hr> 
+  {% endfor %}
 {% endblock content %}
