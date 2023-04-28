@@ -8,5 +8,18 @@
 
 
 {% block content %}
+{{ person.nickname }}님의 프로필
+{% if person.is_admin %}
+(관리자)
+{% endif %}
 
+
+<form action="{% url 'accounts:follow' person.pk %}" method="POST">
+{% csrf_token %}
+{% if request.user in person.followers.all %}
+    <input type="submit" value="팔로우 취소">
+{% else %}
+    <input type="submit" value="팔로우">
+{% endif %}
+</form>
 {% endblock content %}
