@@ -8,5 +8,118 @@
 
 
 {% block content %}
+<header class="navbar bg-body-tertiary sticky-top">
+    <div class="container">
 
+        <!-- header__location-btn -->
+        <button class="navbar-toggler d-flex align-items-center border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <span class="ms-2">지역</span>
+        </button>
+        
+        <!-- header__logo -->
+        <a class="navbar-brand" href="">
+            <img src="{% static 'img/today-cafe_Logo.svg' %} " alt="logo" width="50px">
+            <span>Today Cafe</span>
+        </a>
+        
+        <!-- header__account-link -->
+        <div>
+            <a class="btn btn-secondary" herf="#"><span>로그인</span></a>
+            <a class="btn btn-secondary" herf="#"><span>회원가입</span></a>
+        </div>
+
+        <!-- location-btn 클릭 시 오른쪽에서 pop-up되는 지역별 카페찾기-->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <!-- pop-up title-->
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">지역별 카페찾기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <!-- 지역별 카페찾기 detail -->
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">서울특별시</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">강남구</a></li>
+                            <li><a class="dropdown-item" href="#">서초구</a></li>
+                            <li><a class="dropdown-item" href="#">송파구</a></li>
+                            <li><a class="dropdown-item" href="#">성북구</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">경기도</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">안산시</a></li>
+                            <li><a class="dropdown-item" href="#">수원시</a></li>
+                            <li><a class="dropdown-item" href="#">용인시</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <form>
+            <input type="text" placeholder="지역을 입력해주세요">
+            <input type="submit" value="검색">
+        </form>
+        <div id="carouselExampleInterval" class="carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active d-flex justify-content-center" data-bs-interval="10000">
+                    <div class="w-75">
+                        <img src="https://cdn.iconsumer.or.kr/news/photo/202101/14546_18858_3032.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <div class="carousel-item d-flex justify-content-center" data-bs-interval="2000">
+                    <div class="w-75">
+                        <img src="https://cdn.sommeliertimes.com/news/photo/201703/4360_8131_1831.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <div class="carousel-item d-flex justify-content-center">
+                    <div class="w-75">
+                        <img src="https://cdn.iconsumer.or.kr/news/photo/202101/14546_18858_3032.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden text-dark">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="navbar bg-body-tertiary">
+    <div class="container">
+
+        <!-- footer__logo-copyright -->
+        <section>
+            <div>
+                <img src="{% static 'img/today-cafe_Logo.svg' %} " alt="logo" width="50px">
+                <span>Today Cafe</span>
+            </div>
+            <div>Copyright &copy; 2023 team 5. 이리5쇼</div>
+            <div>multi-campus KDT 2th semi-project</div>
+        </section>
+        
+        <!-- footer__creater-github -->
+        <section>
+            <ul class="list-unstyled gap-3">
+                <li><a class="text-decoration-none text-black" href="https://github.com/zzgh06">최충현</a></li>
+                <li><a class="text-decoration-none text-black" href="https://github.com/JeonggonCho">조정곤</a></li>
+                <li><a class="text-decoration-none text-black" href="https://github.com/nninzy">김민지</a></li>
+                <li><a class="text-decoration-none text-black" href="https://github.com/jeonseongjae98">전성재</a></li>
+            </ul>
+        </section>
+    </div>
+</footer>
 {% endblock content %}
