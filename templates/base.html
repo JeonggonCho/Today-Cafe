@@ -12,7 +12,84 @@
     {% block style %}{% endblock style %}
 </head>
 <body>
+    <header class="navbar bg-body-tertiary sticky-top">
+        <div class="container">
+
+            <!-- header__location-btn -->
+            <button class="navbar-toggler d-flex align-items-center border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span class="ms-2">지역</span>
+            </button>
+            
+            <!-- header__logo -->
+            <a class="navbar-brand" href="">
+                <img src="{% static 'img/today-cafe_Logo.svg' %} " alt="logo" width="50px">
+                <span>Today Cafe</span>
+            </a>
+            
+            <!-- header__account-link -->
+            <div>
+                <a class="btn btn-secondary" herf="#"><span>로그인</span></a>
+                <a class="btn btn-secondary" herf="#"><span>회원가입</span></a>
+            </div>
+
+            <!-- location-btn 클릭 시 오른쪽에서 pop-up되는 지역별 카페찾기-->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <!-- pop-up title-->
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">지역별 카페찾기</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <!-- 지역별 카페찾기 detail -->
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">서울특별시</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">강남구</a></li>
+                                <li><a class="dropdown-item" href="#">서초구</a></li>
+                                <li><a class="dropdown-item" href="#">송파구</a></li>
+                                <li><a class="dropdown-item" href="#">성북구</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">경기도</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">안산시</a></li>
+                                <li><a class="dropdown-item" href="#">수원시</a></li>
+                                <li><a class="dropdown-item" href="#">용인시</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
     {% block content %}{% endblock content %}
+    <footer class="navbar bg-body-tertiary">
+        <div class="container">
+
+            <!-- footer__logo-copyright -->
+            <section>
+                <div>
+                    <img src="{% static 'img/today-cafe_Logo.svg' %} " alt="logo" width="50px">
+                    <span>Today Cafe</span>
+                </div>
+                <div>Copyright &copy; 2023 team 5. 이리5쇼</div>
+                <div>multi-campus KDT 2th semi-project</div>
+            </section>
+            
+            <!-- footer__creater-github -->
+            <section>
+                <ul class="list-unstyled gap-3">
+                    <li><a class="text-decoration-none text-black" href="https://github.com/zzgh06">최충현</a></li>
+                    <li><a class="text-decoration-none text-black" href="https://github.com/JeonggonCho">조정곤</a></li>
+                    <li><a class="text-decoration-none text-black" href="https://github.com/nninzy">김민지</a></li>
+                    <li><a class="text-decoration-none text-black" href="https://github.com/jeonseongjae98">전성재</a></li>
+                </ul>
+            </section>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 </html>
