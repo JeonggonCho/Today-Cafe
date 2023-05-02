@@ -3,14 +3,55 @@
 
 
 {% block style %}
-
+<link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/css/variables.css' %}">
 {% endblock style %}
 
 
 {% block content %}
-<form action="{% url 'accounts:login' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="확인">
-</form>
+<main class="main--login">
+    <div class="login-container container">
+        <div class="login-inner row border border-secondary-subtle my-auto">
+            <section class="col-6 p-5 d-flex flex-column justify-content-center">
+                <h3 class="fw-bold mb-4">로그인</h3>
+                <form class="mb-4 border-bottom" action="{% url 'accounts:login' %}" method="POST">
+                    {% comment %}
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% endcomment %}
+                    <div class="d-flex w-100 mb-4 ">
+                        <div class="login__form__inputs me-3">
+                            <input class="p-2 mb-2" type="text" placeholder="아이디">
+                            <input class="p-2" type="password" placeholder="비밀번호">
+                        </div>
+                        <input class="px-3 fw-bold" type="submit" value="로그인">
+                    </div>
+                    <div class="login__form__checkbox mb-3">
+                        <input class="form-check-input" type="checkbox">
+                        <label for="">아이디 저장하기</label>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-between mb-3">
+                    <h4 class="fw-bold mb-4">소셜 로그인</h4>
+                    <div class="login__social-btns">
+                        <button class="fw-bold">N</button>
+                        <button class="fw-bold mx-3">K</button>
+                        <button class="fw-bold">F</button>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">아직 회원이 아닌가요?</span>
+                    <a class="fs-5 fw-bold"href="{}">회원가입</a>
+                </div>
+            </section>
+            <section class="login__img login__img col-6 position-relative p-0">
+                <img class="w-100 h-100" src="https://cdn.pixabay.com/photo/2016/03/26/13/09/cup-of-coffee-1280537_960_720.jpg" alt="today-cafe ad-image">
+                <div class="login__img__watermark d-flex position-absolute align-items-center">
+                    <img class="me-2" src="{% static 'img/today-cafe_Logo.svg' %}" alt="today-cafe logo" width="75px" height="75px">
+                    <div class="fw-bold">당신의 카페는<br>어떠셨나요?</div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
 {% endblock content %}
