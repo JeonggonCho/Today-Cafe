@@ -1,7 +1,5 @@
 .main--login {
-    min-height: 79vh;
-    display: flex;
-    align-items: center;
+    min-height: calc(100vh - 70px - 140px);
 }
 .login-container {
     max-width: 60%;
@@ -11,12 +9,10 @@
 }
 /* section 1 */
 .login__form__inputs input {
-    width: 100%;
     border-radius: 0.5rem;
     border: 1px solid lightgray;
 }
 .login__form__inputs ~ input{
-    width: 8rem;
     border-radius: 0.5rem;
     background-color: red;
     color: white;

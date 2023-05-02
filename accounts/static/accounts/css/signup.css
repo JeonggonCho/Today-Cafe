@@ -1,0 +1,38 @@
+.main--signup {
+    min-height: calc(100vh - 70px - 140px);
+}
+/* section 1 */
+.signup-form__item input {
+    border-radius: 0.5rem;
+    border: 1px solid lightgray;
+}
+.signup-form__submit input {
+    border-radius: 0.5rem;
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+}
+.signup-form__submit > span {
+    color: gray;
+}
+/* scetion 2 */
+.signup-sns button {
+    border-radius: 0.5rem;
+}
+.signup-sns #naver {
+    border-radius: 0.5rem;
+    background-color: var(--naver-bg);
+    color: white;
+}
+.signup-sns #kakao {
+    background-color: var(--kakao-bg);
+    color: black;
+}
+.signup-sns #facebook {
+    background-color: var(--facebook-bg);
+    color: white;
+}
+.required-icon {
+    color: red;
+}
