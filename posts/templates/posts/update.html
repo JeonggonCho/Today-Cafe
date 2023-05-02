@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block style %}
+
+{% endblock style %}
+
+
+{% block content %}
+  <h1>Edit</h1>
+  <form action="{% url 'posts:update' post.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="UPDATE">
+  </form>
+  <a href="{% url 'posts:index' %}">[back]</a>
+{% endblock content %}
