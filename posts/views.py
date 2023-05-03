@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import Post, Comment, Emote, PostPhoto
-from .forms import PostForm, CommentForm, ReCommentForm
+from .models import Post, Review, Comment, Emote
+from .forms import PostForm, CommentForm, ReviewForm, ReCommentForm
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -18,7 +17,7 @@ def index(request):
     context = {
         'posts': page_obj,
     }
-    return render(request, 'posts/posts.html', context)
+    return render(request, 'posts/index.html', context)
 
 
 EMOTIONS = [
@@ -30,56 +29,26 @@ EMOTIONS = [
 
 def detail(request, post_pk):
     post = Post.objects.get(pk=post_pk)
-    emotions = []
-    for emotion in EMOTIONS:
-        label = emotion['label']
-        value = emotion['value']
-        count = Emote.objects.filter(post=post, emotion=value).count()
-        if request.user.is_authenticated:
-            exist = Emote.objects.filter(post=post, emotion=value, user=request.user)
-        else:
-            exist = None
-        emotions.append(
-            {
-            'label': label,
-            'value': value,
-            'count': count,
-            'exist': exist,
-            }
-        )
-    comments = post.comment_set.all()
-
-    photos = PostPhoto.objects.filter(post_id=post_pk)
-
-
-    comment_form = CommentForm()
-    recommnet_form = ReCommentForm()
     context = {
-        'emotions': emotions,
         'post': post,
-        'comments': comments,
-        'comment_form': comment_form,
-        'recommnet_form' : recommnet_form,
-        'photos' : photos,
-
     }
     return render(request, 'posts/detail.html', context)
 
 
 @login_required
-def emotes(request, post_pk, emotion):
-    post = Post.objects.get(pk=post_pk)
+def emotes(request, review_pk, emotion):
+    review = Review.objects.get(pk=review_pk)
     filter_query = Emote.objects.filter(
-        post=post,
+        review=review,
         user=request.user,
         emotion=emotion,
     )
     if filter_query.exists():
         filter_query.delete()
     else:
-        Emote.objects.create(post=post, user=request.user, emotion=emotion)
+        Emote.objects.create(review=review, user=request.user, emotion=emotion)
 
-    return redirect('posts:detail', post_pk)
+    return redirect('posts:detail', review_pk)
 
 
 @login_required
@@ -90,11 +59,6 @@ def create(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-
-            images = request.FILES.getlist('image')
-            for image in images:
-                photos = PostPhoto(post=post, photo=image)
-                photos.save()
             return redirect('posts:detail', post.pk)
     else:
         form = PostForm()
@@ -132,21 +96,101 @@ def delete(request, post_pk):
     return redirect('posts:index')
 
 
-@login_required
-def comments_create(request, post_pk):
+# --------------------------------------------------
+
+def review_detail(request, post_pk, review_pk):
     post = Post.objects.get(pk=post_pk)
+    review = Review.objects.get(pk=review_pk)
+    comments = review.comment_set.all()
+    comment_form = CommentForm()
+    context = {
+        'post':post,
+        'review': review,
+        'comments': comments,
+        'comment_form': comment_form,
+    }
+    return render(request, 'posts/review_detail.html', context)
+
+
+def review_create(request, post_pk):
+    post = Post.objects.get(pk=post_pk)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.post = post
+            review.user = request.user
+            review.save()
+            return redirect('posts:review_detail', post_pk=post.pk, review_pk=review.pk)
+    else:
+        review_form = ReviewForm()
+    
+    context = {
+        'post': post,
+        'review_form': review_form,
+    }
+    return render(request, 'posts/review_create.html', context)
+    
+    
+def review_update(request, post_pk, review_pk):
+    post = Post.objects.get(pk=post_pk)
+    review = Review.objects.get(pk=review_pk)
+    if request.user == review.user:
+        if request.method == 'POST':
+            review_form = ReviewForm(request.POST, request.FILES, instance=review)
+            if review_form.is_valid():
+                review_form.save()
+                return redirect('posts:review_detail', post_pk=post.pk, review_pk=review.pk)
+        else:
+            review_form = ReviewForm(instance=review)
+    else:
+        return redirect('posts:review_detail', post_pk=post.pk, review_pk=review.pk)
+    context = {
+        'review_form': review_form,
+        'post_pk': post_pk,
+        'review_pk': review_pk,
+    }
+    return render(request, 'posts/review_detail.html', context)
+
+
+def reviews_likes(request, post_pk, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    if review.likes.filter(pk=request.user.pk).exists():
+        review.likes.remove(request.user)
+        liked = False
+    else:
+        review.likes.add(request.user)
+        liked = True
+    context = {'liked': liked,'total_likes': review.likes.count()}
+    return JsonResponse(context)
+
+
+def review_delete(request, post_pk, review_pk):
+    review = Review.objects.get(pk=review_pk)
+    if request.user == review.user:
+        review.delete()
+    return redirect('posts:detail', post_pk=post_pk)
+
+
+# --------------------------------------------------
+
+
+@login_required
+def comments_create(request, review_pk):
+    review = Review.objects.get(pk=review_pk)
     comment_form = CommentForm(request.POST)
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
-        comment.post = post
+        comment.review = review
         comment.user = request.user
         comment.save()
-        return redirect('posts:detail', post.pk)
+        return redirect('posts:detail', review.pk)
     context = {
-        'post': post,
+        'review': review,
         'comment_form': comment_form,
     }
-    return render(request, 'posts/detail.html', context)
+    return render(request, 'posts/reviews_detail.html', context)
 
 
 @login_required
@@ -162,11 +206,11 @@ def recomment(request, post_pk):
 
 
 @login_required
-def comments_delete(request, post_pk, comment_pk):
+def comments_delete(request, review_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     if comment.user == request.user:
         comment.delete()
-    return redirect('posts:detail', post_pk)
+    return redirect('posts:reviews_detail', review_pk)
 
 
 @login_required
@@ -178,15 +222,6 @@ def likes(request, post_pk):
         post.like_users.add(request.user)
     return redirect('posts:detail', post_pk)
 
-
-@login_required
-def comment_likes(request, post_pk, comment_pk):
-    comment = Comment.objects.get(pk=comment_pk)
-    if comment.like_users.filter(pk=request.user.pk).exists():
-        comment.like_users.remove(request.user)
-    else:
-        comment.like_users.add(request.user)
-    return redirect('posts:detail', post_pk)
 
 
 def search(request):

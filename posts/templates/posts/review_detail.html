@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+<h2>Review Detail</h2>
+<hr>
+<h3>{{ review.title }}</h3>
+<p>{{ review.content }}</p>
+<p>{{ review.created_at }}</p>
+<p>Written by {{ review.user }}</p>
+
+<form action="{% url 'posts:review_delete' post.pk review.pk %}" method='POST'>
+    {% csrf_token %}
+    <button type="submit" >리뷰 삭제</button>
+</form>
+
+{% endblock content %}

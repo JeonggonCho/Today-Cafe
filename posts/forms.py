@@ -1,40 +1,31 @@
 from django import forms
-from .models import Profile, Post, Comment, ReComment
+from .models import Profile, Post, Comment, Review, ReComment
 
 
 class PostForm(forms.ModelForm):
-    title = forms.CharField(
-        label='제목',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-            },
-        ),
-    )
-
-    content = forms.CharField(
-        label='내용',
-        widget=forms.Textarea(
-            attrs={
-                'class': 'form-control',
-                'rows': 4,
-            },
-        ),
-    )
-
-    image = forms.ImageField(
-        label='이미지',
-        widget=forms.ClearableFileInput(
-            attrs={
-                'class': 'form-control form-control-sm',
-                'multiple': 'True'
-            },
-        ),
-        required=False,
-    )
     class Meta:
         model = Post
         fields = ('title', 'content', 'image',)
+
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ('content','image',)
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)
+
+
+class ReCommentForm(forms.ModelForm):
+    class Meta:
+        model = ReComment
+        fields = ('content', 'comment')
+    
 
 
 class CommentForm(forms.ModelForm):
@@ -49,10 +40,3 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('content',)
-
-
-class ReCommentForm(forms.ModelForm):
-    class Meta:
-        model = ReComment
-        fields = ('content', 'comment')
-    
