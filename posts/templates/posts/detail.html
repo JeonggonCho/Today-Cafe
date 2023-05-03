@@ -25,34 +25,90 @@
       게시글 내용 -
       {{post.content}}
     </p>
+    <form action="{% url 'posts:likes' post.pk %}" method="POST">
+      {% csrf_token %}
+      {% if request.user in post.like_users.all %}
+        <input type="submit" value="좋아요 취소">
+      {% else %}
+        {% if request.user.is_authenticated %}
+          <input type="submit" value="좋아요">
+        {% else %}
+          <input type="submit" value="좋아요" disabled>
+        {% endif %}
+      {% endif %}
+      <p>게시글 좋아요 수 : {{ post.like_users.count }}개</p>
+    </form>
+    </div>
+    <hr>
+    {% for emotion in emotions %}
+    <div>
+      {% if request.user.is_authenticated %}
+      {{emotion.queryset}}
+        <form action="{% url 'posts:emotes' post.pk emotion.value %}" method="POST">
+          {% csrf_token %}
+          {% if emotion.exist %}
+            <input type="submit" value="{{emotion.label}} 취소">
+          {% else %}
+            <input type="submit" value="{{emotion.label}}">
+          {% endif %}
+        </form>
+      {% else %}
+        <button disabled="disabled">{{emotion.label}}</button>
+      {% endif %}
+      <p>
+        게시글 {{emotion.label}} 수 -
+        {{ emotion.count }}
+      </p>
+    </div>
+    {% endfor %}
     <a href="{% url 'posts:index' %}">[back]</a>
-  </div>
-  <hr>
   <form action="{% url 'posts:comments_create' post.pk %}" method="POST">
     {% csrf_token %}
     {{ comment_form.as_p }}
     <input type="submit" value="댓글 작성">
   </form>
+
   <hr>
 
-  {% for comment in comments %}
+{% for comment in comments %}
     <div>
-      <p>댓글 작성자 -
-        <a href="{% url 'accounts:profile' comment.user.username %}">{{comment.user}}</a>
-      </p>
-      <p>댓글 번호 -
-        {{ comment.pk }}</p>
-      <p>
-        댓글 내용 -
-        {{comment.content}}
-      </p>
-      {% if comment.user == user %}
-        <form action="{% url 'posts:comments_delete' post.pk comment.pk %}" method="POST">
-          {% csrf_token %}
-          <input type="submit" value="댓글 삭제">
+        <p>댓글 작성자 - <a href="{% url 'accounts:profile' comment.user.username %}">{{ comment.user }}</a></p>
+        <p>댓글 번호 - {{ comment.pk }}</p>
+        <p>댓글 내용 - {{ comment.content }}</p>
+        <form action="{% url 'posts:comment_likes' post.pk comment.pk %}" method="POST">
+            {% csrf_token %}
+            {% if request.user in comment.like_users.all %}
+                <input type="submit" value="좋아요 취소">
+            {% else %}
+                {% if request.user.is_authenticated %}
+                    <input type="submit" value="좋아요">
+                {% else %}
+                    <input type="submit" value="좋아요" disabled>
+                {% endif %}
+            {% endif %}
+            <p>댓글 좋아요 수 : {{ comment.like_users.count }}개</p>
         </form>
-      {% endif %}
     </div>
-    <hr> 
+  {% empty %}
+      <p>댓글이 없습니다.</p>
   {% endfor %}
+
+  <form action="{% url 'posts:recomment' post.pk %}" method="POST">
+    {% csrf_token %}
+    {% for recomment in recommnet_form %}
+      {% if recomment.label != 'Comment' %}
+        {{recomment.label}} : {{recomment}}
+      {% endif %}
+    {% endfor %}
+    <input type="hidden" name="comment" value={{comment.id}}>
+    <input type="submit" value="댓글">
+  </form>
+  {% for recomment in comment.recommnet_set.all %}
+   {{ recomment }}
+  {% endfor %}
+
+  <hr>
+
+
+
 {% endblock content %}

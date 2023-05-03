@@ -5,6 +5,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from django.http import JsonResponse
 
 # Create your views here.
 def profile(request, username):
@@ -22,10 +23,18 @@ def follow(request, user_pk):
     person = User.objects.get(pk=user_pk)
     
     if person != request.user:
-        if person.followers.filter(pk=request.user.pk).exists():
+        if request.user in person.followers.all():
             person.followers.remove(request.user)
+            is_followed = False
         else:
             person.followers.add(request.user)
+            is_followed = True
+        context = {
+            'is_followed' : is_followed,
+            'followings_count': person.followings.count(),
+            'followers_count': person.followers.count(),
+        }
+        return JsonResponse(context)
     return redirect('accounts:profile', person.username)
 
 

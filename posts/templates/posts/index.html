@@ -8,6 +8,26 @@
 
 
 {% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"> Navbar </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#"> Home </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"> Link </a></li>
+            </ul>
+            <form class="d-flex" method="GET" action="{% url 'posts:search' %}">       
+              <input class="form-control me-2" type="text" placeholder="Search" name="q" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit"> Search </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
   <h1>Index</h1>
   {% if request.user.is_authenticated %}
     <h3>{{ user }}님</h3>
@@ -47,4 +67,73 @@
     </form>
     <hr>
   {% endfor %}
+
+  {% comment %} 페이지네이션 컴포넌트 시작 {% endcomment %}
+    <ul class="pagination justify-content-center">
+      {% comment %}
+          이전 페이지 버튼
+          이전 페이지가 존재할 경우 이전 페이지 버튼 활성화
+      {% endcomment %}
+      {% if posts.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1">처음</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">처음</a>
+        </li>
+      {% endif %}
+      {% if posts.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ posts.previous_page_number }}">이전</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+      {% endif %}
+      {% comment %}
+          페이지 번호 리스트 생성 반본북
+      {% endcomment %}
+      {% for page_number in posts.paginator.page_range %}
+        {% comment %}
+          페이지 번호가 무한히 생성되는 것을 막는 조건문
+          현재 페이지에서 +- 5 까지 생성
+        {% endcomment %}
+        {% if page_number >= posts.number|add:-5 and page_number <= posts.number|add:5 %}
+          {% if page_number == posts.number %}
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      {% comment %}
+          다음 페이지 버튼
+          다음 페이지가 존재할 경우 다음 페이지 버튼 활성화
+      {% endcomment %}
+      {% if posts.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ posts.next_page_number }}">다음</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+      {% endif %}
+      {% if posts.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ posts.end_index }}">마지막</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">마지막</a>
+        </li>
+      {% endif %}
+    </ul>
+    {% comment %} 페이지네이션 컴포넌트 끝 {% endcomment %}
 {% endblock content %}
