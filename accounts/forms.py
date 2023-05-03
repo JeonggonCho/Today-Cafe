@@ -1,9 +1,21 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
+from imagekit.models import ImageSpecField
+from imagekit.forms import ProcessedImageField
+from imagekit.processors import Thumbnail
+from imagekit.processors import ResizeToFill
 from django import forms
 
 
 class CustomUserCreationForm(UserCreationForm):
+    # profile_image = ProcessedImageField(
+    # spec_id='profile_image_thumbnail',
+    # processors=[ResizeToFill(70,70)],
+    # format='JPEG',
+    # options={'quality' : 90},
+    # required=False,
+    # )
+    
     birthday = forms.DateField(
         label='Birthday',
         required=False,
@@ -70,12 +82,20 @@ class CustomUserCreationForm(UserCreationForm):
     )
 
 class CustomUserChangeForm(UserChangeForm):
+    profile_image = ProcessedImageField(
+    spec_id='profile_image_thumbnail',
+    processors=[ResizeToFill(70,70)],
+    format='JPEG',
+    options={'quality' : 90},
+    required=False,
+    )
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
         fields = (
             'email',
             'first_name',
             'last_name',
+            'profile_image',
         )
     email = forms.EmailField(
         label='Email address',

@@ -9,6 +9,14 @@
 
 {% block content %}
 {{ person.username }}님의 프로필
+
+{% if person.profile_image %}
+  <img src="{{ person.profile_image.url }}" alt="프로필이미지">
+{% else %}
+  <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="프로필 없음">
+{% endif %}
+
+
 {% if person.is_admin %}
 (관리자)
 {% endif %}
