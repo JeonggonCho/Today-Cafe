@@ -3,15 +3,10 @@
 
 
 {% block style %}
-
+<link rel="stylesheet" href="{% static 'accounts/css/signup.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/css/variables.css' %}">
 {% endblock style %}
 
 
 {% block content %}
-<form action="{% url 'accounts:signup' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="확인">
-</form>
-<a href="{% url 'posts:index' %}">[back]</a>
 {% endblock content %}
