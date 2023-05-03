@@ -3,6 +3,7 @@
 
 
 {% block style %}
+<title>로그인하기</title>
 <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
 <link rel="stylesheet" href="{% static 'accounts/css/variables.css' %}">
 {% endblock style %}
@@ -15,14 +16,11 @@
             <section class="col-6 p-5 d-flex flex-column justify-content-center">
                 <h3 class="fw-bold mb-4">로그인</h3>
                 <form class="mb-4 border-bottom" action="{% url 'accounts:login' %}" method="POST">
-                    {% comment %}
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    {% endcomment %}
                     <div class="d-flex w-100 mb-4 ">
                         <div class="login__form__inputs me-3">
-                            <input class="w-100 p-2 mb-2" type="text" placeholder="아이디">
-                            <input class="w-100 p-2" type="password" placeholder="비밀번호">
+                            {{ form.username }}
+                            {{ form.password }}
                         </div>
                         <input class="px-3 fw-bold" type="submit" value="로그인">
                     </div>

@@ -2,10 +2,6 @@
     min-height: calc(100vh - 70px - 140px);
 }
 /* section 1 */
-.signup-form__item input {
-    border-radius: 0.5rem;
-    border: 1px solid lightgray;
-}
 .signup-form__submit input {
     border-radius: 0.5rem;
     background-color: red;
