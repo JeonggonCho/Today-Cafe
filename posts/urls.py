@@ -3,16 +3,52 @@ from . import views
 
 app_name = 'posts'
 urlpatterns = [
+    # post관련 url
     path('', views.index, name='index'),
     path('<int:post_pk>/', views.detail, name='detail'),
     path('create/', views.create, name='create'),
     path('<int:post_pk>/delete/', views.delete, name='delete'),
     path('<int:post_pk>/update/', views.update, name='update'),
-    path('<int:post_pk>/comments/', views.comments_create, name='comments_create'),
-    path('<int:post_pk>/comments/<int:comment_pk>/delete/', views.comments_delete, name='comments_delete'),
     path('<int:post_pk>/likes/', views.likes, name='likes'),
-    path('<int:post_pk>/comments/<int:comment_pk>/likes/', views.comment_likes, name='comment_likes',),
-    path('<int:post_pk>/emotes/<int:emotion>/', views.emotes, name='emotes'),
-    path('<int:post_pk>/recomment/', views.recomment, name='recomment'),
+
+
+    # review관련 url
+    path('<int:post_pk>/reviews/<int:review_pk>/', views.review_detail, name='review_detail'),
+    path('<int:post_pk>/reviews/', views.review_create , name='review_create'),
+    path('<int:post_pk>/reviews/<int:review_pk>/update/', views.review_update, name='review_update'),
+    path('<int:post_pk>/reviews/<int:review_pk>/delete/', views.review_delete, name='review_delete'),
+    path('<int:post_pk>/reviews/<int:review_pk>/likes', views.reviews_likes, name='reviews_likes',),
+    # path('<int:post_pk>/emotes/<int:emotion>/', views.emotes, name='emotes'),
+
+
+    # comment관련 url
+    path('<int:review_pk>/comments/', views.comments_create, name='comments_create'),
+    path('<int:review_pk>/comments/<int:comment_pk>/delete/', views.comments_delete, name='comments_delete'),
+    
+    
+  
+    # 기타 url
     path('search/', views.search, name="search"),
-]
+    path('<int:post_pk>/recomment/', views.recomment, name='recomment'),
+    ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
