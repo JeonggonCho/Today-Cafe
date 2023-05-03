@@ -1,0 +1,61 @@
+.main--login {
+    min-height: calc(100vh - 70px - 140px);
+}
+.login-container {
+    max-width: 60%;
+}
+.login-inner {
+    border-radius: 1.5rem;
+}
+/* section 1 */
+.login__form__inputs input {
+    border-radius: 0.5rem;
+    border: 1px solid lightgray;
+}
+.login__form__inputs ~ input{
+    border-radius: 0.5rem;
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+}
+.login__form__checkbox {
+    height: 2rem;
+    font-size: 1.2rem;
+}
+.login__form__checkbox > input {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.login__social-btns button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--naver-bg);
+    color: white;
+}
+.login__social-btns button:nth-child(2) {
+    background-color: var(--kakao-bg);
+    color: black;
+}
+.login__social-btns button:last-child {
+    background-color: var(--facebook-bg);
+}
+/* section 2 */
+.login__img {
+    overflow: hidden;
+}
+.login__img img {
+    object-fit: cover;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.login__img__watermark {
+    top: 4rem;
+    left: 3rem;
+}
+.login__img__watermark div {
+    color: white;
+    font-size: 1.5rem;
+}
