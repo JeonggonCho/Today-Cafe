@@ -7,8 +7,12 @@ urlpatterns = [
     path('<int:post_pk>/', views.detail, name='detail'),
     path('create/', views.create, name='create'),
     path('<int:post_pk>/delete/', views.delete, name='delete'),
-    path('<int:review_pk>/update/', views.update, name='update'),
+    path('<int:post_pk>/update/', views.update, name='update'),
     path('<int:post_pk>/comments/', views.comments_create, name='comments_create'),
     path('<int:post_pk>/comments/<int:comment_pk>/delete/', views.comments_delete, name='comments_delete'),
     path('<int:post_pk>/likes/', views.likes, name='likes'),
+    path('<int:post_pk>/comments/<int:comment_pk>/likes/', views.comment_likes, name='comment_likes',),
+    path('<int:post_pk>/emotes/<int:emotion>/', views.emotes, name='emotes'),
+    path('<int:post_pk>/recomment/', views.recomment, name='recomment'),
+    path('search/', views.search, name="search"),
 ]

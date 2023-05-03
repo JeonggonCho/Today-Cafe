@@ -8,18 +8,85 @@
 
 
 {% block content %}
-{{ person.nickname }}님의 프로필
+{{ person.username }}님의 프로필
 {% if person.is_admin %}
 (관리자)
 {% endif %}
 
+  <div>
+    팔로잉 : <span id="followings-count">{{ person.followings.all|length }}</span> / 
+    팔로워 : <span id="followers-count">{{ person.followers.all|length }}</span>
+  </div>
 
-<form action="{% url 'accounts:follow' person.pk %}" method="POST">
-{% csrf_token %}
-{% if request.user in person.followers.all %}
-    <input type="submit" value="팔로우 취소">
-{% else %}
-    <input type="submit" value="팔로우">
-{% endif %}
-</form>
+  {% if request.user != person %}
+    <div>
+      <form id="follow-form" data-user-id="{{ person.pk }}">
+        {% csrf_token %}
+        {% if request.user in person.followers.all %}
+          <input type="submit" value="언팔로우">
+        {% else %}
+          <input type="submit" value="팔로우">
+        {% endif %}
+      </form>
+    </div>
+  {% endif %}
+
+<h3>{{ person.username }}가 좋아요를 누른 모든 게시글</h3>
+{% for post in person.like_posts.all %}
+  <div>{{ post.title }}</div>
+{% endfor %}
+
+<hr>
+
+<h3>{{ person.username }}가 작성한 모든 댓글</h3>
+{% for comment in person.comment_set.all %}
+  <div>{{ comment.content }}</div>
+{% endfor %}
+
+<hr>
+
+<h3>{{ person.username }}가 좋아요를 누른 모든 게시글</h3>
+{% for post in person.like_posts.all %}
+  <div>{{ post.title }}</div>
+{% endfor %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const form = document.querySelector('#follow-form')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+    form.addEventListener('submit', function (event) {
+        // 이벤트 기본 동작 취소
+        event.preventDefault()
+  
+        const userId = event.target.dataset.userId
+        axios({
+            method: 'post',
+            url: `/accounts/${userId}/follow/`,
+            headers: {'X-CSRFToken': csrftoken},
+          })
+          .then((response) => {
+            // console.log(response.data)
+            const isFollowed = response.data.is_followed
+            const followBtn = document.querySelector('#follow-form > input[type=submit]')
+
+            if (isFollowed === true) {
+                followBtn.value = '언팔로우'
+              } else {
+                followBtn.value = '팔로우'
+              }
+            const followingCountTag = document.querySelector('#followings-count')
+            const followerCountTag = document.querySelector('#followers-count')
+
+            const followingsCountData = response.data.followings_count
+            const followersCountData = response.data.followers_count
+
+            followingCountTag.textContent = followingsCountData
+            followerCountTag.textContent = followersCountData
+            })
+        })
+</script>
+
+<a href="{% url 'posts:index' %}">[back]</a>
 {% endblock content %}
