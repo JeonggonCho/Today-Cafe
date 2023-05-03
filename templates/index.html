@@ -8,39 +8,135 @@
 
 
 {% block content %}
-<main>
-    <div class="container">
-        <form>
-            <input type="text" placeholder="지역을 입력해주세요">
-            <input type="submit" value="검색">
-        </form>
-        <div id="carouselExampleInterval" class="carousel-dark slide" data-bs-ride="carousel">
+<main class="container p-5">
+    <!-- carousel 화면 -->
+    <section class="index__carousel d-flex justify-content-center my-5">
+        <div id="carouselExampleIndicators" class="carousel slide w-50">
+            <div class="carousel-indicators mb-1">
+                <button type="button" class="active mx-2 rounded-circle" style="width: 0.8rem; height: 0.8rem;"data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" class="mx-2 rounded-circle" style="width: 0.8rem; height: 0.8rem;"data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" class="mx-2 rounded-circle" style="width: 0.8rem; height: 0.8rem;"data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
             <div class="carousel-inner">
-                <div class="carousel-item active d-flex justify-content-center" data-bs-interval="10000">
-                    <div class="w-75">
-                        <img src="https://cdn.iconsumer.or.kr/news/photo/202101/14546_18858_3032.jpg" class="d-block w-100" alt="...">
-                    </div>
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="https://cdn.psnews.co.kr/news/photo/202206/2009891_52943_2236.jpg" alt="...">
                 </div>
-                <div class="carousel-item d-flex justify-content-center" data-bs-interval="2000">
-                    <div class="w-75">
-                        <img src="https://cdn.sommeliertimes.com/news/photo/201703/4360_8131_1831.jpg" class="d-block w-100" alt="...">
-                    </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://www.shinsegaegroupnewsroom.com/wp-content/uploads/2022/02/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EB%B3%B8%EB%AC%B8_2.png" alt="...">
                 </div>
-                <div class="carousel-item d-flex justify-content-center">
-                    <div class="w-75">
-                        <img src="https://cdn.iconsumer.or.kr/news/photo/202101/14546_18858_3032.jpg" class="d-block w-100" alt="...">
-                    </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://www.shinsegaegroupnewsroom.com/wp-content/uploads/2021/02/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EB%B3%B8%EB%AC%B83.png" alt="...">
                 </div>
             </div>
-            <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden text-dark">Previous</span>
+                <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-    </div>
+    </section>
+    <!-- category list -->
+    <section class="index__category mb-5">
+        <h3 class="fw-bold mb-3">카테고리</h3>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="">
+                <span class="material-symbols-outlined me-2">menu</span>
+                <span>모든 카페</span>
+            </a>
+            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="">
+                <span class="material-symbols-outlined me-2">stylus</span>
+                <span>카공 / 모각코</span>
+            </a>
+            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="">
+                <span class="material-symbols-outlined me-2">pets</span>
+                <span>애견동반</span>
+            </a>
+            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center" href="">
+                <span class="material-symbols-outlined me-2">import_contacts</span>
+                <span>동네 책방</span>
+            </a>
+        </div>
+    </section>
+    <!-- articels-like -->
+    <section class="articles-like--lg-card mb-5">
+        <h3 class="fw-bold mb-4">여기 카페 너무 좋아요!</h3>
+        <div class="w-100 row row-cols-2 g-4">
+            <article class="col">
+                <div class="card">
+                    <div class="article-thumbnail__img position-relative">
+                        <img class="card-img-top article-like-card--lg" src="https://img.lovepik.com/photo/20211120/small/lovepik-cafe-interior-decoration-picture_500515446.jpg" alt="...">
+                        <div class="article-thumbnail__img__like position-absolute top-0 end-0 m-3 d-flex justify-content-center align-items-center">
+                            <span class="material-symbols-outlined">favorite</span>
+                        </div>
+                    </div>
+                    <div class="card-body bg-light">
+                        <div class="article-thumbnail__user-info d-flex align-items-center mb-3">
+                            <div class="article-thumbnail__user-info__avatar me-2">
+                                {% if person.profile_image %}
+                                    <img src="{{ person.profile_image.url }}" alt="프로필이미지">
+                                {% else %}
+                                    <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="프로필 없음">
+                                {% endif %}
+                            </div>
+                            <span class="article-thumbnail__user-info__username fw-bold me-2">User123{{ person.username }}</span>
+                            <button class="btn btn-secondary btn-sm">팔로우</button>
+                        </div>
+                        <h5 class="card-title fw-bold">STARBUCKS</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="card-content card-text col-6 text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo nulla labore ea id quae, magnam itaque tenetur amet laudantium dolor natus rem alias molestiae incidunt a ex inventore doloribus ratione.</div>
+                            <div class="d-flex align-items-center">
+                                <span class="material-symbols-outlined me-1">favorite</span>
+                                <span class="me-2">12</span>
+                                <span class="material-symbols-outlined me-1">mode_comment</span>
+                                <span>12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <!-- articles-recent-->
+    <section class="articles-recent--sm-card mb-5">
+        <h3 class="fw-bold mb-4">최근에 다녀왔어요!</h3>
+        <div class="row row-cols-4 g-4">
+            <article class="col">
+                <div class="card">
+                    <div class="article-thumbnail__img position-relative">
+                        <img class="card-img-top" src="https://img.lovepik.com/photo/20211120/small/lovepik-cafe-interior-decoration-picture_500515446.jpg" alt="...">
+                        <div class="article-thumbnail__img__like position-absolute top-0 end-0 m-3 d-flex justify-content-center align-items-center">
+                            <span class="material-symbols-outlined">favorite</span>
+                        </div>
+                    </div>
+                    <div class="card-body bg-light">
+                        <div class="article-thumbnail__user-info d-flex align-items-center mb-3">
+                            <div class="article-thumbnail__user-info__avatar me-2">
+                                {% if person.profile_image %}
+                                    <img src="{{ person.profile_image.url }}" alt="프로필이미지">
+                                {% else %}
+                                    <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="프로필 없음">
+                                {% endif %}
+                            </div>
+                            <span class="article-thumbnail__user-info__username fw-bold me-2">User123{{ person.username }}</span>
+                            <button class="btn btn-secondary btn-sm">팔로우</button>
+                        </div>
+                        <h5 class="card-title fw-bold">STARBUCKS</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="card-content card-text col-6 text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo nulla labore ea id quae, magnam itaque tenetur amet laudantium dolor natus rem alias molestiae incidunt a ex inventore doloribus ratione.</div>
+                            <div class="d-flex align-items-center">
+                                <span class="material-symbols-outlined me-1">favorite</span>
+                                <span class="me-2">12</span>
+                                <span class="material-symbols-outlined me-1">mode_comment</span>
+                                <span>12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
 </main>
 {% endblock content %}
