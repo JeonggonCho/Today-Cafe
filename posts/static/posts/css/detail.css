@@ -1,0 +1,68 @@
+@import "reset.css";
+@import "variables.css";
+
+.detail--comment_btn {
+    width: 80px;
+    height: 38px;
+    border-radius: var(--btn-radius);
+    background-color: var(--btn-red);
+    color: white;
+    border: none;
+}
+.detail--comment_form {
+    width: 100%;
+    border-radius: 1rem;
+    background-color: var(--form-lightgray);
+    padding: var(--comment_form-padding);
+}
+.detail--post_form {
+    width: 100%;
+    border-radius: 1rem;
+    background-color: var(--form-lightgray);
+    padding: var(--post_form-padding);
+}
+.detail--date_font {
+    font-size: var(--font-medium-size);
+    color: var(--font-gray);
+}
+.detail--delete_btn {
+    font-size: var(--font-medium-size);
+    color: var(--font-gray);
+    background-color: transparent;
+}
+.detail--update_btn {
+    font-size: var(--font-medium-size);
+    color: var(--font-gray);
+}
+/* 프로필사진관련 */
+.profile--img_small_form {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-red);
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile--img_medium_form {
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--border-red);
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+}
+.profile--img_medium_form img, .profile--img_small_form img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+/* 첨부이미지관련 */
+.photo--form {
+    width: 33%;
+    height: 180px;
+    overflow: hidden;
+}
+.photo--form img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

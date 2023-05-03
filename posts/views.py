@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Post, Comment
+from .models import Post, Comment, PostPhoto
 from .forms import PostForm, CommentForm
 
 
@@ -10,17 +10,19 @@ def index(request):
     context = {
         'posts' : posts,
     }
-    return render(request, 'posts/index.html', context)
+    return render(request, 'posts/posts.html', context)
 
 
 def detail(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     comment_form = CommentForm()
     comments = post.comment_set.all()
+    photos = PostPhoto.objects.filter(post_id=post_pk)
     context = {
-        'post' : post,
+        'post': post,
         'comment_form': comment_form,
         'comments': comments,
+        'photos': photos,
     }
     return render(request, 'posts/detail.html', context)
 
@@ -33,6 +35,11 @@ def create(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
+
+            images = request.FILES.getlist('image')
+            for image in images:
+                photos = PostPhoto(post=post, photo=image)
+                photos.save()
             return redirect('posts:detail', post.pk)
     else:
         form = PostForm()
