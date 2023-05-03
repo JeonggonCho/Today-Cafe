@@ -10,7 +10,7 @@
 
 {% block content %}
 <main class="main--signup d-flex">
-  <div class="signup-container container p-0 d-flex flex-column align-items-center">
+  <div class="signup-container container mt-5 p-0 d-flex flex-column align-items-center">
       <!-- signup title -->
       <h3 class="my-0 pb-4 fw-bold">가입하기</h3>
       <!-- signup content -->
@@ -18,35 +18,40 @@
           <!-- signup-form -->
           <section class="signup-form px-5 border-end col-6 d-flex flex-column justify-content-center">
               <form action="{% url 'accounts:signup' %}" method="POST">
-                  {% comment %}
                   {% csrf_token %}
-                  {{ form.as_p }}
-                  {% endcomment %}
                   <div class="signup-form__item mb-2">
-                      <label class="mb-1 fw-bold" for="">아이디<span class="required-icon ms-1">*</span></label>
-                      <input class="w-100 p-1" type="text" required>
+                      <label class="mb-1 fw-bold" for="username">아이디<span class="required-icon ms-1">*</span></label>
+                      {{ form.username }}
                   </div>
                   <div class="signup-form__item mb-2">
-                      <label class="mb-1 fw-bold" for="">비밀번호<span class="required-icon ms-1">*</span></label>
-                      <input class="w-100 p-1" type="password" required>
+                      <label class="mb-1 fw-bold" for="password1">비밀번호<span class="required-icon ms-1">*</span></label>
+                      {{ form.password1 }}
                   </div>
                   <div class="signup-form__item mb-2">
-                      <label class="mb-1 fw-bold " for="">비밀번호 확인<span class="required-icon ms-1">*</span></label>
-                      <input class="w-100 p-1" type="password" required>
+                      <label class="mb-1 fw-bold " for="password2">비밀번호 확인<span class="required-icon ms-1">*</span></label>
+                      {{ form.password2 }}
                   </div>
                   <div class="signup-form__item mb-2">
-                      <label class="mb-1 fw-bold" for="">이름<span class="required-icon ms-1">*</span></label>
-                      <input class="w-100 p-1" type="text" required>
+                      <label class="mb-1 fw-bold" for="first_name">성<span class="required-icon ms-1">*</span></label>
+                      {{ form.first_name }}
                   </div>
-                  <div class="signup-form__item mb-3">
-                      <label class="mb-1 fw-bold" for="formFile" class="form-label">프로필 사진</label>
-                      <input class="w-100 p-1 form-control" type="file" id="formFile" accept="image/png, image/jpeg, image.jpg">
-                      </div>
+                  <div class="signup-form__item mb-2">
+                      <label class="mb-1 fw-bold" for="last_name">이름<span class="required-icon ms-1">*</span></label>
+                      {{ form.last_name }}
+                  </div>
+                  <div class="signup-form__item mb-2">
+                      <label class="mb-1 fw-bold" for="email">이메일<span class="required-icon ms-1">*</span></label>
+                      {{ form.email }}
+                  </div>
+                  <div class="signup-form__item mb-2">
+                      <label class="mb-1 fw-bold" for="birthday">생년월일</label>
+                      {{ form.birthday }}
+                  </div>
                   <div class="signup-form__submit">
                       <span class="d-block mb-2"><span class="required-icon">*</span>는 반드시 입력해주세요</span>
                       <input class="w-100 p-2 fw-bold" type="submit" value="가입하기">
                   </div>
-              </form>
+                </form>
           </section>
           <!-- signup-sns -->
           <section class="signup-sns px-5 col-6 d-flex flex-column justify-content-center align-items-center h-100">
