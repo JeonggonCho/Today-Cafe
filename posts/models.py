@@ -1,4 +1,5 @@
 from django.db import models
+import os
 from imagekit.models import ImageSpecField
 from imagekit.processors import Thumbnail
 from django.conf import settings
@@ -33,7 +34,11 @@ class Comment(models.Model):
     parent_comment = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
+class PostPhoto(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='posts/photos/')
+    
     def __str__(self):
         return self.content
     

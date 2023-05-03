@@ -3,7 +3,7 @@
 
 
 {% block style %}
-
+<link rel="stylesheet" href="{% static 'posts/css/posts.css' %}">
 {% endblock style %}
 
 
@@ -38,7 +38,7 @@
     </form>
     <form action="{% url 'accounts:delete' %}" method='POST'>
       {% csrf_token %}
-      <button type="submit" class="btn btn-outline-secondary a" role="button">회원탈퇴</button>
+      <button type="submit" class="btn btn-outline-secondary" role="button">회원탈퇴</button>
     </form>
     <a href="{% url 'accounts:update' %}">회원정보수정</a>
   {% else %}
@@ -66,74 +66,83 @@
       {% endif %}
     </form>
     <hr>
-  {% endfor %}
+    {% endfor %}
 
-  {% comment %} 페이지네이션 컴포넌트 시작 {% endcomment %}
-    <ul class="pagination justify-content-center">
-      {% comment %}
-          이전 페이지 버튼
-          이전 페이지가 존재할 경우 이전 페이지 버튼 활성화
-      {% endcomment %}
-      {% if posts.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?page=1">처음</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">처음</a>
-        </li>
-      {% endif %}
-      {% if posts.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ posts.previous_page_number }}">이전</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-        </li>
-      {% endif %}
-      {% comment %}
-          페이지 번호 리스트 생성 반본북
-      {% endcomment %}
-      {% for page_number in posts.paginator.page_range %}
-        {% comment %}
-          페이지 번호가 무한히 생성되는 것을 막는 조건문
-          현재 페이지에서 +- 5 까지 생성
-        {% endcomment %}
-        {% if page_number >= posts.number|add:-5 and page_number <= posts.number|add:5 %}
-          {% if page_number == posts.number %}
-            <li class="page-item active" aria-current="page">
-              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
-          {% else %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-      {% comment %}
-          다음 페이지 버튼
-          다음 페이지가 존재할 경우 다음 페이지 버튼 활성화
-      {% endcomment %}
-      {% if posts.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ posts.next_page_number }}">다음</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-        </li>
-      {% endif %}
-      {% if posts.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ posts.end_index }}">마지막</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">마지막</a>
-        </li>
-      {% endif %}
-    </ul>
-    {% comment %} 페이지네이션 컴포넌트 끝 {% endcomment %}
+    <main>
+      <div class="container my-5">
+        <!-- 카테고리 -->
+        <div class="mb-5">
+          <h2 class="mb-4"><strong>카테고리</strong></h2>
+          <div class="d-flex gap-3">
+            <a href="{% url 'posts:index' %}" class="posts--cate_btn d-flex gap-3 align-items-center justify-content-center">
+              <span class="material-symbols-outlined">
+                menu
+              </span>
+              <h5 class="m-0">모든 카페</h5>
+            </a>
+            <a href="{% url 'posts:index' %}" class="posts--cate_btn d-flex gap-3 align-items-center justify-content-center">
+              <span class="material-symbols-outlined">
+                stylus
+              </span>
+              <h5 class="m-0">카공/모각코</h5>
+            </a>
+            <a href="{% url 'posts:index' %}" class="posts--cate_btn d-flex gap-3 align-items-center justify-content-center">
+              <span class="material-symbols-outlined">
+                pets
+              </span>
+              <h5 class="m-0">펫 카페</h5>
+            </a>
+            <a href="{% url 'posts:index' %}" class="posts--cate_btn d-flex gap-3 align-items-center justify-content-center">
+              <span class="material-symbols-outlined">
+                import_contacts
+              </span>
+              <h5 class="m-0">북 카페</h5>
+            </a>
+          </div>
+        </div>
+
+        <!-- 각각의 카테고리 목록 -->
+          <div>
+            <div class="d-flex">
+              <h2 class="mb-4"><strong>모든 카페</strong></h2>
+            </div>
+
+            {% for post in posts %}
+            <div class="posts--cate_form d-flex gap-5 mb-5">
+              <!-- 카테고리 카페 이미지 -->
+              <div class="posts--cate_img_form">
+                <img src="https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg" alt="">
+              </div>
+              <!-- 카테고리 카페 이름 -->
+              <div class="my-5">
+                <div class="d-flex flex-grow-1 align-items-center gap-3">
+                  <div class="posts--cate_form_icon d-flex justify-content-center align-items-center"><span class="material-symbols-outlined">stylus</span></div>
+                  <h2><strong>스터디 카페</strong></h2>
+
+                  <!-- 좋아요 버튼 -->
+                  <div>
+                    <form action="{% url 'posts:likes' post.pk %}" method="POST">
+                      {% csrf_token %}
+                      {% if request.user in post.like_users.all %}
+                        <button type="submit" class="border-0">
+                          <span class="material-symbols-outlined">
+                            favorite
+                          </span>
+                        </button>
+                      {% else %}
+                        <button type="submit" class="border-0">
+                          <span class="material-symbols-outlined">
+                            favorite
+                          </span>
+                        </button>
+                      {% endif %}
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+      </div>
+    </main>
 {% endblock content %}

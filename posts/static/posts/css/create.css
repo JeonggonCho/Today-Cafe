@@ -1,0 +1,9 @@
+@import "reset.css";
+@import "variables.css";
+
+.create_form {
+    width: 400px;
+}
+.create--submit_btn {
+    width: 100%;
+}

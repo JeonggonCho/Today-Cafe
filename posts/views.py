@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from .models import Post, Comment, Emote
+from .models import Post, Comment, Emote, PostPhoto
 from .forms import PostForm, CommentForm, ReCommentForm
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -18,7 +18,7 @@ def index(request):
     context = {
         'posts': page_obj,
     }
-    return render(request, 'posts/index.html', context)
+    return render(request, 'posts/posts.html', context)
 
 
 EMOTIONS = [
@@ -48,6 +48,10 @@ def detail(request, post_pk):
             }
         )
     comments = post.comment_set.all()
+
+    photos = PostPhoto.objects.filter(post_id=post_pk)
+
+
     comment_form = CommentForm()
     recommnet_form = ReCommentForm()
     context = {
@@ -55,7 +59,9 @@ def detail(request, post_pk):
         'post': post,
         'comments': comments,
         'comment_form': comment_form,
-        'recommnet_form' : recommnet_form
+        'recommnet_form' : recommnet_form,
+        'photos' : photos,
+
     }
     return render(request, 'posts/detail.html', context)
 
@@ -84,6 +90,11 @@ def create(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
+
+            images = request.FILES.getlist('image')
+            for image in images:
+                photos = PostPhoto(post=post, photo=image)
+                photos.save()
             return redirect('posts:detail', post.pk)
     else:
         form = PostForm()

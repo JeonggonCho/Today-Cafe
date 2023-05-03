@@ -1,0 +1,12 @@
+:root {
+    --form-lightgray: #f6f6f6;
+    --form-gray: gray;
+    --btn-red: red;
+    --btn-gray: gray;
+    --border-red: red;
+    --font-gray: gray;
+    --btn-radius: 8px;
+    --comment_form-padding: 1rem;
+    --post_form-padding: 2rem;
+    --font-medium-size: 14px;
+}
