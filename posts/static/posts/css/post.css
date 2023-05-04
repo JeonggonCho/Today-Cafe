@@ -1,0 +1,84 @@
+@import "reset.css";
+@import "variables.css";
+
+.post--cate_form_icon {
+    width: 35px;
+    height: 35px;
+    background-color: var(--form-gray);
+    color: white;
+    border-radius: 6px;
+}
+.post--create_btn {
+    width: 130px;
+    height: 40px;
+    background-color: var(--form-gray);
+    color: white;
+    border-radius: 6px;
+}
+.post--create_btn:hover {
+    background-color: darkgray;
+}
+.post--map_form {
+    width: 100%;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 1rem;
+}
+.post--info_form {
+    width: 100%;
+    background-color: var(--form-lightgray);
+    border-radius: 1rem;
+    padding: 2rem;
+}
+.post--detail_form {
+    width: 100%;
+    background-color: var(--form-lightgray);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.1s linear;
+}
+.post--detail_form:hover {
+    background-color: rgb(235, 235, 235);
+}
+/* 프로필사진관련 */
+.profile--img_medium_form {
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--border-red);
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+}
+.profile--img_medium_form img, .profile--img_small_form img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.photo--form {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+.photo--form img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+/* 좋아요버튼관련 */
+.post--like_btn {
+    color: red;
+    background-color: transparent;
+    transition: all 0.1s linear;
+}
+.post--like_btn:hover {
+    transform: scale(1.2);
+}
+.post--unlike_btn {
+    color: gray;
+    background-color: transparent;
+    transition: all 0.1s linear;
+}
+.post--unlike_btn:hover {
+    transform: scale(1.2);
+    color: black;
+}
