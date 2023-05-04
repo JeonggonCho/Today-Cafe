@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-10 d-flex flex-column">
                     <div class="mb-3">{{ post.create_at|date:'Y-m-d' }}</div>
-                    <a href="{% url 'posts:detail' post.pk %}">
+                    <a href="{% url 'posts:post' post.pk %}">
                         <div><strong>{{ post.title }}</strong></div>
                         <div class="mb-4">{{ post.content }}</div>
                         <div class="d-flex gap-3">
