@@ -54,7 +54,7 @@ def emotes(request, review_pk, emotion):
 @login_required
 def create(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
@@ -96,8 +96,6 @@ def delete(request, post_pk):
     return redirect('posts:posts')
 
 
-# --------------------------------------------------
-
 def review_detail(request, post_pk, review_pk):
     post = Post.objects.get(pk=post_pk)
     review = Review.objects.get(pk=review_pk)
@@ -133,49 +131,28 @@ def review_create(request, post_pk):
     return render(request, 'posts/review_create.html', context)
     
 
-
-# def review_update(request, post_pk, review_pk):
-#     review = Review.objects.get(pk=review_pk)
-
-#     if request.user == review.user:
-#         if request.method == 'POST':
-#             review_form = ReviewForm(
-#                 request.POST, request.FILES, instance=review)
-#             if review_form.is_valid():
-#                 review_form.save()
-#                 return redirect('posts:review_detail', post_pk=post_pk)
-            
-#         else:
-#             review_form = ReviewForm(instance=review)
-#     else:
-#         return redirect('posts:review_detail', post_pk=post_pk)
-#     context = {
-#         'review_form': review_form,
-#         'post_pk': post_pk,
-#         'review_pk': review_pk,
-#     }
-#     return render(request, 'posts/review_update.html', context)
-
-
 def review_update(request, post_pk, review_pk):
-    post = Post.objects.get(pk=post_pk) 
-    review = Review.objects.get(pk=review_pk)
+    post = get_object_or_404(Post, pk=post_pk)
+    review = get_object_or_404(Review, pk=review_pk)
 
-    if request.user == review.user:
-        if request.method == 'POST':
-            review_form = ReviewForm(request.POST, request.FILES, instance=review)
-            if review_form.is_valid():
-                review_form.save()
-                return redirect('posts:review_detail', post.pk, review.pk)
+    if request.user != review.user:
+        # 작성자가 아닌 경우
+        return redirect('posts:review_detail', post_pk=post.pk, review_pk=review.pk)
 
-        else:
-            review_form = ReviewForm(instance=review)
+    if request.method == 'POST':
+        # POST 요청인 경우
+        review_form = ReviewForm(request.POST, request.FILES, instance=review)
+        if review_form.is_valid():
+            review_form.save()
+            return redirect('posts:review_detail', post_pk=post.pk, review_pk=review.pk)
     else:
-        return redirect('posts:review_detail', post.pk, review.pk)
+        # GET 요청인 경우
+        review_form = ReviewForm(instance=review)
+
     context = {
+        'post': post,
+        'review': review,
         'review_form': review_form,
-        'post_pk': post_pk,
-        'review_pk': review_pk,
     }
     return render(request, 'posts/review_update.html', context)
 
@@ -190,34 +167,15 @@ def review_likes(request, post_pk, review_pk):
     return redirect('posts:review_detail', post_pk, review_pk)
 
 
-# def review_like(request, dining_pk, review_pk):
-#     review = Review.objects.get(pk=review_pk)
-
-#     if review.like_users.filter(pk=request.user.pk).exists():
-#         review.like_users.remove(request.user)
-#     else:
-#         review.like_users.add(request.user)
-#     return redirect('dinings:detail', dining_pk)
-
-
 def review_delete(request, post_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
     if request.user == review.user:
         review.delete()
     return redirect('posts:post', post_pk)
 
-# @login_required
-# def review_delete(request, dining_pk, review_pk):
-#     review = Review.objects.get(pk=review_pk)
-#     if request.user == review.user:
-#         review.delete()
-#     return redirect('dinings:detail', dining_pk)
-
-# --------------------------------------------------
-
 
 @login_required
-def comments_create(request, review_pk):
+def comments_create(request, post_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
     comment_form = CommentForm(request.POST)
     if comment_form.is_valid():
@@ -225,12 +183,13 @@ def comments_create(request, review_pk):
         comment.review = review
         comment.user = request.user
         comment.save()
-        return redirect('posts:post', review.pk)
+        return redirect('posts:review_detail', post_pk, review_pk)
     context = {
         'review': review,
         'comment_form': comment_form,
     }
-    return render(request, 'posts/reviews_detail.html', context)
+    return render(request, 'posts/review_detail.html', context)
+
 
 
 @login_required
@@ -244,13 +203,12 @@ def recomment(request, post_pk):
     return redirect('posts:post', post_pk)
 
 
-
 @login_required
-def comments_delete(request, review_pk, comment_pk):
+def comments_delete(request, post_pk, review_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     if comment.user == request.user:
         comment.delete()
-    return redirect('posts:reviews_detail', review_pk)
+    return redirect('posts:review_detail', post_pk=post_pk, review_pk=review_pk)
 
 
 @login_required

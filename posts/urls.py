@@ -22,10 +22,12 @@ urlpatterns = [
 
 
     # comment관련 url
-    path('<int:review_pk>/comments/', views.comments_create, name='comments_create'),
-    path('<int:review_pk>/comments/<int:comment_pk>/delete/', views.comments_delete, name='comments_delete'),
+    # path('<int:review_pk>/comments/', views.comments_create, name='comments_create'),
+    # path('<int:review_pk>/comments/<int:comment_pk>/delete/', views.comments_delete, name='comments_delete'),
     
-    
+    path('<int:post_pk>/reviews/<int:review_pk>/comments/', views.comments_create, name='comments_create'),
+    path('<int:post_pk>/reviews/<int:review_pk>/comments/<int:comment_pk>/delete/', views.comments_delete, name='comments_delete'),
+
   
     # 기타 url
     path('search/', views.search, name="search"),

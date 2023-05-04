@@ -1,5 +1,4 @@
 from django.db import models
-import os
 from imagekit.models import ImageSpecField
 from imagekit.processors import Thumbnail
 from django.conf import settings
@@ -28,6 +27,10 @@ class Post(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+   
+
+
+
 
 class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -35,8 +38,14 @@ class Review(models.Model):
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
     image = models.ImageField(blank=True, null=True, upload_to='images/review/%Y/%m/%d/')
     content = models.CharField(max_length=200)
+    rating = models.FloatField(verbose_name='평점')
     create_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def star_rating(self):
+        rounded_rating = round(self.rating * 2) / 2
+        return '★' * int(rounded_rating) + '☆' * (rounded_rating % 1 == 0.5)
+    
 
 
 class Comment(models.Model):
