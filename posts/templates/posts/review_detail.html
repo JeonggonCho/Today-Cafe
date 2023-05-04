@@ -15,5 +15,18 @@
     {% csrf_token %}
     <button type="submit" >리뷰 삭제</button>
 </form>
+<hr>
+<form action="{% url 'posts:review_likes' post.pk review.pk %}" method="POST">
+    {% csrf_token %}
+    {% if request.user in review.like_users.all %}
+      <input type="submit" value="좋아요 취소">
+    {% else %}
+      {% if request.user.is_authenticated %}
+        <input type="submit" value="좋아요">
+      {% else %}
+        <input type="submit" value="좋아요" disabled>
+      {% endif %}
+    {% endif %}
+</form>
 
 {% endblock content %}
