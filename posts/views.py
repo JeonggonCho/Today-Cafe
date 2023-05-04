@@ -17,7 +17,7 @@ def index(request):
     context = {
         'posts': page_obj,
     }
-    return render(request, 'posts/index.html', context)
+    return render(request, 'posts/posts.html', context)
 
 
 EMOTIONS = [
@@ -151,7 +151,7 @@ def review_update(request, post_pk, review_pk):
         'post_pk': post_pk,
         'review_pk': review_pk,
     }
-    return render(request, 'posts/review_detail.html', context)
+    return render(request, 'posts/review_update.html', context)
 
 
 def reviews_likes(request, post_pk, review_pk):
