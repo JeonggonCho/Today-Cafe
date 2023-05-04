@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomAuthenticationForm
 from django.http import JsonResponse
 
 # Create your views here.
@@ -43,12 +43,12 @@ def login(request):
         return redirect('posts:index')
 
     if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
+        form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
             return redirect('posts:index')
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
 
     context = {
         'form': form,
@@ -60,19 +60,19 @@ def login(request):
 def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
-    return redirect('posts:index')
+    return redirect('posts:posts')
 
 
 def signup(request):
     if request.user.is_authenticated:
-        return redirect('posts:index')
+        return redirect('index')
 
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect('posts:index')
+            return redirect('index')
     else:
         form = CustomUserCreationForm()
     context = {
@@ -91,7 +91,7 @@ def delete(request):
 @login_required
 def update(request):
     if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, instance=request.user)
+        form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('posts:index')

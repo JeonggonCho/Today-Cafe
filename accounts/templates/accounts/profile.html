@@ -3,54 +3,151 @@
 
 
 {% block style %}
-
+<title>{{ person.username }}님의 프로필</title>
+<link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
 {% endblock style %}
 
 
 {% block content %}
-{{ person.username }}님의 프로필
-{% if person.is_admin %}
-(관리자)
-{% endif %}
-
-  <div>
-    팔로잉 : <span id="followings-count">{{ person.followings.all|length }}</span> / 
-    팔로워 : <span id="followers-count">{{ person.followers.all|length }}</span>
-  </div>
-
-  {% if request.user != person %}
-    <div>
-      <form id="follow-form" data-user-id="{{ person.pk }}">
-        {% csrf_token %}
-        {% if request.user in person.followers.all %}
-          <input type="submit" value="언팔로우">
-        {% else %}
-          <input type="submit" value="팔로우">
-        {% endif %}
-      </form>
+<main class="profile-main d-flex align-items-center">
+  <div class="container container d-flex flex-column align-items-center px-0">
+    <!-- profile tilte -->
+    <div class="d-flex justify-content-center align-items-center position-relative my-5 w-100">
+      <a class="position-absolute start-0 ms-5" href="{% url 'posts:index' %}">뒤로 가기</a>
+      <h2>{{ person.username }}님의 프로필</h2>
     </div>
-  {% endif %}
+    <!-- profile main -->
+    <div class="row my-auto">
+      <!-- user profile -->
+      <section class="user-profile col-3 d-flex justify-content-center">
+        <div class="user-info-container d-flex flex-column align-items-center w-75">
+          <div class="user-info mt-4 mb-5 d-flex flex-column align-items-center">
+            <div class="user-info__avatar w-75 mb-4 rounded-circle d-flex flex-column align-items-center justify-content-center">
+              {% if person.profile_image %}
+                <img class="w-100 rounded-circle" src="{{ person.profile_image.url }}" alt="프로필이미지">
+              {% else %}
+                <img class="w-100 rounded-circle" src="{% static 'accounts/img/no_profile.jpeg' %}" alt="기본 프로필 이미지">
+              {% endif %}
+            </div>
+            <div class="user-info__id mb-3">
+              <h3 class="fw-bold m-0">{{ person.username }}</h3>
+              {% if person.is_admin %}
+                (관리자)
+              {% endif %}
+            </div>
+            <div class="user-info__follow mb-3">
+              <span>팔로워</span><span id="followers-count">{{ person.followers.all|length }}</span>
+              <span> / </span>
+              <span>팔로잉</span><span id="followings-count">{{ person.followings.all|length }}</span>
+            </div>
+            <div class="user-follow w-100 mb-4 d-flex flex-column align-items-center">
+              <a href="{% url 'accounts:update' %}" class="btn btn-secondary w-75 fw-bold">회원정보 수정</a>
+            </div>
+            <div>
+              {% if request.user != person %}
+                <div>
+                  <form id="follow-form" data-user-id="{{ person.pk }}">
+                    {% csrf_token %}
+                    {% if request.user in person.followers.all %}
+                      <input class="btn btn-secondary w-75 fw-bold" type="submit" value="언팔로우">
+                    {% else %}
+                      <input class="btn btn-secondary w-75 fw-bold" type="submit" value="팔로우">
+                    {% endif %}
+                  </form>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="user-articles-category w-100 mb-4 d-flex flex-column align-items-center">
+            <button class="btn btn-danger w-75 fw-bold mb-3">리뷰</button>
+            <button class="btn btn-secondary w-75 fw-bold mb-3">댓글</button>
+            <button class="btn btn-secondary w-75 fw-bold" >좋아요</button>
+          </div>
+        </div>
+      </section>
 
-<h3>{{ person.username }}가 좋아요를 누른 모든 게시글</h3>
-{% for post in person.like_posts.all %}
-  <div>{{ post.title }}</div>
-{% endfor %}
+      <!-- user content -->
+      <section class="user-articles-section col-9 p-0">
+        <!-- 작성한 리뷰 -->
+        <section class="user-articles-inner user-articles--review mb-4">
+          <div>
+            <h3 class="user-articles__title mb-4 fw-bold">작성한 리뷰</h3>
+            <div class="user-article__detail">
+              <!-- 샘플 article -->
+              <article class="user-article--review p-4">
+                <div class="user-article--review__top d-flex justify-content-between">
+                  <div class="d-flex">
+                    <span class="me-2">From</span>
+                    <h5 class="fw-bold">스터디카페</h5>
+                  </div>
+                  <div class="user-article--review__like-btn">
+                    <i class="fa-regular fa-heart fs-5"></i>
+                  </div>
+                </div>
+                <div class="user-article--review__time mb-2">
+                  <time class="">1일 전</time>
+                </div>
+                <div class="user-article--review__middle mb-3">
+                  <div class="user-article--review__middle__desc">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga nam, accusantium at repudiandae id quo ratione omnis nulla, inventore, adipisci dolorum illo quae odit? Accusantium assumenda enim eligendi hic est.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora molestias cupiditate consequatur dolorem corporis dolores quod totam ad, quam, commodi provident deleniti laborum possimus voluptatibus reiciendis alias. Officia, dolorum recusandae?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit repudiandae sequi perferendis repellat perspiciatis in, voluptatum facilis sit dolores facere tempore ab odit at ipsam. Voluptatum maiores aliquam molestias totam!</p>
+                  </div>
+                </div>
+                <div class="user-article--review__bottom d-flex justify-content-between align-items-end">
+                  <div class="user-article--review__bottom__img">
+                    <img class="h-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0w-dAlJHqqiGQ0VHikKJDHiPgYi4Q5ARwGg&usqp=CAU" alt="">
+                  </div>
+                  <div class="user-article--review__bottom__more">
+                      <a class="fw-bold" href="">> 더보기</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
 
-<hr>
+        <!-- 작성한 댓글 리스트-->
+        <section class="user-articles-inner user-articles--review mb-4">
+          <div class="user-articles-inner user-articles--review">
+            <h3 class="user-comments__title mb-4 fw-bold">작성한 댓글</h3>
+            <div class="user-comments__detail">
+              {% for post in person.like_posts.all %}
+                <div>{{ post.title }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
 
-<h3>{{ person.username }}가 작성한 모든 댓글</h3>
-{% for comment in person.comment_set.all %}
-  <div>{{ comment.content }}</div>
-{% endfor %}
+        <!-- 좋아요 게시글 관련 리스트-->
+        <section class="user-article__detail mb-4">
+          <div class="user-articles-inner user-articles--review">
+            <h3 class="user-like-cafe__title mb-4 fw-bold">좋아요 게시글</h3>
+            <div class="user-like-cafe__detail row row-cols-5 g-3">
+              {% for post in person.like_posts.all %}
+                <div>{{ post.title }}</div>
+              {% endfor %}
+              <!-- 샘플 article -->
+              <article class="col">
+                <div class="card">
+                  <img src="https://cdn.pixabay.com/photo/2017/02/20/08/50/cafe-2081857__340.jpg" class="card-img-top" alt="...">
+                  <div class="card-body p-2">
+                    <h6 class="card-title fw-bold d-flex align-items-center">스터디 카페</h6>
+                    <address class="card-text">서울특별시 영등포구 여의도동</address>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+  </div>
+</main>
+{% endblock content %}
 
-<hr>
 
-<h3>{{ person.username }}가 좋아요를 누른 모든 게시글</h3>
-{% for post in person.like_posts.all %}
-  <div>{{ post.title }}</div>
-{% endfor %}
-
-
+{% block script %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     const form = document.querySelector('#follow-form')
@@ -87,6 +184,4 @@
             })
         })
 </script>
-
-<a href="{% url 'posts:index' %}">[back]</a>
-{% endblock content %}
+{% endblock script %}
