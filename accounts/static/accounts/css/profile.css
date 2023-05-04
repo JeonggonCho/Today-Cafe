@@ -1,0 +1,36 @@
+
+.user-info-container, .user-article--review {
+    border-radius: 1rem;
+    background-color: rgb(238, 238, 238);
+}
+.user-info-container {
+    max-height: 650px;
+}
+.user-info__avatar img {
+    object-fit: cover;
+}
+.user-info button {
+    font-size: 1.2rem;
+}
+.user-article--review__middle__desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.user-article--review__bottom__img {
+    height: 4rem;
+}
+.user-like-cafe__detail .card-body i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 0.5rem;
+    background-color: lightgray;
+}
+.user-like-cafe__detail address {
+    font-size: 0.8rem;
+}
