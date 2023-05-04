@@ -3,112 +3,143 @@
 
 
 {% block style %}
-
+<link rel="stylesheet" href="{% static 'posts/css/detail.css' %}">
 {% endblock style %}
 
 
 {% block content %}
-    <div>
-    <h3>DETAIL</h3>
-    <p>게시글 작성자 -
-      <a href="{% url 'accounts:profile' post.user.username %}">{{post.user}}</a>
-    </p>
-    <p>
-      게시글 번호 -
-      {{post.pk}}
-    </p>
-    <p>
-      게시글 제목 -
-      {{post.title}}
-    </p>
-    <p>
-      게시글 내용 -
-      {{post.content}}
-    </p>
-    <form action="{% url 'posts:likes' post.pk %}" method="POST">
-      {% csrf_token %}
-      {% if request.user in post.like_users.all %}
-        <input type="submit" value="좋아요 취소">
-      {% else %}
-        {% if request.user.is_authenticated %}
-          <input type="submit" value="좋아요">
-        {% else %}
-          <input type="submit" value="좋아요" disabled>
-        {% endif %}
-      {% endif %}
-      <p>게시글 좋아요 수 : {{ post.like_users.count }}개</p>
-    </form>
-    </div>
-    <hr>
-    {% for emotion in emotions %}
-    <div>
-      {% if request.user.is_authenticated %}
-      {{emotion.queryset}}
-        <form action="{% url 'posts:emotes' review.pk emotion.value %}" method="POST">
-          {% csrf_token %}
-          {% if emotion.exist %}
-            <input type="submit" value="{{emotion.label}} 취소">
-          {% else %}
-            <input type="submit" value="{{emotion.label}}">
-          {% endif %}
-        </form>
-      {% else %}
-        <button disabled="disabled">{{emotion.label}}</button>
-      {% endif %}
-      <p>
-        게시글 {{emotion.label}} 수 -
-        {{ emotion.count }}
-      </p>
-    </div>
-    {% endfor %}
-    <a href="{% url 'posts:index' %}">[back]</a>
-  <form action="{% url 'posts:comments_create' post.pk %}" method="POST">
-    {% csrf_token %}
-    {{ comment_form.as_p }}
-    <input type="submit" value="댓글 작성">
-  </form>
+  <main>
+    <!-- 리뷰 타이틀 -->
+    <div class="container my-5">
+      <div>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <a href="{% url 'posts:index' %}">
+            <span class="material-symbols-outlined">
+              arrow_back_ios
+            </span>
+          </a>
+          <h2><strong>스터디 카페</strong></h2>
+        </div>
 
-  <hr>
-
-{% for comment in comments %}
-    <div>
-        <p>댓글 작성자 - <a href="{% url 'accounts:profile' comment.user.username %}">{{ comment.user }}</a></p>
-        <p>댓글 번호 - {{ comment.pk }}</p>
-        <p>댓글 내용 - {{ comment.content }}</p>
-        <form action="{% url 'posts:comment_likes' post.pk comment.pk %}" method="POST">
-            {% csrf_token %}
-            {% if request.user in comment.like_users.all %}
-                <input type="submit" value="좋아요 취소">
+        <!-- 리뷰 -->
+        <div class="d-flex detail--post_form gap-4">
+          <div class="d-flex flex-column align-items-center gap-2">
+            <!-- 리뷰 작성자 프로필 사진 -->
+            {% if post.user.profile_image %}
+              <div class='profile--img_medium_form'>
+                  <img src="{{ post.user.profile_image.url }}" alt="">
+              </div>
             {% else %}
-                {% if request.user.is_authenticated %}
-                    <input type="submit" value="좋아요">
-                {% else %}
-                    <input type="submit" value="좋아요" disabled>
-                {% endif %}
+              <div class='profile--img_medium_form'>
+                  <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image">
+              </div>
             {% endif %}
-            <p>댓글 좋아요 수 : {{ comment.like_users.count }}개</p>
-        </form>
+            <div><strong><a href="{% url 'accounts:profile' post.user.username %}">{{ post.user }}</a></strong></div>
+          </div>
+          
+            <!-- 팔로우 버튼 -->
+            {% comment %} <div class='d-flex align-items-center gap-3'>
+              <div>
+                <form action="{% url 'accounts:follow' person.pk %}" method="POST">
+                  {% csrf_token %}
+                  {% if request.user in person.followers.all %}
+                    <input type="submit" value="UnFollow" class='btn btn-primary'>
+                  {% else %}
+                    {% if request.user.is_authenticated %}
+                    <input type="submit" value="Follow" class='btn btn-primary'>
+                    {% else %}
+                    <input type="submit" value="Follow" disabled class='btn btn-primary'>
+                    {% endif %}
+                  {% endif %}
+                </form>
+              </div>
+          </div> {% endcomment %}
+
+          <!-- 리뷰내용 -->
+          <div class="w-100">
+
+            <!-- 첨부이미지 -->
+            <div class="d-flex gap-3 mb-3">
+                {% for photo in photos %}
+                <div class="photo--form">
+                  <img src="{{ photo.photo.url }}" alt="photo">
+                </div>
+                {% endfor %}
+            </div>
+            <div class="d-flex align-items-center gap-3 my-1">
+              <div class="detail--date_font">
+                {{ post.create_at|date:'Y-m-d' }}
+              </div>
+
+              <!-- 수정 및 삭제 -->
+              <div class="d-flex align-items-center gap-2">
+                {% if request.user == post.user %}
+                  <a class="detail--update_btn" href="{% url 'posts:update' post.pk %}"><span>수정</span></a>
+                  <form action="{% url 'posts:delete' post.pk %}" method='POST' class="p-0 m-0">
+                    {% csrf_token %}
+                    <input type='submit' class="p-0 border-0 detail--delete_btn" value='삭제' onclick="return confirm('삭제 하시겠습니까?')">
+                  </form>
+                {% endif %}
+              </div>
+            </div>
+            <div><h4>{{ post.title }}</h4></div>
+            <div>{{ post.content }}</div>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- 댓글 작성 -->
+      <h5><strong>댓글 ({{ comments|length }})</strong></h5>
+      <form action="{% url 'posts:comments_create' post.pk %}" method="POST">
+        {% csrf_token %}
+        {% for field in comment_form %}
+        <div class="d-flex gap-3">
+          <p class="w-100">
+            {{ field }}
+          </p>  
+        {% endfor %}
+        <input type="submit" class="detail--comment_btn" value="댓 글">
+        </div>
+      </form>
+    
+      <!-- 댓글 목록 -->
+      {% for comment in comments|dictsortreversed:'created_at' %}
+        <div class="detail--comment_form my-3">
+
+          <div class="d-flex gap-3">
+            <!-- 댓글 프로필 사진 -->
+            <div>
+              {% if comment.user.profile_image %}
+                <div class='profile--img_small_form'>
+                    <img src="{{ comment.user.profile_image.url }}" alt="">
+                </div>
+              {% else %}
+                <div class='profile--img_small_form'>
+                    <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image">
+                </div>
+              {% endif %}
+            </div>
+
+            <div>
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div>
+                  <strong><a href="{% url 'accounts:profile' comment.user.username %}">{{comment.user}}</a></strong>
+                </div>
+                <div class="detail--date_font">{{ comment.created_at|date:'Y-m-d' }}</div>
+                {% if comment.user == user %}
+                <form action="{% url 'posts:comments_delete' post.pk comment.pk %}" method="POST">
+                  {% csrf_token %}
+                  <input type="submit" class="border-0 detail--delete_btn" value="삭제" onclick="return confirm('삭제 하시겠습니까?')">
+                </form>
+              {% endif %}
+              </div>
+                {{ comment.content }}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  {% empty %}
-      <p>댓글이 없습니다.</p>
-  {% endfor %}
-
-  <form action="{% url 'posts:recomment' post.pk %}" method="POST">
-    {% csrf_token %}
-    {% for recomment in recommnet_form %}
-      {% if recomment.label != 'Comment' %}
-        {{recomment.label}} : {{recomment}}
-      {% endif %}
-    {% endfor %}
-    <input type="hidden" name="comment" value={{comment.id}}>
-    <input type="submit" value="댓글">
-  </form>
-  {% for recomment in comment.recommnet_set.all %}
-   {{ recomment }}
-  {% endfor %}
-
-  <hr>
-
-
-
+  </main>
 {% endblock content %}

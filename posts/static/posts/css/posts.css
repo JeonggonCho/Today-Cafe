@@ -20,10 +20,21 @@
     transition: all 0.1s linear;
 }
 .posts--cate_form:hover {
-    background-color: lightgray;
+    background-color: rgb(235, 235, 235);
+}
+.posts--cate_content {
+    width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/* 좋아요 댓글 아이콘 */
+.post--cate_icon {
+    font-size: 18px;
+    color: gray;
 }
 .posts--cate_img_form {
-    width: 40%;
+    width: 80%;
     height: 100%;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
@@ -40,4 +51,35 @@
     background-color: var(--form-gray);
     color: white;
     border-radius: 6px;
+}
+/* 좋아요버튼관련 */
+.posts--like_btn {
+    color: red;
+    background-color: transparent;
+    transition: all 0.1s linear;
+}
+.posts--like_btn:hover {
+    transform: scale(1.2);
+}
+.posts--unlike_btn {
+    color: gray;
+    background-color: transparent;
+    transition: all 0.1s linear;
+}
+.posts--unlike_btn:hover {
+    transform: scale(1.2);
+    color: black;
+}
+/* 프로필사진관련 */
+.profile--img_small_form {
+    width: 40px;
+    height: 40px;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile--img_small_form img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
