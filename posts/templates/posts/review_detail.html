@@ -29,4 +29,21 @@
     {% endif %}
 </form>
 
+<h2>Comments</h2>
+{% for comment in comments.all %}
+  <div>
+    <p>{{ comment.content }}</p>
+    <small>By {{ comment.user.username }}, {{ comment.created_at }}</small>
+  </div>
+{% empty %}
+  <p>No comments yet.</p>
+{% endfor %}
+
+<form action="{% url 'posts:comments_create' post.pk review.pk %}" method="POST">
+  {% csrf_token %}
+  {{ comment_form.as_p }}
+  <input type="submit" value="댓글 작성">
+</form>
+
+
 {% endblock content %}

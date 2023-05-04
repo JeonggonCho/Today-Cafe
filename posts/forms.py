@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile, Post, Comment, Review, ReComment
+from .models import Post, Comment, Review, ReComment
 
 
 class PostForm(forms.ModelForm):
@@ -25,16 +25,6 @@ class PostForm(forms.ModelForm):
 
     phone_number = forms.CharField(
         label='전화번호',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-            },
-        ),
-    )
-
-
-    menu = forms.CharField(
-        label='메뉴',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -100,6 +90,22 @@ class ReviewForm(forms.ModelForm):
     )
 
 
+    rating = forms.FloatField(
+        label='평점',
+        widget=forms.Select(choices=[
+            (1.0, '★' * 1 + '☆' * 4),
+            (1.5, '★' * 1 + '½' + '☆' * 3),
+            (2.0, '★' * 2 + '☆' * 3),
+            (2.5, '★' * 2 + '½' + '☆' * 2),
+            (3.0, '★' * 3 + '☆' * 2),
+            (3.5, '★' * 3 + '½' + '☆' * 1),
+            (4.0, '★' * 4 + '☆' * 1),
+            (4.5, '★' * 4 + '½' + '☆' * 0),
+            (5.0, '★' * 5),
+        ]),
+    )
+
+    
     image = forms.ImageField(
         label='이미지',
         widget=forms.ClearableFileInput(
@@ -112,7 +118,7 @@ class ReviewForm(forms.ModelForm):
     )
     class Meta:
         model = Review
-        fields = ('content','image',)
+        fields = ('content', 'rating','image',)
 
 
 class ReCommentForm(forms.ModelForm):
