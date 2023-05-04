@@ -8,17 +8,17 @@
     }
 }
 .loading-splash {
-    position: absolute;
-    top: 0;
-    background-color: white;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: hideSplashScreen 0.3s ease-out forwards;
-    animation-delay: 1s;
-    z-index: 99;
+  position: absolute;
+  top: 0;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: hideSplashScreen 0.3s ease-out forwards;
+  animation-delay: 1s;
+  z-index: 100;
 }
 .loading-splash__container {
     display: flex;
