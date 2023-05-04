@@ -8,7 +8,7 @@ from django.db.models import Q
 
 
 # Create your views here.
-def index(request):
+def posts(request):
     posts = Post.objects.order_by('-pk')
     page = request.GET.get('page', '1')
     per_page = 5
@@ -17,7 +17,7 @@ def index(request):
     context = {
         'posts': page_obj,
     }
-    return render(request, 'posts/posts.html', context)
+    return render(request,'posts/posts.html', context)
 
 
 EMOTIONS = [
@@ -27,12 +27,12 @@ EMOTIONS = [
 ]
 
 
-def detail(request, post_pk):
+def post(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     context = {
         'post': post,
     }
-    return render(request, 'posts/detail.html', context)
+    return render(request, 'posts/post.html', context)
 
 
 @login_required
@@ -48,7 +48,7 @@ def emotes(request, review_pk, emotion):
     else:
         Emote.objects.create(review=review, user=request.user, emotion=emotion)
 
-    return redirect('posts:detail', review_pk)
+    return redirect('posts:post', review_pk)
 
 
 @login_required
@@ -59,7 +59,7 @@ def create(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            return redirect('posts:detail', post.pk)
+            return redirect('posts:post', post.pk)
     else:
         form = PostForm()
     context = {
@@ -76,11 +76,11 @@ def update(request, post_pk):
             form = PostForm(request.POST, instance=post)
             if form.is_valid():
                 form.save()
-                return redirect('posts:detail', post.pk)
+                return redirect('posts:post', post.pk)
         else:
             form = PostForm(instance=post)
     else:
-        return redirect('posts:index')
+        return redirect('posts:posts')
     context = {
         'post': post,
         'form': form,
@@ -93,7 +93,7 @@ def delete(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     if request.user == post.user:
         post.delete()
-    return redirect('posts:index')
+    return redirect('posts:posts')
 
 
 # --------------------------------------------------
@@ -132,20 +132,46 @@ def review_create(request, post_pk):
     }
     return render(request, 'posts/review_create.html', context)
     
-    
+
+
+# def review_update(request, post_pk, review_pk):
+#     review = Review.objects.get(pk=review_pk)
+
+#     if request.user == review.user:
+#         if request.method == 'POST':
+#             review_form = ReviewForm(
+#                 request.POST, request.FILES, instance=review)
+#             if review_form.is_valid():
+#                 review_form.save()
+#                 return redirect('posts:review_detail', post_pk=post_pk)
+            
+#         else:
+#             review_form = ReviewForm(instance=review)
+#     else:
+#         return redirect('posts:review_detail', post_pk=post_pk)
+#     context = {
+#         'review_form': review_form,
+#         'post_pk': post_pk,
+#         'review_pk': review_pk,
+#     }
+#     return render(request, 'posts/review_update.html', context)
+
+
 def review_update(request, post_pk, review_pk):
-    post = Post.objects.get(pk=post_pk)
+    post = Post.objects.get(pk=post_pk) 
     review = Review.objects.get(pk=review_pk)
+
     if request.user == review.user:
         if request.method == 'POST':
             review_form = ReviewForm(request.POST, request.FILES, instance=review)
             if review_form.is_valid():
                 review_form.save()
-                return redirect('posts:review_detail', post_pk=post.pk, review_pk=review.pk)
+                return redirect('posts:review_detail', post.pk, review.pk)
+
         else:
             review_form = ReviewForm(instance=review)
     else:
-        return redirect('posts:review_detail', post_pk=post.pk, review_pk=review.pk)
+        return redirect('posts:review_detail', post.pk, review.pk)
     context = {
         'review_form': review_form,
         'post_pk': post_pk,
@@ -154,24 +180,38 @@ def review_update(request, post_pk, review_pk):
     return render(request, 'posts/review_update.html', context)
 
 
-def reviews_likes(request, post_pk, review_pk):
-    review = get_object_or_404(Review, pk=review_pk)
-    if review.likes.filter(pk=request.user.pk).exists():
-        review.likes.remove(request.user)
-        liked = False
+def review_likes(request, post_pk, review_pk):
+    review = Review.objects.get(pk=review_pk)
+
+    if review.like_users.filter(pk=request.user.pk).exists():
+        review.like_users.remove(request.user)
     else:
-        review.likes.add(request.user)
-        liked = True
-    context = {'liked': liked,'total_likes': review.likes.count()}
-    return JsonResponse(context)
+        review.like_users.add(request.user)
+    return redirect('posts:review_detail', post_pk, review_pk)
+
+
+# def review_like(request, dining_pk, review_pk):
+#     review = Review.objects.get(pk=review_pk)
+
+#     if review.like_users.filter(pk=request.user.pk).exists():
+#         review.like_users.remove(request.user)
+#     else:
+#         review.like_users.add(request.user)
+#     return redirect('dinings:detail', dining_pk)
 
 
 def review_delete(request, post_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
     if request.user == review.user:
         review.delete()
-    return redirect('posts:detail', post_pk=post_pk)
+    return redirect('posts:post', post_pk)
 
+# @login_required
+# def review_delete(request, dining_pk, review_pk):
+#     review = Review.objects.get(pk=review_pk)
+#     if request.user == review.user:
+#         review.delete()
+#     return redirect('dinings:detail', dining_pk)
 
 # --------------------------------------------------
 
@@ -185,7 +225,7 @@ def comments_create(request, review_pk):
         comment.review = review
         comment.user = request.user
         comment.save()
-        return redirect('posts:detail', review.pk)
+        return redirect('posts:post', review.pk)
     context = {
         'review': review,
         'comment_form': comment_form,
@@ -201,7 +241,7 @@ def recomment(request, post_pk):
         recomment = recomment_form.save(commit=False)
         recomment.comment_id = comment_id
         recomment.save()
-    return redirect('posts:detail', post_pk)
+    return redirect('posts:post', post_pk)
 
 
 
@@ -220,7 +260,7 @@ def likes(request, post_pk):
         request.user.like_posts.remove(post)
     else:
         post.like_users.add(request.user)
-    return redirect('posts:detail', post_pk)
+    return redirect('posts:post', post_pk)
 
 
 

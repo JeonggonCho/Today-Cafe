@@ -12,7 +12,7 @@
 
   {% for search in search_list %}
   <div>
-    <a href="{% url 'posts:detail' search.pk %}">{{ search.title }}</a>
+    <a href="{% url 'posts:post' search.pk %}">{{ search.title }}</a>
   </div>
   {% endfor %}
 {% endblock content %}

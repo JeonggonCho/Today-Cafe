@@ -40,13 +40,13 @@ def follow(request, user_pk):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('posts:index')
+        return redirect('index')
 
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('posts:index')
+            return redirect('index')
     else:
         form = CustomAuthenticationForm()
 
@@ -60,7 +60,7 @@ def login(request):
 def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
-    return redirect('posts:posts')
+    return redirect('index')
 
 
 def signup(request):
@@ -85,7 +85,7 @@ def signup(request):
 def delete(request):
     request.user.delete()
     auth_logout(request)
-    return redirect('posts:index')
+    return redirect('index')
 
 
 @login_required
@@ -94,7 +94,7 @@ def update(request):
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('posts:index')
+            return redirect('index')
     else:
         form = CustomUserChangeForm(instance=request.user)
     context = {
@@ -110,7 +110,7 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            return redirect('posts:index')
+            return redirect('index')
     else:
         form = PasswordChangeForm(request.user)
     context = {
