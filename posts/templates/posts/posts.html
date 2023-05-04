@@ -27,10 +27,7 @@
     </div>
 </nav>
 
-
-  <h1>Index</h1>
   {% if request.user.is_authenticated %}
-    <h3>{{ user }}님</h3>
     <a href="{% url 'accounts:profile' user.username %}">프로필</a>
     <form action="{% url 'accounts:logout' %}" method='POST'>
       {% csrf_token %}
@@ -46,27 +43,7 @@
     <a href="{% url 'accounts:signup' %}">Signup</a>
   {% endif %}
 
-  <h1>POST</h1>
   <a href="{% url 'posts:create' %}">[CREATE]</a>
-
-  {% for post in posts %}
-    <p>작성자: 
-      <a href="{% url 'accounts:profile' post.user.username %}">{{ post.user }}</a>
-    </p>
-    <p>제목: 
-      <a href="{% url 'posts:d' post.pk %}">{{ post.title }}</a>
-    </p>
-    <p>내용: {{ post.content }}</p>
-    <form action="{% url 'posts:likes' post.pk %}" method="POST">
-      {% csrf_token %}
-      {% if request.user in post.like_users.all %}
-        <input type="submit" value="좋아요 취소">
-      {% else %}
-        <input type="submit" value="좋아요">
-      {% endif %}
-    </form>
-    <hr>
-    {% endfor %}
 
     <main>
       <div class="container my-5">
@@ -108,35 +85,73 @@
             </div>
 
             {% for post in posts %}
-            <div class="posts--cate_form d-flex gap-5 mb-5">
+            <!-- 카페 상세페이지로 이동 -->
+            <div class="posts--cate_form d-flex mb-5">
               <!-- 카테고리 카페 이미지 -->
               <div class="posts--cate_img_form">
-                <img src="https://odden1.speedgabia.com/static/bb/lists/spot-n03-s02/spot_f_n03-s02-01.jpg" alt="">
+                <img src="https://www.jeongdong.or.kr/static/portal/img/HKPU_04_04_pic1.jpg" alt="">
               </div>
-              <!-- 카테고리 카페 이름 -->
-              <div class="my-5">
-                <div class="d-flex flex-grow-1 align-items-center gap-3">
-                  <div class="posts--cate_form_icon d-flex justify-content-center align-items-center"><span class="material-symbols-outlined">stylus</span></div>
-                  <h2><strong>스터디 카페</strong></h2>
+              <div class="w-100 h-100">
+                <!-- 카테고리 카페 이름 -->
+                <div class="m-5 d-flex">
+                  <div class="col-10 d-flex flex-column justify-content-between">
+                    <a href='{% url 'posts:post' post.pk %}'>
+                    <div class="d-flex gap-2">
+                      <div class="posts--cate_form_icon d-flex justify-content-center align-items-center"><span class="material-symbols-outlined">stylus</span></div>
+                      <h2><strong>스터디 카페</strong></h2>
+                    </div>
+                    <div class="mb-5"><strong>주소 |</strong> 서울 종로구 북촌로 6-3 1층</div>
 
-                  <!-- 좋아요 버튼 -->
-                  <div>
-                    <form action="{% url 'posts:likes' post.pk %}" method="POST">
-                      {% csrf_token %}
-                      {% if request.user in post.like_users.all %}
-                        <button type="submit" class="border-0">
-                          <span class="material-symbols-outlined">
-                            favorite
-                          </span>
-                        </button>
+                      {% if posts %}
+                        {% for post in posts %}
+                        <div class="d-flex align-items-center gap-3">
+                          {% if post.user.profile_image %}
+                            <div class='profile--img_small_form mt-2'>
+                                <img src="{{ post.user.profile_image.url }}" alt="">
+                            </div>
+                          {% else %}
+                            <div class='profile--img_small_form mt-2'>
+                                <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image">
+                            </div>
+                          {% endif %}
+                          <div class="posts--cate_content">{{ post.content }}</div>
+                        </div>
+                        {% endfor %}
                       {% else %}
-                        <button type="submit" class="border-0">
-                          <span class="material-symbols-outlined">
-                            favorite
-                          </span>
-                        </button>
+                        <div class='mx-auto'>리뷰가 없습니다.</div>
                       {% endif %}
-                    </form>
+                    </a>
+                  </div>
+                  <div class="col-2 d-flex align-items-end justify-content-between flex-column">
+                    <!-- 좋아요 버튼 -->
+                    <div>
+                      <form action="{% url 'posts:likes' post.pk %}" method="POST">
+                        {% csrf_token %}
+                        {% if request.user in post.like_users.all %}
+                          <button type="submit" class="border-0 p-0 posts--like_btn">
+                            <span class="material-symbols-outlined">
+                              favorite
+                            </span>
+                          </button>
+                        {% else %}
+                          <button type="submit" class="border-0 p-0 posts--unlike_btn">
+                            <span class="material-symbols-outlined">
+                              favorite
+                            </span>
+                          </button>
+                        {% endif %}
+                      </form>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-center gap-1">
+                        <span class="material-symbols-outlined post--cate_icon">favorite</span>
+                        <div>12</div>
+                      </div>
+                      <div class="d-flex align-items-center gap-1">
+                        <span class="material-symbols-outlined post--cate_icon">mode_comment</span>
+                        <div>{{ posts|length }}</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

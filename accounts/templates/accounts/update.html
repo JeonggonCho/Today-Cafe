@@ -3,14 +3,72 @@
 
 
 {% block style %}
-
+<title>회원정보수정</title>
+<link rel="stylesheet" href="{% static 'accounts/css/update.css' %}">
 {% endblock style %}
 
 
 {% block content %}
-<form action="{% url 'accounts:update' %}" method="POST" enctype='multipart/form-data'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="확인">
-</form>
+<main class="main--signup d-flex">
+    <div class="container mt-5 p-0 d-flex flex-column align-items-center">
+        <!-- update title -->
+        <h3 class="my-0 pb-4 fw-bold">회원정보수정</h3>
+        <!-- update form -->
+        <form class="w-50 row d-flex justify-content-center align-items-center" action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- update-name and address -->
+            <section class="px-5 border-end col-6 d-flex flex-column justify-content-center">
+                <div>
+                    <label class="mb-1 fw-bold" for="username">성</label>
+                    {{ form.last_name }}
+                </div>
+                <div>
+                    <label class="mb-1 fw-bold" for="username">이름</label>
+                    {{ form.first_name }}
+                </div>
+                <div>
+                    <label class="mb-1 fw-bold" for="username">이메일</label>
+                    {{ form.email }}
+                </div>
+            </section>
+            <!-- update-image-->
+            <section class="px-5 col-6 d-flex flex-column justify-content-center align-items-center h-100">
+                <div>
+                    <label class="mb-1 fw-bold" for="profile_image">프로필 이미지</label>
+                    {% csrf_token %}
+                    {% if user.profile_image %}
+                        <img id="preview" src="{{ user.profile_image.url }}" alt="Profile Image Preview">
+                    {% else %}
+                        <img id="preview" src="#" alt="Profile Image Preview" style="display:none;">
+                    {% endif %}
+                    <input type="file" name="profile_image" id="profile_image">
+                    {{ form.profile_image }}
+                </div>
+                <input type="submit" value="확인">
+            </section>
+        </form>
+        <!-- go to password change page -->
+        <div>
+            <a href="{% url 'accounts:change_password' %}">비밀번호 수정하기</a>
+        </div>
+    </div>
+  </main>
 {% endblock content %}
+{% block script %}
+<script>
+    const profileImageInput = document.getElementById("profile_image");
+    const profileImagePreview = document.getElementById("preview");
+    
+    if (profileImageInput) {
+        profileImageInput.addEventListener("change", function () {
+            const file = this.files[0];
+            const reader = new FileReader();
+            reader.addEventListener("load", function () {
+                profileImagePreview.src = reader.result;
+                profileImagePreview.style.display = "block";
+            });
+            reader.readAsDataURL(file);
+        });
+    }  
+</script>
+{% endblock script %}

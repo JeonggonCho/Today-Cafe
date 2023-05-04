@@ -3,6 +3,7 @@
 
 
 {% block style %}
+<title>회원가입</title>
 <link rel="stylesheet" href="{% static 'accounts/css/signup.css' %}">
 <link rel="stylesheet" href="{% static 'accounts/css/variables.css' %}">
 {% endblock style %}
@@ -33,11 +34,11 @@
                   </div>
                   <div class="signup-form__item mb-2">
                       <label class="mb-1 fw-bold" for="first_name">성<span class="required-icon ms-1">*</span></label>
-                      {{ form.first_name }}
+                      {{ form.last_name }}
                   </div>
                   <div class="signup-form__item mb-2">
                       <label class="mb-1 fw-bold" for="last_name">이름<span class="required-icon ms-1">*</span></label>
-                      {{ form.last_name }}
+                      {{ form.first_name }}
                   </div>
                   <div class="signup-form__item mb-2">
                       <label class="mb-1 fw-bold" for="email">이메일<span class="required-icon ms-1">*</span></label>
