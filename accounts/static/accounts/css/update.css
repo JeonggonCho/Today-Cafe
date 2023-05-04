@@ -1,0 +1,9 @@
+#profile_image {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#preview {
+    max-width: 100%;
+    height: auto;
+}
