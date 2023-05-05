@@ -39,7 +39,7 @@
                     {% if user.profile_image %}
                         <img id="preview" src="{{ user.profile_image.url }}" alt="Profile Image Preview">
                     {% else %}
-                        <img id="preview" src="#" alt="Profile Image Preview" style="display:none;">
+                        <img id="preview" src="{% static 'accounts/img/no_profile.jpeg' %}" alt="Profile Image Preview" style="display:none;">
                     {% endif %}
                     <input type="file" name="profile_image" id="profile_image">
                     {{ form.profile_image }}
