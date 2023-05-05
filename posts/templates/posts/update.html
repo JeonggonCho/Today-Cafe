@@ -3,32 +3,13 @@
 
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'posts/css/create.css' %}">
 {% endblock style %}
 
 
 {% block content %}
-  <main>
-    <div class="container my-5 create_form">
-      <div class="d-flex align-items-center justify-content-center gap-3 mb-3 me-5">
-        <a href="{% url 'posts:post' post.pk %}">
-          <span class="material-symbols-outlined">
-            arrow_back_ios
-          </span>
-        </a>
-        <h2><strong>리뷰 수정</strong></h2>
-      </div>
-      <hr>
-      <form action="{% url 'posts:update' post.pk %}" method="POST" enctype='multipart/form-data'>
-        {% csrf_token %}
-        {% for field in form %}
-          <div>
-            <p>{{ field.label }}</p>
-            <p>{{ field }}</p>
-        </div>
-        {% endfor %}
-        <input type="submit" class="btn btn-secondary create--submit_btn" value="리뷰 수정"></input>
-      </form>
-    </div>
-  </main>
+  <form action="{% url 'posts:update' post.pk review.pk %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="업데이트">
+  </form>
 {% endblock content %}
