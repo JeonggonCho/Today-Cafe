@@ -30,9 +30,11 @@ EMOTIONS = [
 
 def post(request, post_pk):
     post = Post.objects.get(pk=post_pk)
+    tags = Post.tags.all()
     reviews = Review.objects.filter(post_id=post_pk).order_by('-created_at')
     context = {
         'post': post,
+        'tags': tags,
         'reviews': reviews,
     }
     return render(request, 'posts/post.html', context)
@@ -58,10 +60,13 @@ def emotes(request, review_pk, emotion):
 def create(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
+        tags = request.POST.get('tags').split(',')
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
             post.save()
+            for tag in tags:
+                post.tags.add(tag.strip())
             return redirect('posts:post', post.pk)
     else:
         form = PostForm()
@@ -239,10 +244,23 @@ def search(request):
     if 'q' in request.GET:
         query = request.GET.get('q')
         search_list = Post.objects.filter(
-            Q(title__icontains=query) # 제목 검색
+            Q(title__icontains=query) | Q(tags__name__icontains=query) # 제목 / 태그 검색
         ).distinct() # 검색 결과 중복 제거
     context = {
         'query': query,
         'search_list': search_list,
     }
     return render(request, 'posts/search.html', context)
+
+
+from taggit.models import Tag
+
+def tagged(request, tag_pk):
+    tag = Tag.objects.get(pk=tag_pk)
+    posts = Post.objects.filter(tags=tag)
+    context = {
+        'tag': tag,
+        'posts':posts,
+    }
+    return render(request, 'posts/tagged.html', context)
+

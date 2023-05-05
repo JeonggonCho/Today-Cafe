@@ -27,7 +27,8 @@ urlpatterns = [
 
 
     # 기타 url
-    path('search/', views.search, name="search"),
+    path('search/', views.search, name='search'),
+    path('tags/<int:tag_pk>/', views.tagged, name='tagged'),
     path('<int:post_pk>/recomment/', views.recomment, name='recomment'),
     ]
 

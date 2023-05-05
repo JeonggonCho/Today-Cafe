@@ -5,6 +5,7 @@ from imagekit.processors import Thumbnail
 from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta,datetime
+from taggit.managers import TaggableManager
 
 # Create your models here.
 class Profile(models.Model):
@@ -29,6 +30,8 @@ class Post(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to='images/post/%Y/%m/%d/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    tags = TaggableManager(blank=True)
 
     def str(self):
         return self.title
