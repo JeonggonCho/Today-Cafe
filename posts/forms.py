@@ -1,5 +1,7 @@
 from django import forms
 from .models import Post, Comment, Review, ReComment
+from taggit.forms import TagField, TagWidget
+
 
 
 class PostForm(forms.ModelForm):
@@ -69,14 +71,25 @@ class PostForm(forms.ModelForm):
             attrs={
                 'class': 'form-control form-control-sm',
             },
-        ),
+        )
     )
+
+    tags = forms.CharField(
+        label='태그',
+        widget=TagWidget(
+            attrs={
+                'class': 'form-control',
+                'placeholder': '태그는 콤마(,)로 구분하여 작성해주세요' 
+            }
+        )
+    )
+   
     
     class Meta:
         model = Post
-        fields = ('title', 'address', 'phone_number', 'menu', 'hours', 'information', 'image',)
-
-
+        fields = ('title', 'address', 'phone_number', 'menu', 'hours', 'information', 'image', 'tags',)
+        
+        
 
 class ReviewForm(forms.ModelForm):
     content = forms.CharField(
