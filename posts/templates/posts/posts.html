@@ -28,19 +28,10 @@
 </nav>
 
   {% if request.user.is_authenticated %}
-    <a href="{% url 'accounts:profile' user.username %}">프로필</a>
-    <form action="{% url 'accounts:logout' %}" method='POST'>
-      {% csrf_token %}
-      <input class="btn btn-outline-secondary text-center" type='submit' value='Logout'>
-    </form>
     <form action="{% url 'accounts:delete' %}" method='POST'>
       {% csrf_token %}
       <button type="submit" class="btn btn-outline-secondary" role="button">회원탈퇴</button>
     </form>
-    <a href="{% url 'accounts:update' %}">회원정보수정</a>
-  {% else %}
-    <a href="{% url 'accounts:login' %}">Login</a>
-    <a href="{% url 'accounts:signup' %}">Signup</a>
   {% endif %}
 
   <a href="{% url 'posts:create' %}">[CREATE]</a>
@@ -89,7 +80,7 @@
             <div class="posts--cate_form d-flex mb-5">
               <!-- 카테고리 카페 이미지 -->
               <div class="posts--cate_img_form">
-                <img src="https://www.jeongdong.or.kr/static/portal/img/HKPU_04_04_pic1.jpg" alt="">
+                <img src="{{ post.image.url }}" alt="">
               </div>
               <div class="w-100 h-100">
                 <!-- 카테고리 카페 이름 -->
@@ -98,9 +89,9 @@
                     <a href='{% url 'posts:post' post.pk %}'>
                     <div class="d-flex gap-2">
                       <div class="posts--cate_form_icon d-flex justify-content-center align-items-center"><span class="material-symbols-outlined">stylus</span></div>
-                      <h2><strong>스터디 카페</strong></h2>
+                      <h2><strong>{{ post.title }}</strong></h2>
                     </div>
-                    <div class="mb-5"><strong>주소 |</strong> 서울 종로구 북촌로 6-3 1층</div>
+                    <div class="mb-5"><strong>주소 |</strong> {{ post.address }}</div>
 
                       {% if posts %}
                         {% for post in posts %}
