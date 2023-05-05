@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
+from django.forms.widgets import ClearableFileInput
 from imagekit.models import ImageSpecField
 from imagekit.forms import ProcessedImageField
 from imagekit.processors import Thumbnail
@@ -83,11 +84,18 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomUserChangeForm(UserChangeForm):
     profile_image = ProcessedImageField(
-    spec_id='profile_image_thumbnail',
-    processors=[ResizeToFill(70,70)],
-    format='JPEG',
-    options={'quality' : 90},
-    required=False,
+        spec_id='profile_image_thumbnail',
+        processors=[ResizeToFill(70,70)],
+        format='JPEG',
+        options={'quality' : 90},
+        required=False,
+        widget=ClearableFileInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'profile_image',
+            'name': 'profile_image'
+        }
+        ),
     )
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
@@ -101,8 +109,7 @@ class CustomUserChangeForm(UserChangeForm):
         label='Email address',
         widget= forms.EmailInput(
         attrs={
-            'class' : 'form-control ',
-            'style' : 'width: 250px',
+            'class' : 'form-control w-100 p-2',
             'placeholder' : 'email@example.com',
         }
         )
@@ -112,8 +119,7 @@ class CustomUserChangeForm(UserChangeForm):
         label="First name",
         widget=forms.TextInput(
         attrs={
-            'class' : 'form-control ',
-            'style' : 'width: 250px',
+            'class' : 'form-control w-100 p-2',
             'placeholder' : 'firstname',
         }
         )
@@ -123,8 +129,7 @@ class CustomUserChangeForm(UserChangeForm):
         label="Last name",
         widget=forms.TextInput(
         attrs={
-            'class' : 'form-control',
-            'style' : 'width: 250px',
+            'class' : 'form-control w-100 p-2',
             'placeholder' : 'lastname',
         }
         )
