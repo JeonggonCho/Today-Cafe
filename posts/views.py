@@ -9,6 +9,7 @@ from django.db.models import Q
 
 # Create your views here.
 def posts(request):
+    reviews = Review.objects.filter()
     posts = Post.objects.order_by('-pk')
     page = request.GET.get('page', '1')
     per_page = 5
@@ -29,7 +30,7 @@ EMOTIONS = [
 
 def post(request, post_pk):
     post = Post.objects.get(pk=post_pk)
-    reviews = Review.objects.filter(post_id=post_pk).order_by('-create_at')
+    reviews = Review.objects.filter(post_id=post_pk).order_by('-created_at')
     context = {
         'post': post,
         'reviews': reviews,

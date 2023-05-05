@@ -13,7 +13,7 @@
         <div class="d-flex mb-3">
             <div class="d-flex flex-grow-1 align-items-center gap-3">
                 <div class="post--cate_form_icon d-flex justify-content-center align-items-center"><span class="material-symbols-outlined">stylus</span></div>
-                <h2><strong>스터디 카페</strong></h2>
+                <h2><strong>{{ post.title }}</strong></h2>
             </div>
             <a href="{% url 'posts:review_create' post.pk %}" class="post--create_btn d-flex align-items-center justify-content-center gap-3"><span class="material-symbols-outlined">edit_square</span><div>리뷰작성</div></a>
         </div>
@@ -27,7 +27,7 @@
                     <span class="material-symbols-outlined">location_on</span>
                     <h5><strong>주소</strong></h5>
                 </div>
-                <div>서울 종로구 북촌로 6-3 1층</div>
+                <div>{{ post.address }}</div>
             </div>
 
             <!-- 전화번호 -->
@@ -36,7 +36,7 @@
                     <span class="material-symbols-outlined">call</span>
                     <h5><strong>전화번호</strong></h5>
                 </div>
-                <div>0000-0000-0000</div>
+                <div>{{ post.phone_number }}</div>
             </div>
 
             <!-- 영업시간 -->
@@ -45,7 +45,7 @@
                     <span class="material-symbols-outlined">schedule</span>
                     <h5><strong>영업시간</strong></h5>
                 </div>
-                <div>00:00 - 00:00 | 정기휴무 : 매주 일요일</div>
+                <div>{{ post.hours }}</div>
             </div>
 
             <!-- 편의시설/정보 -->
@@ -54,7 +54,7 @@
                     <span class="material-symbols-outlined">info</span>
                     <h5><strong>편의시설 정보</strong></h5>
                 </div>
-                <div>주차가능</div>
+                <div>{{ post.information }}</div>
             </div>
         </div>
 
