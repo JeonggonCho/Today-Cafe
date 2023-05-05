@@ -4,7 +4,7 @@ from .models import Post, Comment, Review, ReComment
 
 class PostForm(forms.ModelForm):
     title = forms.CharField(
-        label='제목',
+        label='카페명',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
