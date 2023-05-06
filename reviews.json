@@ -334,5 +334,257 @@
         "updated_at": "2023-05-06T07:05:44.509Z",
         "like_users": []
     }
+},
+{
+    "model": "posts.review",
+    "pk": 26,
+    "fields": {
+        "user": 3,
+        "post": 13,
+        "image": "",
+        "content": "또리랑 데이트~~~",
+        "rating": 5.0,
+        "created_at": "2023-05-06T12:03:00.895Z",
+        "updated_at": "2023-05-06T12:03:00.896Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 27,
+    "fields": {
+        "user": 10,
+        "post": 19,
+        "image": "",
+        "content": "여기 개발하기 딱 좋음",
+        "rating": 1.0,
+        "created_at": "2023-05-06T12:16:16.398Z",
+        "updated_at": "2023-05-06T12:16:16.398Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 28,
+    "fields": {
+        "user": 10,
+        "post": 18,
+        "image": "",
+        "content": "단골 인증합니다!",
+        "rating": 1.0,
+        "created_at": "2023-05-06T12:16:30.323Z",
+        "updated_at": "2023-05-06T12:16:30.323Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 29,
+    "fields": {
+        "user": 10,
+        "post": 21,
+        "image": "",
+        "content": "외롭다,, 개(dog)발자의 삶",
+        "rating": 4.5,
+        "created_at": "2023-05-06T12:17:07.633Z",
+        "updated_at": "2023-05-06T12:17:07.633Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 30,
+    "fields": {
+        "user": 10,
+        "post": 17,
+        "image": "",
+        "content": "자식들이과 함께~",
+        "rating": 5.0,
+        "created_at": "2023-05-06T12:17:38.926Z",
+        "updated_at": "2023-05-06T12:17:38.926Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 31,
+    "fields": {
+        "user": 10,
+        "post": 7,
+        "image": "",
+        "content": "ㅎㅇ",
+        "rating": 3.5,
+        "created_at": "2023-05-06T12:18:29.238Z",
+        "updated_at": "2023-05-06T12:18:29.238Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 32,
+    "fields": {
+        "user": 11,
+        "post": 25,
+        "image": "",
+        "content": "앵무새 분양 완료!",
+        "rating": 5.0,
+        "created_at": "2023-05-06T12:21:58.354Z",
+        "updated_at": "2023-05-06T12:21:58.354Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 33,
+    "fields": {
+        "user": 11,
+        "post": 24,
+        "image": "",
+        "content": "맛집 ㅇㅈ~",
+        "rating": 1.0,
+        "created_at": "2023-05-06T12:22:10.296Z",
+        "updated_at": "2023-05-06T12:22:10.296Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 34,
+    "fields": {
+        "user": 11,
+        "post": 18,
+        "image": "",
+        "content": "단골222222222222222",
+        "rating": 5.0,
+        "created_at": "2023-05-06T12:22:27.274Z",
+        "updated_at": "2023-05-06T12:22:27.274Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 35,
+    "fields": {
+        "user": 11,
+        "post": 19,
+        "image": "",
+        "content": "포토샵 공부 12시간째ㅡ,,,,ㅡ",
+        "rating": 1.0,
+        "created_at": "2023-05-06T12:22:47.542Z",
+        "updated_at": "2023-05-06T12:22:47.542Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 36,
+    "fields": {
+        "user": 11,
+        "post": 15,
+        "image": "",
+        "content": "웨이팅 너무 심하네요,,,,",
+        "rating": 5.0,
+        "created_at": "2023-05-06T12:23:05.159Z",
+        "updated_at": "2023-05-06T12:23:05.159Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 38,
+    "fields": {
+        "user": 12,
+        "post": 25,
+        "image": "",
+        "content": "앵무새 너무 졸귀",
+        "rating": 1.0,
+        "created_at": "2023-05-06T12:24:50.882Z",
+        "updated_at": "2023-05-06T12:24:50.882Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 39,
+    "fields": {
+        "user": 12,
+        "post": 15,
+        "image": "",
+        "content": "노션을 여기서 마스터했습니다,,,",
+        "rating": 1.0,
+        "created_at": "2023-05-06T12:25:06.485Z",
+        "updated_at": "2023-05-06T12:25:06.485Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 40,
+    "fields": {
+        "user": 12,
+        "post": 17,
+        "image": "",
+        "content": "여기 너무 좋아요",
+        "rating": 3.5,
+        "created_at": "2023-05-06T12:25:19.298Z",
+        "updated_at": "2023-05-06T12:25:19.298Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 41,
+    "fields": {
+        "user": 12,
+        "post": 14,
+        "image": "",
+        "content": "캠핑 감성 짱",
+        "rating": 4.5,
+        "created_at": "2023-05-06T12:25:33.115Z",
+        "updated_at": "2023-05-06T12:25:33.115Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 42,
+    "fields": {
+        "user": 12,
+        "post": 21,
+        "image": "",
+        "content": "안녕하세요!!!",
+        "rating": 3.5,
+        "created_at": "2023-05-06T12:26:06.847Z",
+        "updated_at": "2023-05-06T12:26:06.847Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 43,
+    "fields": {
+        "user": 2,
+        "post": 21,
+        "image": "",
+        "content": "개발새발",
+        "rating": 4.0,
+        "created_at": "2023-05-06T12:26:19.749Z",
+        "updated_at": "2023-05-06T12:26:19.749Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 44,
+    "fields": {
+        "user": 12,
+        "post": 13,
+        "image": "",
+        "content": "편해요~",
+        "rating": 4.0,
+        "created_at": "2023-05-06T12:26:27.381Z",
+        "updated_at": "2023-05-06T12:26:27.382Z",
+        "like_users": []
+    }
 }
 ]

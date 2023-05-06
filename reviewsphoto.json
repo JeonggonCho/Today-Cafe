@@ -61,5 +61,41 @@
         "post": 9,
         "photo": "reviews/photos/다운로드.jpeg"
     }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 8,
+    "fields": {
+        "review": 26,
+        "post": 13,
+        "photo": "reviews/photos/44.jpg"
+    }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 9,
+    "fields": {
+        "review": 29,
+        "post": 21,
+        "photo": "reviews/photos/다운로드.jpg"
+    }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 10,
+    "fields": {
+        "review": 30,
+        "post": 17,
+        "photo": "reviews/photos/jjjjj.jpg"
+    }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 11,
+    "fields": {
+        "review": 43,
+        "post": 21,
+        "photo": "reviews/photos/x7bnrH1.jpg"
+    }
 }
 ]

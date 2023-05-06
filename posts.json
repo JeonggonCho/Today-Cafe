@@ -182,5 +182,185 @@
         "updated_at": "2023-05-06T05:18:17.672Z",
         "like_users": []
     }
+},
+{
+    "model": "posts.post",
+    "pk": 13,
+    "fields": {
+        "user": 6,
+        "title": "카페꼼마 합정점",
+        "address": "서울 마포구 포은로 49",
+        "phone_number": "070-4179-2205",
+        "menu": "망고 스무디, 체리플럼 스무디, 스위트 바나나 라떼, 초당 옥수수 라떼",
+        "hours": "체리플럼 스무디",
+        "information": "스위트 바나나 라떼",
+        "category": "북 카페",
+        "image": "images/post/2023/05/06/3.jpg",
+        "created_at": "2023-05-06T11:58:42.738Z",
+        "updated_at": "2023-05-06T11:58:42.738Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 14,
+    "fields": {
+        "user": 6,
+        "title": "아이조아펫파크 서울점",
+        "address": "서울 용산구 녹사평대로32길 28 2층",
+        "phone_number": "0507-1316-1160",
+        "menu": "아메리카노, 청포도에이드",
+        "hours": "매일 12:00 ~ 20:30",
+        "information": "단체석, 주차, 방문접수/출장, 예약, 무선 인터넷, 반려동물 동반, 남/녀 화장실 구분",
+        "category": "카공 모각코",
+        "image": "images/post/2023/05/06/44.jpg",
+        "created_at": "2023-05-06T12:01:07.944Z",
+        "updated_at": "2023-05-06T12:01:07.944Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 15,
+    "fields": {
+        "user": 5,
+        "title": "블루보틀 삼청",
+        "address": "서울 종로구 북촌로5길 76",
+        "phone_number": "1533-6906",
+        "menu": "로즈 바닐라 빈 라떼, 놀라 플로럴, 지브랄타",
+        "hours": "09:00 - 20:00",
+        "information": "주차공간 없음",
+        "category": "북 카페",
+        "image": "images/post/2023/05/06/KakaoTalk_20230506_210200443.jpg",
+        "created_at": "2023-05-06T12:06:17.755Z",
+        "updated_at": "2023-05-06T12:06:17.755Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 16,
+    "fields": {
+        "user": 5,
+        "title": "청수당",
+        "address": "서울 종로구 돈화문로11나길 31-9",
+        "phone_number": "0507-1318-8215",
+        "menu": "오리지날 에그 수플레, 스톤 드립커피",
+        "hours": "11:30 - 22:00",
+        "information": "단체석, 무선 인터넷, 남/녀 화장실 구분",
+        "category": "북 카페",
+        "image": "images/post/2023/05/06/KakaoTalk_20230506_210159798.jpg",
+        "created_at": "2023-05-06T12:09:15.405Z",
+        "updated_at": "2023-05-06T12:09:15.405Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 17,
+    "fields": {
+        "user": 3,
+        "title": "개러지무비&펫파크",
+        "address": "경기 파주시 탄현면 엘지로717번길 57 1층",
+        "phone_number": "0507-1316-1344",
+        "menu": "아메리카노, 로얄밀크티쉐이크",
+        "hours": "24시",
+        "information": "단체석, 주차, 포장, 무선 인터넷, 반려동물 동반, 남/녀 화장실 구분, 장애인 편의시설",
+        "category": "펫 카페",
+        "image": "images/post/2023/05/06/22222.jpg",
+        "created_at": "2023-05-06T12:10:31.198Z",
+        "updated_at": "2023-05-06T12:10:31.198Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 18,
+    "fields": {
+        "user": 3,
+        "title": "펌킨 펫하우스 청담",
+        "address": "서울 강남구 삼성로120길 36",
+        "phone_number": "02-6204-5960",
+        "menu": "아메리카노, 개껌",
+        "hours": "24시",
+        "information": "단체석, 주차, 발렛파킹, 포장, 배달, 방문접수/출장, 예약, 무선 인터넷, 반려동물 동반, 남/녀 화장실 구분",
+        "category": "펫 카페",
+        "image": "images/post/2023/05/06/33312.jpg",
+        "created_at": "2023-05-06T12:12:52.748Z",
+        "updated_at": "2023-05-06T12:12:52.748Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 19,
+    "fields": {
+        "user": 5,
+        "title": "stdo",
+        "address": "서울 성동구 서울숲4길 12-8 1층",
+        "phone_number": "0507-1361-9100",
+        "menu": "아메리카노, 라떼, 크로와상, 뺑오쇼콜라",
+        "hours": "09:00 ~ 23:00",
+        "information": "단체석, 포장, 무선 인터넷, 남/녀 화장실 구분",
+        "category": "북 카페",
+        "image": "images/post/2023/05/06/KakaoTalk_20230506_210158519.jpg",
+        "created_at": "2023-05-06T12:13:23.047Z",
+        "updated_at": "2023-05-06T12:13:23.047Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 21,
+    "fields": {
+        "user": 9,
+        "title": "뭉스벨리 애견유치원 호텔 카페",
+        "address": "서울 강동구 천호대로 1045 2,3층",
+        "phone_number": "0507-1344-8412",
+        "menu": "아메리카노, 로얄밀크티쉐이크",
+        "hours": "09:00 ~ 20:00",
+        "information": "단체석, 주차, 예약, 무선 인터넷, 반려동물 동반, 남/녀 화장실 구분",
+        "category": "펫 카페",
+        "image": "images/post/2023/05/06/456464.png",
+        "created_at": "2023-05-06T12:15:20.392Z",
+        "updated_at": "2023-05-06T12:15:20.392Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 24,
+    "fields": {
+        "user": 5,
+        "title": "카페앤유",
+        "address": "경기 안산시 단원구 고잔로 95 힐스테이트중앙 상가2동",
+        "phone_number": "031-921-2644",
+        "menu": "카페앤유",
+        "hours": "09:00 ~ 22:00",
+        "information": "주차공간 없음",
+        "category": "북 카페",
+        "image": "images/post/2023/05/06/KakaoTalk_20230506_210156608_sSYmBew.jpg",
+        "created_at": "2023-05-06T12:19:59.527Z",
+        "updated_at": "2023-05-06T12:20:14.883Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 25,
+    "fields": {
+        "user": 10,
+        "title": "버드라운지",
+        "address": "서울 광진구 자양로 165 B1 버드라운지",
+        "phone_number": "0507-1315-1178",
+        "menu": "앵무세 용품, 아메리카노, 앵무새 케어",
+        "hours": "24시",
+        "information": "예약, 무선 인터넷, 반려동물 동반, 남/녀 화장실 구분",
+        "category": "펫 카페",
+        "image": "images/post/2023/05/06/ffffff.jpg",
+        "created_at": "2023-05-06T12:20:47.238Z",
+        "updated_at": "2023-05-06T12:20:47.238Z",
+        "like_users": []
+    }
 }
 ]

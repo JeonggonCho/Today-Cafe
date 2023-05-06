@@ -336,5 +336,135 @@
         "updated_at": "2023-05-06T07:04:02.894Z",
         "like_users": []
     }
+},
+{
+    "model": "posts.comment",
+    "pk": 28,
+    "fields": {
+        "review": 21,
+        "user": 3,
+        "content": "ㅇㅈ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T08:15:06.423Z",
+        "updated_at": "2023-05-06T08:15:06.423Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 29,
+    "fields": {
+        "review": 29,
+        "user": 5,
+        "content": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T12:21:20.759Z",
+        "updated_at": "2023-05-06T12:21:20.759Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 30,
+    "fields": {
+        "review": 28,
+        "user": 5,
+        "content": "저도 단골할래요",
+        "parent_comment": null,
+        "created_at": "2023-05-06T12:21:56.807Z",
+        "updated_at": "2023-05-06T12:21:56.807Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 31,
+    "fields": {
+        "review": 30,
+        "user": 5,
+        "content": "여기가 바로 천국(?)",
+        "parent_comment": null,
+        "created_at": "2023-05-06T12:22:30.127Z",
+        "updated_at": "2023-05-06T12:22:30.127Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 32,
+    "fields": {
+        "review": 26,
+        "user": 5,
+        "content": "저랑도 데이트해주세요(?)",
+        "parent_comment": null,
+        "created_at": "2023-05-06T12:23:14.920Z",
+        "updated_at": "2023-05-06T12:23:14.920Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 33,
+    "fields": {
+        "review": 32,
+        "user": 2,
+        "content": "좋겠다 앵무새~~~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T12:24:05.827Z",
+        "updated_at": "2023-05-06T12:24:05.827Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 34,
+    "fields": {
+        "review": 33,
+        "user": 2,
+        "content": "맛집 ㅇㅈㅇㅈ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T12:24:46.534Z",
+        "updated_at": "2023-05-06T12:24:46.534Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 35,
+    "fields": {
+        "review": 26,
+        "user": 12,
+        "content": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T12:27:03.885Z",
+        "updated_at": "2023-05-06T12:27:03.885Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 36,
+    "fields": {
+        "review": 41,
+        "user": 2,
+        "content": "가봐야겠다 ~~~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T12:27:10.422Z",
+        "updated_at": "2023-05-06T12:27:10.422Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 37,
+    "fields": {
+        "review": 34,
+        "user": 12,
+        "content": "저도 포토샵 알려주세요~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T12:27:32.588Z",
+        "updated_at": "2023-05-06T12:27:32.588Z",
+        "like_users": []
+    }
 }
 ]

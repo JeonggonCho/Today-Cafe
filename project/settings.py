@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'imagekit',
     'taggit',
     'taggit_templatetags2',
+    'dbbackup',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -141,3 +142,11 @@ AUTH_USER_MODEL = 'accounts.User'
 
 TAGGIT_CASE_INSENSITIVE = True
 TAGGIT_LIMIT = 50
+
+# 데이터베이스 백업 설정
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': '/path/to/backup/directory/'}
+
+# 미디어 파일 백업 설정
+DBBACKUP_MEDIA_PATH = 'media/backup'
+DBBACKUP_CLEANUP_KEEP = 80

@@ -24,7 +24,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$260000$9PLNwmRAgM0XPZfBznqb9Z$g1hR9uJHXqa1VZKHu/6Qvm+ZrrNlqSOWO4/jT5ojdCg=",
-        "last_login": "2023-05-06T08:20:53.985Z",
+        "last_login": "2023-05-06T12:23:44.569Z",
         "is_superuser": false,
         "username": "zzgh06",
         "first_name": "충현",
@@ -46,7 +46,7 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$260000$f4h4qGuUngYzR5SqN4B7Pf$QmQ/JZF4B8IZ6PRILkaW3BRUpsW0DeeuG4XeQhsX6dI=",
-        "last_login": "2023-05-06T08:21:35.400Z",
+        "last_login": "2023-05-06T12:01:30.775Z",
         "is_superuser": false,
         "username": "jeonseongjae",
         "first_name": "seongjae",
@@ -86,7 +86,7 @@
     "pk": 5,
     "fields": {
         "password": "pbkdf2_sha256$260000$iMMaQ3Q8sT9aISG9sjkFzB$Ub9c5moXjxx/hDW+9gne2apV8Wf3u9nJ/elB4VwpUyI=",
-        "last_login": "2023-05-06T06:48:28.917Z",
+        "last_login": "2023-05-06T11:56:27.400Z",
         "is_superuser": false,
         "username": "전설전성재",
         "first_name": "성재",
@@ -106,7 +106,7 @@
     "pk": 6,
     "fields": {
         "password": "pbkdf2_sha256$260000$AekCi7Xlwrg3QKUMJXISBX$VTKsoMQzQ76tp0zFYEo0Rdg1nmQnNsH0kLX3u2bqngc=",
-        "last_login": "2023-05-06T06:51:46.746Z",
+        "last_login": "2023-05-06T08:47:29.950Z",
         "is_superuser": false,
         "username": "피그마왕조정곤",
         "first_name": "정곤",
@@ -166,7 +166,7 @@
     "pk": 9,
     "fields": {
         "password": "pbkdf2_sha256$260000$UkfJjBDMO1X62FtcPnmV8t$iRiSMG7GYkELb+eCketvJihapQ11521X+vQmxvdTbAM=",
-        "last_login": "2023-05-06T07:04:51.031Z",
+        "last_login": "2023-05-06T12:13:11.077Z",
         "is_superuser": false,
         "username": "뉴진스민지",
         "first_name": "민지",
@@ -175,6 +175,66 @@
         "is_staff": false,
         "is_active": true,
         "date_joined": "2023-05-06T07:04:50.892Z",
+        "profile_image": "",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XVMwvPuaHLK1iftj7sz7k4$mSMQv/wpbL5/XyfyaLYm4mmSAcGN7xZZUCPLaOEEwh0=",
+        "last_login": "2023-05-06T12:18:42.257Z",
+        "is_superuser": false,
+        "username": "부상투혼개발자최충현",
+        "first_name": "cndgus",
+        "last_name": "chl",
+        "email": "je2dfasd@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T12:16:05.202Z",
+        "profile_image": "",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$nY8Dfa3wEtS3rym9zXT7tU$ArKeOlDmhsh9r/FkuMr/Ow86SYI2K7BFQIj4TdKbaks=",
+        "last_login": "2023-05-06T12:21:40.314Z",
+        "is_superuser": false,
+        "username": "포토샵왕조정곤",
+        "first_name": "wjdrhs",
+        "last_name": "wh",
+        "email": "je2dfasd@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T12:21:40.164Z",
+        "profile_image": "",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 12,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$nnB2VQ6idutT3KlvoAspF1$HKw9jFYRNCjsr7pt4Ht/Kg8ds7nUFMYX5kJWsU6Fqgk=",
+        "last_login": "2023-05-06T12:24:06.664Z",
+        "is_superuser": false,
+        "username": "노션왕김민지",
+        "first_name": "alswl",
+        "last_name": "rla",
+        "email": "dsklsfjs@naver.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-05-06T12:24:06.519Z",
         "profile_image": "",
         "groups": [],
         "user_permissions": [],
