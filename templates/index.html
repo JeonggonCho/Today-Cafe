@@ -53,15 +53,15 @@
                 <span class="material-symbols-outlined me-2">menu</span>
                 <span>모든 카페</span>
             </a>
-            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="{% url 'posts:posts' %}">
+            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="{% url 'posts:category' subject='카공 모각코' %}">
                 <span class="material-symbols-outlined me-2">stylus</span>
                 <span>카공 / 모각코</span>
             </a>
-            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="{% url 'posts:posts' %}">
+            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="{% url 'posts:category' subject='펫 카페' %}">
                 <span class="material-symbols-outlined me-2">pets</span>
                 <span>애견동반</span>
             </a>
-            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center" href="{% url 'posts:posts' %}">
+            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center" href="{% url 'posts:category' subject='북 카페' %}">
                 <span class="material-symbols-outlined me-2">import_contacts</span>
                 <span>동네 책방</span>
             </a>

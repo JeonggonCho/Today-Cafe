@@ -93,7 +93,7 @@
       <hr>
 
       <!-- 댓글 작성 -->
-      <h5><strong>댓글 ({{ comments|length }})</strong></h5>
+      <h4 class="my-4"><strong>댓글 ({{ comments|length }})</strong></h4>
       <form action="{% url 'posts:comments_create' post.pk review.pk %}" method="POST">
         {% csrf_token %}
         {% for field in comment_form %}
@@ -102,7 +102,7 @@
             {{ field }}
           </p>  
         {% endfor %}
-        <input type="submit" class="detail--comment_btn" value="댓 글">
+        <input type="submit" class="btn btn-danger detail--comment_btn" value="댓 글">
         </div>
       </form>
     

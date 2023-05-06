@@ -5,18 +5,34 @@ from .models import Post, Review, Comment, Emote, ReviewPhoto
 from .forms import PostForm, CommentForm, ReviewForm, ReCommentForm
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.conf import settings
+from taggit.models import Tag
+import os
 
 
 # Create your views here.
 def posts(request):
-    reviews = Review.objects.filter()
-    posts = Post.objects.order_by('-pk')
+    posts = Post.objects.all().order_by('-pk')
     page = request.GET.get('page', '1')
-    per_page = 5
+    per_page = 6
     paginator = Paginator(posts, per_page)
     page_obj = paginator.get_page(page)
     context = {
         'posts': page_obj,
+        'subject': 'all',
+    }
+    return render(request,'posts/posts.html', context)
+
+
+def category(request, subject):
+    posts = Post.objects.filter(category=subject).order_by('-pk')
+    page = request.GET.get('page', '1')
+    per_page = 6
+    paginator = Paginator(posts, per_page)
+    page_obj = paginator.get_page(page)
+    context = {
+        'posts': page_obj,
+        'subject': subject,
     }
     return render(request,'posts/posts.html', context)
 
@@ -81,14 +97,14 @@ def update(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     if request.user == post.user:
         if request.method == 'POST':
-            form = PostForm(request.POST, instance=post)
+            form = PostForm(request.POST, request.FILES, instance=post)
             if form.is_valid():
                 form.save()
                 return redirect('posts:post', post.pk)
         else:
             form = PostForm(instance=post)
     else:
-        return redirect('posts:posts')
+        return redirect('posts:post', post_pk)
     context = {
         'post': post,
         'form': form,
@@ -156,8 +172,18 @@ def review_update(request, post_pk, review_pk):
     if request.user == review.user:
         if request.method == 'POST':
             review_form = ReviewForm(request.POST, request.FILES, instance=review)
-            if review_form.is_valid():
-                review_form.save()
+            if review.image:
+                os.remove(os.path.join(settings.MEDIA_ROOT, str(review.image.path)))
+                review = review_form.save(commit=False)
+                review.post = post
+                review.user = request.user
+                review.save()
+
+                images = request.FILES.getlist('image')
+                for image in images:
+                    photo = ReviewPhoto(post=post, review=review, photo=image)
+                    photo.save()
+
                 return redirect('posts:review_detail', post_pk=post.pk, review_pk=review.pk)
         else:
             review_form = ReviewForm(instance=review)
@@ -253,8 +279,6 @@ def search(request):
     return render(request, 'posts/search.html', context)
 
 
-from taggit.models import Tag
-
 def tagged(request, tag_pk):
     tag = Tag.objects.get(pk=tag_pk)
     posts = Post.objects.filter(tags=tag)
@@ -263,4 +287,3 @@ def tagged(request, tag_pk):
         'posts':posts,
     }
     return render(request, 'posts/tagged.html', context)
-

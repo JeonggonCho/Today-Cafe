@@ -4,9 +4,6 @@
 .detail--comment_btn {
     width: 80px;
     height: 38px;
-    border-radius: var(--btn-radius);
-    background-color: var(--btn-red);
-    color: white;
     border: none;
 }
 .detail--comment_form {
@@ -26,6 +23,7 @@
     color: var(--font-gray);
 }
 .detail--delete_btn {
+    margin-bottom: 2px;
     font-size: var(--font-medium-size);
     color: var(--font-gray);
     background-color: transparent;

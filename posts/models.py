@@ -27,9 +27,11 @@ class Post(models.Model):
     menu = models.CharField(max_length=200)
     hours = models.CharField(max_length=30)
     information = models.CharField(max_length=200, blank=True)
+    category = models.CharField(max_length=10)
     image = models.ImageField(blank=True, null=True, upload_to='images/post/%Y/%m/%d/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    tags = TaggableManager(blank=True)
 
     tags = TaggableManager(blank=True)
 
@@ -38,7 +40,7 @@ class Post(models.Model):
 
     def delete(self, *args, **kargs):
         if self.image:
-            os.remove(os.path.join(settings.MEDIA_ROOT, self.image))
+            os.remove(os.path.join(settings.MEDIA_ROOT, str(self.image)))
         super(Post, self).delete(*args, **kargs)
 
     def save(self, *args, **kwargs):
@@ -46,7 +48,7 @@ class Post(models.Model):
             old_post = Post.objects.get(id=self.id)
             if self.image != old_post.image:
                 if old_post.image:
-                    os.remove(os.path.join(settings.MEDIA_ROOT, old_post.image.path))
+                    os.remove(os.path.join(settings.MEDIA_ROOT, str(old_post.image.path)))
         super(Post, self).save(*args, **kwargs)
 
     @property
@@ -88,7 +90,7 @@ class Review(models.Model):
     
     def delete(self, *args, **kargs):
         if self.image:
-            os.remove(os.path.join(settings.MEDIA_ROOT, self.image))
+            os.remove(os.path.join(settings.MEDIA_ROOT, str(self.image)))
         super(Review, self).delete(*args, **kargs)
 
     def save(self, *args, **kwargs):
@@ -96,7 +98,7 @@ class Review(models.Model):
             old_review = Review.objects.get(id=self.id)
             if self.image != old_review.image:
                 if old_review.image:
-                    os.remove(os.path.join(settings.MEDIA_ROOT, old_review.image.path))
+                    os.remove(os.path.join(settings.MEDIA_ROOT, str(old_review.image.path)))
         super(Review, self).save(*args, **kwargs)
 
     @property

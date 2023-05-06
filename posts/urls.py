@@ -5,6 +5,7 @@ app_name = 'posts'
 urlpatterns = [
     # post관련 url
     path('', views.posts, name='posts'),
+    path('category/<str:subject>/', views.category, name='category'),
     path('<int:post_pk>/', views.post, name='post'),
     path('create/', views.create, name='create'),
     path('<int:post_pk>/delete/', views.delete, name='delete'),
@@ -27,7 +28,7 @@ urlpatterns = [
 
 
     # 기타 url
-    path('search/', views.search, name='search'),
+    path('search/', views.search, name="search"),
     path('tags/<int:tag_pk>/', views.tagged, name='tagged'),
     path('<int:post_pk>/recomment/', views.recomment, name='recomment'),
     ]
