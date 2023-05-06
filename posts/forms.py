@@ -80,7 +80,7 @@ class PostForm(forms.ModelForm):
             attrs={
                 'class': 'form-control form-control-sm',
             },
-        ),
+        )
     )
 
     tags = forms.CharField(
@@ -93,11 +93,10 @@ class PostForm(forms.ModelForm):
         )
     )
 
-    
+
     class Meta:
         model = Post
         fields = ('title', 'address', 'phone_number', 'menu', 'hours', 'information', 'category', 'image', 'tags',)
-
 
 
 class ReviewForm(forms.ModelForm):

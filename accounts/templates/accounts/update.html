@@ -10,46 +10,50 @@
 
 {% block content %}
 <main class="main--signup d-flex">
-    <div class="container mt-5 p-0 d-flex flex-column align-items-center">
+    <div class="container my-5 p-0 d-flex flex-column align-items-center">
         <!-- update title -->
-        <h3 class="my-0 pb-4 fw-bold">회원정보수정</h3>
+        <h3 class="my-0 mb-5 fw-bold">회원정보수정</h3>
         <!-- update form -->
-        <form class="w-50 row d-flex justify-content-center align-items-center" action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
+        <form class="w-75 mb-4 row d-flex justify-content-center align-items-center" action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- update-name and address -->
-            <section class="px-5 border-end col-6 d-flex flex-column justify-content-center">
-                <div>
-                    <label class="mb-1 fw-bold" for="username">성</label>
-                    {{ form.last_name }}
-                </div>
-                <div>
-                    <label class="mb-1 fw-bold" for="username">이름</label>
-                    {{ form.first_name }}
-                </div>
-                <div>
-                    <label class="mb-1 fw-bold" for="username">이메일</label>
-                    {{ form.email }}
+            <section class="px-5 border-end col-6">
+                <div style="overflow:hidden;">
+                    <label class="mb-2 fs-5 fw-bold" for="profile_image">프로필 이미지</label>
+                    <div class="update-image-container my-5 d-flex flex-column justify-content-center align-items-center">
+                        {% if user.profile_image %}
+                            <img id="preview" class="rounded-circle" style="width: 10rem; height:10rem;" src="{{ user.profile_image.url }}" alt="Profile Image Preview">
+                        {% else %}
+                            <img id="preview" class="rounded-circle" style="width: 10rem; height:10rem;" src="{% static 'accounts/img/no_profile.jpeg' %}" alt="Profile Image Preview">
+                        {% endif %}
+                    </div>
+                    {{ form.profile_image }}
                 </div>
             </section>
             <!-- update-image-->
-            <section class="px-5 col-6 d-flex flex-column justify-content-center align-items-center h-100">
-                <div>
-                    <label class="mb-1 fw-bold" for="profile_image">프로필 이미지</label>
-                    {% csrf_token %}
-                    {% if user.profile_image %}
-                        <img id="preview" src="{{ user.profile_image.url }}" alt="Profile Image Preview">
-                    {% else %}
-                        <img id="preview" src="#" alt="Profile Image Preview" style="display:none;">
-                    {% endif %}
-                    <input type="file" name="profile_image" id="profile_image">
-                    {{ form.profile_image }}
+            <section class="px-5 col-6 h-100 d-flex flex-column justify-content-center">
+                <div class="mb-4">
+                    <label class="fs-5 mb-2 fw-bold" for="username">성</label>
+                    {{ form.last_name }}
                 </div>
-                <input type="submit" value="확인">
+                <div class="mb-4">
+                    <label class="mb-2 fs-5 fw-bold" for="username">이름</label>
+                    {{ form.first_name }}
+                </div>
+                <div class="mb-4">
+                    <label class="mb-2 fs-5 fw-bold" for="username">이메일</label>
+                    {{ form.email }}
+                </div>
+                <input class="w-100 mt-4 btn btn-outline-secondary" type="submit" value="확인">
             </section>
         </form>
         <!-- go to password change page -->
-        <div>
-            <a href="{% url 'accounts:change_password' %}">비밀번호 수정하기</a>
+        <div class="pe-5 w-75 d-flex justify-content-end">
+            <a class="btn btn-outline-secondary me-3" href="{% url 'accounts:change_password' %}">비밀번호수정</a>
+            <form action="{% url 'accounts:delete' %}" method='POST'>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary" role="button">회원탈퇴</button>
+            </form>
         </div>
     </div>
   </main>

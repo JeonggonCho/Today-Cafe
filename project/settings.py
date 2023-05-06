@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'posts',
     'imagekit',
     'taggit',
+    'taggit_templatetags2',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -137,3 +138,6 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+TAGGIT_CASE_INSENSITIVE = True
+TAGGIT_LIMIT = 50

@@ -14,7 +14,7 @@
     <!-- profile tilte -->
     <div class="d-flex justify-content-center align-items-center position-relative my-5 w-100">
       <a class="position-absolute start-0 ms-5" href="{% url 'posts:posts' %}">뒤로 가기</a>
-      <h2>{{ person.username }}님의 프로필</h2>
+      <h2 class="fw-bold">{{ person.username }}님의 프로필</h2>
     </div>
     <!-- profile main -->
     <div class="row my-auto">
@@ -68,6 +68,11 @@
 
       <!-- user content -->
       <section class="user-articles-section col-9 p-0">
+        <!-- 리뷰 남긴 곳 지도 표시-->
+        <div class="container mb-3">
+          <h3 class="my-3 fw-bold">map 구현 연습</h3>    
+          <div id="map" class="w-100 rounded-3" style="height: 400px;"></div>
+        </div>
         <!-- 작성한 리뷰 -->
         <section class="user-articles-inner user-articles--review mb-4">
           <div>
@@ -149,6 +154,8 @@
 
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b8f429608439fe66cf463070bdbdb14&libraries=services"></script>
+<script src="{% static 'map.js' %}"></script>
 <script>
     const form = document.querySelector('#follow-form')
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value

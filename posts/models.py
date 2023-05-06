@@ -33,6 +33,8 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     tags = TaggableManager(blank=True)
 
+    tags = TaggableManager(blank=True)
+
     def str(self):
         return self.title
 
