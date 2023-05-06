@@ -18,14 +18,25 @@
 .post--create_btn:hover {
     background-color: darkgray;
 }
-.post--map_form {
+.post--img_form {
+    height: 500px;
+    border-radius: 1rem;
+    background-color: black;
+    overflow: hidden;
+}
+.post--img_form img {
+    height: 100%;
     width: 100%;
-    height: 300px;
-    border: 1px solid black;
+    object-fit: contain;
+}
+.post--map_form {
+    height: 242px;
+    border: 1px solid lightgray;
     border-radius: 1rem;
 }
 .post--info_form {
-    width: 100%;
+    width: 50%;
+    height: 242px;
     background-color: var(--form-lightgray);
     border-radius: 1rem;
     padding: 2rem;
@@ -81,4 +92,17 @@
 .post--unlike_btn:hover {
     transform: scale(1.2);
     color: black;
+}
+.post--delete_btn {
+    margin-bottom: 2px;
+    font-size: var(--font-medium-size);
+    color: var(--font-gray);
+    background-color: transparent;
+}
+.post--update_btn {
+    font-size: var(--font-medium-size);
+    color: var(--font-gray);
+}
+.update_font {
+    font-size: 14px;
 }

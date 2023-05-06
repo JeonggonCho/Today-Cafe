@@ -18,33 +18,57 @@
         <div class="container">
 
             <!-- header__location-btn -->
-            <button class="navbar-toggler d-flex align-items-center border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="ms-2">지역</span>
-            </button>
+            <div class="col-4">
+                <button class="navbar-toggler d-flex align-items-center border-0 p-0 base--side_btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="ms-2">LOCATION</span>
+                </button>
+            </div>
             
             <!-- header__logo -->
-            {% comment %} {% url 'today_cafe:index' %} {% endcomment %}
-            <a class="navbar-brand" href="">
-                <img src="{% static 'img/today-cafe_Logo.svg' %} " alt="logo" width="50px">
-                <span>Today Cafe</span>
-            </a>
+            <div class='col-4 d-flex justify-content-center'>
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'img/today-cafe_Logo.svg' %} " alt="logo" width="70px">
+                </a>
+            </div>
             
             <!-- header__account-link -->
-            {% if request.user.is_authenticated %}
-                <div class="d-flex align-items-center">
-                    <a class="me-3" href="{% url 'accounts:profile' user.username %}"><b>{{ request.user }}</b> 님</a>
-                    <form action="{% url 'accounts:logout' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="submit" value="로그아웃" class="btn btn-secondary">
-                    </form>
-                </div>
-            {% else %}
-                <div>
-                    <a class="btn btn-secondary" href="{% url 'accounts:login' %}"><span>로그인</span></a>
-                    <a class="btn btn-secondary" href="{% url 'accounts:signup' %}"><span>회원가입</span></a>
-                </div>
-            {% endif %}
+            <div class="col-4 d-flex justify-content-end">
+                {% if request.user.is_authenticated %}
+                    <div class="d-flex align-items-center gap-3">
+                        <a  href="{% url 'accounts:profile' user.username %}" class="d-flex align-items-center gap-3">
+                            <div class='base--profile--img_form d-flex justify-content-center'>
+                            {% if request.user.profile_image %}
+                                <img src="{{ request.user.profile_image.url }}" alt="profile_image" class='profile-image'>
+                            {% else %}
+                                <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image" class='profile-image'>
+                            {% endif %}
+                            </div>
+                            <div class="base--log_user"><b>{{ request.user }}</b> 님</div>
+                        </a>
+                        <form action="{% url 'accounts:logout' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" value="로그아웃" class="btn btn-secondary base--log_btn">
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="d-flex align-items-center gap-3">
+                        <a class="btn btn-secondary base--log_btn d-flex align-items-center" href="{% url 'accounts:login' %}"><span>로그인</span></a>
+                        <a class="btn btn-secondary base--log_btn d-flex align-items-center" href="{% url 'accounts:signup' %}"><span>회원가입</span></a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- 검색 창 -->
+            <div class="container d-flex justify-content-center align-items-center my-3">
+                <form class="d-flex justify-content-center align-items-center search_bar" method="GET" action="{% url 'posts:search' %}">
+                <span class="material-symbols-outlined text-danger ms-2">
+                    search
+                </span>
+                <input class="search_bar__input" type="text" placeholder="카페명을 입력해주세요" name="q" aria-label="Search">
+                <button class="btn btn-danger search_btn d-flex justify-content-center align-items-center me-0" type="submit">검색</button>
+                </form>
+            </div>
 
             <!-- location-btn 클릭 시 오른쪽에서 pop-up되는 지역별 카페찾기-->
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -79,8 +103,8 @@
         </div>
     </header>
     {% block content %}{% endblock content %}
-    <footer class="navbar bg-body-tertiary">
-        <div class="container">
+    <footer class="navbar bg-body-tertiary d-flex align-items-center">
+        <div class="container my-3">
 
             <!-- footer__logo-copyright -->
             <section>
@@ -93,16 +117,28 @@
             </section>
             
             <!-- footer__creater-github -->
-            <section>
-                <ul class="list-unstyled gap-3 d-flex flex-column mb-0">
-                    <li><a class="text-decoration-none text-black" href="https://github.com/zzgh06">최충현</a></li>
-                    <li><a class="text-decoration-none text-black" href="https://github.com/JeonggonCho">조정곤</a></li>
-                    <li><a class="text-decoration-none text-black" href="https://github.com/nninzy">김민지</a></li>
-                    <li><a class="text-decoration-none text-black" href="https://github.com/jeonseongjae98">전성재</a></li>
-                </ul>
+            <section class="d-flex gap-3">
+                <div class="me-4"><b>Members</b></div>
+                <div class="d-flex flex-column gap-3">
+                    <a class="text-decoration-none text-secondary" href="https://github.com/zzgh06">최충현</a>
+                    <a class="text-decoration-none text-secondary" href="https://github.com/JeonggonCho">조정곤</a>
+                </div>
+                <div class="d-flex flex-column gap-3">
+                    <a class="text-decoration-none text-secondary" href="https://github.com/nninzy">김민지</a>
+                    <a class="text-decoration-none text-secondary" href="https://github.com/jeonseongjae98">전성재</a>
+                </div>
             </section>
         </div>
     </footer>
+
+    <!-- top 버튼 -->
+    <a href="#top" id='topBtn' class="btn btn-danger d-flex align-items-center justify-content-center base--top_btn">
+        <div>
+            <span class="material-symbols-outlined fs-1">expand_less</span>
+        </div>
+    </a>
+
+    <script src="{% static 'js/baseTop.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     {% block script %}{% endblock script %}
 </body>

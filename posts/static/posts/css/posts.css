@@ -1,19 +1,9 @@
 @import "reset.css";
 @import "variables.css";
 
-.posts--cate_btn {
-    width: 25%;
-    height: 60px;
-    color: white;
-    background-color: var(--btn-gray);
-    border-radius: 10px;
-}
-.posts--cate_btn:hover {
-    background-color: darkgray;
-}
 .posts--cate_form {
     width: 100%;
-    height: 350px;
+    height: 250px;
     background-color: var(--form-lightgray);
     border-radius: 1rem;
     padding: 0;
@@ -23,7 +13,7 @@
     background-color: rgb(235, 235, 235);
 }
 .posts--cate_content {
-    width: 350px;
+    width: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -34,8 +24,8 @@
     color: gray;
 }
 .posts--cate_img_form {
-    width: 80%;
-    height: 100%;
+    width: 50%;
+    height: 250px;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     overflow: hidden;
@@ -44,6 +34,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: all 0.2s linear;
+}
+.posts--cate_img_form img:hover {
+    transform: scale(1.05);
 }
 .posts--cate_form_icon {
     width: 35px;

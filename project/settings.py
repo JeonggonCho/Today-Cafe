@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'accounts',
     'posts',
     'imagekit',
+    'taggit',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',

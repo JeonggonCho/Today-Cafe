@@ -1,5 +1,80 @@
 @import url("reset.css");
 @import url("variables.css");
 
+/* 검색 */
+.search_btn {
+    width: 70px;
+    height: 32px;
+    border-radius: 16px;
+    position: absolute;
+    right: 4px;
+}
+.search_bar {
+    width: 520px;
+    height: 40px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 20px;
+    border: 1px solid red;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+}
+.search_bar__input {
+    width: 170px;
+    border: none;
+    overflow: auto;
+    margin-left: 8px;
+    z-index: -1;
+    font-size: 15px;
+    transition: all 0.2s linear;
+}
+.search_bar__input:focus {
+    outline: none;
+    width: 100%;
+    text-align: left;
+}
 
+.base--log_btn {
+    height: 36px;
+    border-radius: 18px;
+    font-size: 15px;
+}
 
+/* 프로필사진관련 */
+.base--profile--img_form {
+    width: 30px;
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.base--profile--img_form img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* 사이드바 */
+.base--side_btn:focus {
+    border: none;
+}
+
+.base--log_user {
+    font-size: 14px;
+}
+
+/* top 버튼 */
+body {
+    position: relative;
+}
+.base--top_btn {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 100;
+    right: 5%;
+    bottom: 8%;
+    display: none;
+}

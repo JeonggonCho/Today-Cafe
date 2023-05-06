@@ -8,147 +8,194 @@
 
 
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"> Navbar </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#"> Home </a></li>
-                <li class="nav-item"><a class="nav-link" href="#"> Link </a></li>
-            </ul>
-            <form class="d-flex" method="GET" action="{% url 'posts:search' %}">       
-              <input class="form-control me-2" type="text" placeholder="Search" name="q" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit"> Search </button>
-            </form>
+  <main>
+    <div class="container my-5">
+
+      <a href="{% url 'posts:create' %}">[CREATE]</a>
+
+      <!-- 카테고리 -->
+      <div class="mb-5">
+        <h2 class="mb-4"><strong>카테고리</strong></h2>
+        <div class="d-flex justify-content-center gap-3">
+          <a class="btn {% if subject == 'all' %}btn-danger{% else %}btn-secondary{% endif %} w-25 d-flex justify-content-center py-2 align-items-center gap-2" href="{% url 'posts:posts' %}">
+              <span class="material-symbols-outlined">menu</span>
+              <span>모든 카페</span>
+          </a>
+          <a class="btn {% if subject == '카공 모각코' %}btn-danger{% else %}btn-secondary{% endif %} w-25 d-flex justify-content-center py-2 align-items-center gap-2" href="{% url 'posts:category' subject='카공 모각코' %}">
+              <span class="material-symbols-outlined">stylus</span>
+              <span>카공 / 모각코</span>
+          </a>
+          <a class="btn {% if subject == '펫 카페' %}btn-danger{% else %}btn-secondary{% endif %} w-25 d-flex justify-content-center py-2 align-items-center gap-2" href="{% url 'posts:category' subject='펫 카페' %}">
+              <span class="material-symbols-outlined">pets</span>
+              <span>펫 카페</span>
+          </a>
+          <a class="btn {% if subject == '북 카페' %}btn-danger{% else %}btn-secondary{% endif %} w-25 d-flex justify-content-center py-2 align-items-center gap-2" href="{% url 'posts:category' subject='북 카페' %}">
+              <span class="material-symbols-outlined">import_contacts</span>
+              <span>북 카페</span>
+          </a>
         </div>
-    </div>
-</nav>
+      </div>
 
-  {% if request.user.is_authenticated %}
-    <form action="{% url 'accounts:delete' %}" method='POST'>
-      {% csrf_token %}
-      <button type="submit" class="btn btn-outline-secondary" role="button">회원탈퇴</button>
-    </form>
-  {% endif %}
+      <!-- 각각의 카테고리 목록 -->
+      <div>
+        {% if subject == '카공 모각코' %}
+          <div class="d-flex">
+            <h2 class="mb-4"><strong>카공/모각코</strong></h2>
+          </div>
+        {% elif subject == '펫 카페' %}
+          <div class="d-flex">
+            <h2 class="mb-4"><strong>펫 카페</strong></h2>
+          </div>
+        {% elif subject == '북 카페' %}
+          <div class="d-flex">
+            <h2 class="mb-4"><strong>북 카페</strong></h2>
+          </div>
+        {% else %}
+          <div class="d-flex">
+            <h2 class="mb-4"><strong>모든 카페</strong></h2>
+          </div>
+        {% endif %}
 
-  <a href="{% url 'posts:create' %}">[CREATE]</a>
-
-    <main>
-      <div class="container my-5">
-        <!-- 카테고리 -->
-        <div class="mb-5">
-          <h2 class="mb-4"><strong>카테고리</strong></h2>
-          <div class="d-flex gap-3">
-            <a href="{% url 'posts:posts' %}" class="posts--cate_btn d-flex gap-3 align-items-center justify-content-center">
-              <span class="material-symbols-outlined">
-                menu
-              </span>
-              <h5 class="m-0">모든 카페</h5>
-            </a>
-            <a href="{% url 'posts:posts' %}" class="posts--cate_btn d-flex gap-3 align-items-center justify-content-center">
-              <span class="material-symbols-outlined">
-                stylus
-              </span>
-              <h5 class="m-0">카공/모각코</h5>
-            </a>
-            <a href="{% url 'posts:posts' %}" class="posts--cate_btn d-flex gap-3 align-items-center justify-content-center">
-              <span class="material-symbols-outlined">
-                pets
-              </span>
-              <h5 class="m-0">펫 카페</h5>
-            </a>
-            <a href="{% url 'posts:posts' %}" class="posts--cate_btn d-flex gap-3 align-items-center justify-content-center">
-              <span class="material-symbols-outlined">
-                import_contacts
-              </span>
-              <h5 class="m-0">북 카페</h5>
+        {% for post in posts %}
+        <!-- 카페 상세페이지로 이동 -->
+        <div class="posts--cate_form d-flex mb-5">
+          <!-- 카테고리 카페 이미지 -->
+          <div class="posts--cate_img_form">
+            <a href='{% url 'posts:post' post.pk %}'>
+              <img src="{{ post.image.url }}" alt="">
             </a>
           </div>
-        </div>
-
-        <!-- 각각의 카테고리 목록 -->
-          <div>
-            <div class="d-flex">
-              <h2 class="mb-4"><strong>모든 카페</strong></h2>
-            </div>
-
-            {% for post in posts %}
-            <!-- 카페 상세페이지로 이동 -->
-            <div class="posts--cate_form d-flex mb-5">
-              <!-- 카테고리 카페 이미지 -->
-              <div class="posts--cate_img_form">
-                <img src="{{ post.image.url }}" alt="">
-              </div>
-              <div class="w-100 h-100">
-                <!-- 카테고리 카페 이름 -->
-                <div class="m-5 d-flex">
-                  <div class="col-10 d-flex flex-column justify-content-between">
-                    <a href='{% url 'posts:post' post.pk %}'>
-                    <div class="d-flex gap-2">
-                      <div class="posts--cate_form_icon d-flex justify-content-center align-items-center"><span class="material-symbols-outlined">stylus</span></div>
-                      <h2><strong>{{ post.title }}</strong></h2>
-                    </div>
-                    <div class="mb-5"><strong>주소 |</strong> {{ post.address }}</div>
-
-                      {% if posts %}
-                        {% for post in posts %}
-                        <div class="d-flex align-items-center gap-3">
-                          {% if post.user.profile_image %}
-                            <div class='profile--img_small_form mt-2'>
-                                <img src="{{ post.user.profile_image.url }}" alt="">
-                            </div>
-                          {% else %}
-                            <div class='profile--img_small_form mt-2'>
-                                <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image">
-                            </div>
-                          {% endif %}
-                          <div class="posts--cate_content">{{ post.content }}</div>
-                        </div>
-                        {% endfor %}
-                      {% else %}
-                        <div class='mx-auto'>리뷰가 없습니다.</div>
-                      {% endif %}
-                    </a>
+          <div class="w-100">
+            <!-- 카테고리 카페 이름 -->
+            <div class="m-5 d-flex">
+              <div class="col-10 d-flex flex-column justify-content-between">
+                <a href='{% url 'posts:post' post.pk %}'>
+                <div class="d-flex gap-2">
+                  <div class="posts--cate_form_icon d-flex justify-content-center align-items-center">
+                    <span class="material-symbols-outlined">
+                    {% if subject == '카공 모각코' %}
+                      stylus
+                    {% elif subject == '펫 카페' %}
+                      pets
+                    {% elif subject == '북 카페' %}
+                      import_contacts
+                    {% endif %}
+                    </span>
                   </div>
-                  <div class="col-2 d-flex align-items-end justify-content-between flex-column">
-                    <!-- 좋아요 버튼 -->
-                    <div>
-                      <form action="{% url 'posts:likes' post.pk %}" method="POST">
-                        {% csrf_token %}
-                        {% if request.user in post.like_users.all %}
-                          <button type="submit" class="border-0 p-0 posts--like_btn">
-                            <span class="material-symbols-outlined">
-                              favorite
-                            </span>
-                          </button>
-                        {% else %}
-                          <button type="submit" class="border-0 p-0 posts--unlike_btn">
-                            <span class="material-symbols-outlined">
-                              favorite
-                            </span>
-                          </button>
-                        {% endif %}
-                      </form>
-                    </div>
+                  <h2><strong>{{ post.title }}</strong></h2>
+                </div>
+                <div class="mb-5"><strong>주소 |</strong> {{ post.address }}</div>
+
+                  {% if posts.reviews %}
+                    {% for post in posts %}
                     <div class="d-flex align-items-center gap-3">
-                      <div class="d-flex align-items-center gap-1">
-                        <span class="material-symbols-outlined post--cate_icon">favorite</span>
-                        <div>12</div>
-                      </div>
-                      <div class="d-flex align-items-center gap-1">
-                        <span class="material-symbols-outlined post--cate_icon">mode_comment</span>
-                        <div>{{ posts|length }}</div>
-                      </div>
+                      {% if post.user.profile_image %}
+                        <div class='profile--img_small_form mt-2'>
+                            <img src="{{ post.user.profile_image.url }}" alt="">
+                        </div>
+                      {% else %}
+                        <div class='profile--img_small_form mt-2'>
+                            <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image">
+                        </div>
+                      {% endif %}
+                      <div class="posts--cate_content">{{ post.content }}</div>
                     </div>
+                    {% endfor %}
+                  {% else %}
+                    <div class='mx-auto'>리뷰가 없습니다.</div>
+                  {% endif %}
+                </a>
+              </div>
+              <div class="col-2 d-flex align-items-end justify-content-between flex-column">
+                <!-- 좋아요 버튼 -->
+                <div>
+                  <form action="{% url 'posts:likes' post.pk %}" method="POST">
+                    {% csrf_token %}
+                    {% if request.user in post.like_users.all %}
+                      <button type="submit" class="border-0 p-0 posts--like_btn">
+                        <span class="material-symbols-outlined">
+                          favorite
+                        </span>
+                      </button>
+                    {% else %}
+                      <button type="submit" class="border-0 p-0 posts--unlike_btn">
+                        <span class="material-symbols-outlined">
+                          favorite
+                        </span>
+                      </button>
+                    {% endif %}
+                  </form>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="d-flex align-items-center gap-1">
+                    <span class="material-symbols-outlined post--cate_icon">favorite</span>
+                    <div>12</div>
+                  </div>
+                  <div class="d-flex align-items-center gap-1">
+                    <span class="material-symbols-outlined post--cate_icon">mode_comment</span>
+                    <div>{{ posts|length }}</div>
                   </div>
                 </div>
               </div>
             </div>
-            {% endfor %}
           </div>
+        </div>
+        {% endfor %}
       </div>
-    </main>
+
+      <!-- 페이지네이션 작성 -->
+      <ul class='pagination justify-content-center align-items-center my-5'>
+        {% if posts.has_previous %}
+
+          <!-- 처음으로 버튼 (페이지를 1로 설정) -->
+          <li class='page-item'>
+            <a class='page-link focus-ring focus-ring-danger text-dark border-0 d-flex align-items-cente' href="?page=1">
+              <span class="material-symbols-outlined">
+                keyboard_double_arrow_left
+              </span>
+            </a>
+          </li>
+
+          <li class='page-item'>
+            <a class='page-link focus-ring focus-ring-danger text-dark border-0 d-flex align-items-center' href="?page={{ posts.previous_page_number }}">
+              <span class="material-symbols-outlined">
+                keyboard_arrow_left
+              </span>
+            </a>
+          </li>
+        {% endif %}
+        {% for page_number in posts.paginator.page_range %}
+          {% if page_number >= posts.number|add:-5 and page_number <= posts.number|add:5 %}
+            {% if page_number == posts.number %}
+              <li class='page-item active' aria-current='page'>
+                <a class='page-link fw-semibold focus-ring focus-ring-danger text-danger bg-transparent border-0 d-flex align-items-center' href="?page={{ page_number }}">{{ page_number }}</a>
+              </li>
+            {% else %}
+              <li class='page-item'>
+                <a class='page-link focus-ring focus-ring-danger text-dark border-0 d-flex align-items-center' href="?page={{ page_number }}">{{ page_number }}</a>
+              </li>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if posts.has_next %}
+          <li class="page-item">
+            <a class="page-link focus-ring focus-ring-danger text-dark border-0 d-flex align-items-center" href="?page={{ posts.next_page_number }}">
+              <span class="material-symbols-outlined">
+                keyboard_arrow_right
+              </span>
+            </a>
+          </li>
+
+          <!-- 마지막으로 버튼 (페이지를 전체페이지 수로 설정) --> 
+          <li class="page-item">
+            <a class="page-link focus-ring focus-ring-danger text-dark border-0 d-flex align-items-center" href="?page={{ posts.paginator.num_pages }}">
+              <span class="material-symbols-outlined">
+                keyboard_double_arrow_right
+              </span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </main>
 {% endblock content %}
