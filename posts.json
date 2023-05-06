@@ -1,0 +1,186 @@
+[
+{
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "title": "에이바우트커피 경희대점",
+        "address": "서울 동대문구 경희대로3길 28",
+        "phone_number": "02-966-2666",
+        "menu": "아메리카노, 청포도에이드, 루비자두에이드, 제주보리미숫가루",
+        "hours": "22:00에 영업종료",
+        "information": "콘센트 : 보통이에요 (⭐️⭐️⭐️⭐️)  와이파이 : 그냥저냥 쓸 만해요 (⭐️⭐️⭐️)  테이블 : 그냥저냥 쓸 만해요 (⭐️⭐️⭐️)  화장실 : 그냥저냥 쓸 만해요 (⭐️⭐️)",
+        "category": "카공 모각코",
+        "image": "images/post/2023/05/06/0.jpg",
+        "created_at": "2023-05-06T04:38:55.074Z",
+        "updated_at": "2023-05-06T04:40:27.884Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "title": "커피덕",
+        "address": "서울 마포구 월드컵북로2길 37 커피덕",
+        "phone_number": "0507-1316-7052",
+        "menu": "아이스 라떼, 아이스아메리카노, 아포카토, 페파민트",
+        "hours": "21:00에 영업 종료",
+        "information": "콘센트 : 보통이에요 (⭐️⭐️⭐️)  와이파이 : 그냥저냥 쓸 만해요 (⭐️⭐️⭐️)  테이블 : 그냥저냥 쓸 만해요 (⭐️⭐️⭐️)  화장실 : 그냥저냥 쓸 만해요 (⭐️⭐️⭐️)",
+        "category": "카공 모각코",
+        "image": "images/post/2023/05/06/0_ejgmg4V.jpg",
+        "created_at": "2023-05-06T04:44:48.369Z",
+        "updated_at": "2023-05-06T04:44:48.369Z",
+        "like_users": [
+            1
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 5,
+    "fields": {
+        "user": 2,
+        "title": "코리코카페",
+        "address": "서울 마포구 성미산로 165-7 대원미디어 연남점",
+        "phone_number": "02-338-8865",
+        "menu": "브런치 / 버거 / 샌드위",
+        "hours": "11:00 - 20:00",
+        "information": "주차공간 없음",
+        "category": "카공 모각코",
+        "image": "images/post/2023/05/06/KakaoTalk_20230506_134002175.jpg",
+        "created_at": "2023-05-06T04:48:39.629Z",
+        "updated_at": "2023-05-06T04:48:39.629Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 6,
+    "fields": {
+        "user": 2,
+        "title": "옐로커피",
+        "address": "경기도 고양시 일산동구 통일로1267번길 144-30",
+        "phone_number": "031-921-2292",
+        "menu": "카페 / 디저트",
+        "hours": "10:00 - 20:00",
+        "information": "무료주차 가능",
+        "category": "펫 카페",
+        "image": "images/post/2023/05/06/KakaoTalk_20230506_133958289.jpg",
+        "created_at": "2023-05-06T04:52:25.568Z",
+        "updated_at": "2023-05-06T04:52:25.568Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 7,
+    "fields": {
+        "user": 2,
+        "title": "정지영커피로스터즈",
+        "address": "경기도 수원시 팔달구 수원천로 375",
+        "phone_number": "070-7543-4332",
+        "menu": "카페 / 디저트",
+        "hours": "12:00 - 22:00",
+        "information": "주차공간 없음",
+        "category": "카공 모각코",
+        "image": "images/post/2023/05/06/KakaoTalk_20230506_133959564.jpg",
+        "created_at": "2023-05-06T04:55:30.651Z",
+        "updated_at": "2023-05-06T04:55:30.651Z",
+        "like_users": [
+            1
+        ]
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 8,
+    "fields": {
+        "user": 1,
+        "title": "카페소일",
+        "address": "서울 성북구 보문로32길 40 1층",
+        "phone_number": "02-929-5571",
+        "menu": "아메리카노, 에디오피아 이가체프, 카페라떼, 과테말라",
+        "hours": "22:00에 영업 종료",
+        "information": "주차 시설 있음, 콘센트 있음, 화장실 있음",
+        "category": "북 카페",
+        "image": "images/post/2023/05/06/1.jpg",
+        "created_at": "2023-05-06T04:59:36.353Z",
+        "updated_at": "2023-05-06T04:59:51.814Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 9,
+    "fields": {
+        "user": 2,
+        "title": "PITC",
+        "address": "서울특별시 마포구 성미산로11길 13",
+        "phone_number": "070-8886-2688",
+        "menu": "카페 / 디저트",
+        "hours": "11:00 - 21:00",
+        "information": "무선 인터넷, 남/녀 화장실 구분",
+        "category": "카공 모각코",
+        "image": "images/post/2023/05/06/KakaoTalk_20230506_134003079.jpg",
+        "created_at": "2023-05-06T05:01:43.211Z",
+        "updated_at": "2023-05-06T05:01:43.211Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 10,
+    "fields": {
+        "user": 1,
+        "title": "놀숲 고대안암역점",
+        "address": "서울 성북구 개운사길 8 타이거빌딩",
+        "phone_number": "02-921-7942",
+        "menu": "아메리카노, 볶음밥, 햄버거",
+        "hours": "24:00 영업 종료",
+        "information": "주차, 무선 인터넷, 남/녀 화장실 구분",
+        "category": "북 카페",
+        "image": "images/post/2023/05/06/1_6MZvkzA.jpg",
+        "created_at": "2023-05-06T05:08:18.261Z",
+        "updated_at": "2023-05-06T05:08:18.261Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 11,
+    "fields": {
+        "user": 1,
+        "title": "디벙크",
+        "address": "서울 마포구 성지1길 30 더보이드빌딩 지하1층",
+        "phone_number": "02-6930-5598",
+        "menu": "디벙크라떼, 갸또, 아인슈패너, 스콘",
+        "hours": "22:00에 영업 종료",
+        "information": "단체석, 포장, 배달, 무선 인터넷, 남/녀 화장실 구분",
+        "category": "북 카페",
+        "image": "images/post/2023/05/06/1_1c67AXO.jpg",
+        "created_at": "2023-05-06T05:13:17.879Z",
+        "updated_at": "2023-05-06T05:13:50.878Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.post",
+    "pk": 12,
+    "fields": {
+        "user": 2,
+        "title": "라운드앤드",
+        "address": "서울 중구 정동길 35 두비빌딩",
+        "phone_number": "02-753-7003",
+        "menu": "더치커피, 아메리카노, 라떼, 까눌레, 피낭시에",
+        "hours": "08:00 - 22:00",
+        "information": "편의 단체석, 포장, 무선 인터넷, 남/녀 화장실 구분",
+        "category": "펫 카페",
+        "image": "images/post/2023/05/06/KakaoTalk_20230506_133957004.jpg",
+        "created_at": "2023-05-06T05:18:17.672Z",
+        "updated_at": "2023-05-06T05:18:17.672Z",
+        "like_users": []
+    }
+}
+]
