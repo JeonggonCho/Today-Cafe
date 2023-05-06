@@ -270,7 +270,7 @@ def search(request):
     if 'q' in request.GET:
         query = request.GET.get('q')
         search_list = Post.objects.filter(
-            Q(title__icontains=query) | Q(tags__name__icontains=query) # 제목 / 태그 검색
+            Q(title__icontains=query) | Q(tags__name__icontains=query) | Q(address__icontains=query) # 제목 / 주소 / 태그 검색
         ).distinct() # 검색 결과 중복 제거
     context = {
         'query': query,

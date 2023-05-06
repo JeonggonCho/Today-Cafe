@@ -1,0 +1,338 @@
+[
+{
+    "model": "posts.review",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "post": 9,
+        "image": "",
+        "content": "여자친구와 데이트하기 딱 좋습니다.",
+        "rating": 4.5,
+        "created_at": "2023-05-06T05:16:55.651Z",
+        "updated_at": "2023-05-06T05:16:55.651Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "post": 4,
+        "image": "",
+        "content": "카공하기 딱 좋아요!",
+        "rating": 5.0,
+        "created_at": "2023-05-06T05:20:13.661Z",
+        "updated_at": "2023-05-06T05:20:13.661Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "post": 5,
+        "image": "",
+        "content": "남자친구랑 갔는데 아주 좋았어요",
+        "rating": 1.5,
+        "created_at": "2023-05-06T06:32:47.080Z",
+        "updated_at": "2023-05-06T06:32:47.080Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 5,
+    "fields": {
+        "user": 2,
+        "post": 11,
+        "image": "",
+        "content": "조용해서 책 읽기 정말 좋아요 !!",
+        "rating": 4.0,
+        "created_at": "2023-05-06T06:34:12.236Z",
+        "updated_at": "2023-05-06T06:34:12.236Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "post": 6,
+        "image": "",
+        "content": "전여친이랑 갔던 기억이 나네요 ㅠㅠ 고양에서 좋았던 곳 중 하나",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:34:58.180Z",
+        "updated_at": "2023-05-06T06:34:58.180Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 7,
+    "fields": {
+        "user": 2,
+        "post": 10,
+        "image": "",
+        "content": "편안하고 즐길거리도 많아서 좋아요!!",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:44:10.982Z",
+        "updated_at": "2023-05-06T06:44:10.982Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 8,
+    "fields": {
+        "user": 2,
+        "post": 4,
+        "image": "",
+        "content": "가게 이름부터 취향(?)이네요 ㅋㅋ, 커피 맛있어요!!",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:44:53.923Z",
+        "updated_at": "2023-05-06T06:44:53.923Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 9,
+    "fields": {
+        "user": 1,
+        "post": 7,
+        "image": "",
+        "content": "진짜 갬성 미쳤당",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:44:57.798Z",
+        "updated_at": "2023-05-06T06:44:57.798Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 10,
+    "fields": {
+        "user": 2,
+        "post": 3,
+        "image": "",
+        "content": "넓고 시설도 쾌적한 것 같아요",
+        "rating": 4.0,
+        "created_at": "2023-05-06T06:45:25.743Z",
+        "updated_at": "2023-05-06T06:45:25.743Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 11,
+    "fields": {
+        "user": 4,
+        "post": 9,
+        "image": "",
+        "content": "3번째 여자친구와 왔던 기억이 있네요 ㅎㅎ",
+        "rating": 4.0,
+        "created_at": "2023-05-06T06:48:17.005Z",
+        "updated_at": "2023-05-06T06:48:17.005Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 12,
+    "fields": {
+        "user": 4,
+        "post": 3,
+        "image": "",
+        "content": "진짜 맛집 인정합니다!",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:49:08.350Z",
+        "updated_at": "2023-05-06T06:49:08.350Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 13,
+    "fields": {
+        "user": 4,
+        "post": 12,
+        "image": "",
+        "content": "안녕하세요^^ 라운드앤드 사장 최충현입니다.\r\n자주 찾아주세요!\r\n항상 최고의 품질을 제공하겠습니다.",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:50:53.039Z",
+        "updated_at": "2023-05-06T06:50:53.039Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 14,
+    "fields": {
+        "user": 6,
+        "post": 7,
+        "image": "",
+        "content": "피그마 작업하러 항상 가는 곳!",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:52:03.478Z",
+        "updated_at": "2023-05-06T06:52:03.478Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 15,
+    "fields": {
+        "user": 6,
+        "post": 6,
+        "image": "",
+        "content": "여기 ㄹㅇ 맛집!",
+        "rating": 4.0,
+        "created_at": "2023-05-06T06:52:41.145Z",
+        "updated_at": "2023-05-06T06:52:41.145Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 16,
+    "fields": {
+        "user": 6,
+        "post": 12,
+        "image": "",
+        "content": "여기서 친구들한테 지금 여자친구 만났어요! 항상 맛있게 먹고 있어요",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:53:17.555Z",
+        "updated_at": "2023-05-06T06:53:17.555Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 17,
+    "fields": {
+        "user": 6,
+        "post": 10,
+        "image": "",
+        "content": "여기서 원피스 마스터했어요!",
+        "rating": 1.0,
+        "created_at": "2023-05-06T06:53:43.709Z",
+        "updated_at": "2023-05-06T06:53:43.709Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 18,
+    "fields": {
+        "user": 3,
+        "post": 8,
+        "image": "",
+        "content": "안녕하세요! 카페소일 사장 전성재입니다.\r\n~2024년까지 1+1 행사 중이라 많은 관심 부탁드립니다!",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:56:23.639Z",
+        "updated_at": "2023-05-06T06:56:23.639Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 19,
+    "fields": {
+        "user": 2,
+        "post": 9,
+        "image": "",
+        "content": "인테리어가 너무 예뻐요 ⭐",
+        "rating": 5.0,
+        "created_at": "2023-05-06T06:59:40.065Z",
+        "updated_at": "2023-05-06T06:59:40.065Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 20,
+    "fields": {
+        "user": 8,
+        "post": 5,
+        "image": "",
+        "content": "ㅎㅇㅎㅇ",
+        "rating": 5.0,
+        "created_at": "2023-05-06T07:02:36.826Z",
+        "updated_at": "2023-05-06T07:02:36.826Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 21,
+    "fields": {
+        "user": 8,
+        "post": 6,
+        "image": "",
+        "content": "여기 존맛",
+        "rating": 3.5,
+        "created_at": "2023-05-06T07:02:51.719Z",
+        "updated_at": "2023-05-06T07:02:51.719Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 22,
+    "fields": {
+        "user": 8,
+        "post": 11,
+        "image": "",
+        "content": "조용하고 사장님 멋져요",
+        "rating": 5.0,
+        "created_at": "2023-05-06T07:03:14.021Z",
+        "updated_at": "2023-05-06T07:03:14.021Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 23,
+    "fields": {
+        "user": 9,
+        "post": 9,
+        "image": "",
+        "content": "하입보이요",
+        "rating": 1.0,
+        "created_at": "2023-05-06T07:05:04.488Z",
+        "updated_at": "2023-05-06T07:05:04.488Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 24,
+    "fields": {
+        "user": 9,
+        "post": 4,
+        "image": "",
+        "content": "동네맛집",
+        "rating": 1.0,
+        "created_at": "2023-05-06T07:05:28.021Z",
+        "updated_at": "2023-05-06T07:05:28.021Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.review",
+    "pk": 25,
+    "fields": {
+        "user": 9,
+        "post": 8,
+        "image": "",
+        "content": "사장님 존멋",
+        "rating": 5.0,
+        "created_at": "2023-05-06T07:05:44.509Z",
+        "updated_at": "2023-05-06T07:05:44.509Z",
+        "like_users": []
+    }
+}
+]

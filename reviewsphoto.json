@@ -1,0 +1,65 @@
+[
+{
+    "model": "posts.reviewphoto",
+    "pk": 1,
+    "fields": {
+        "review": 4,
+        "post": 5,
+        "photo": "reviews/photos/1.jpg"
+    }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 2,
+    "fields": {
+        "review": 6,
+        "post": 6,
+        "photo": "reviews/photos/1_NNvz3wO.jpg"
+    }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 3,
+    "fields": {
+        "review": 9,
+        "post": 7,
+        "photo": "reviews/photos/1_O5yW0Mz.jpg"
+    }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 4,
+    "fields": {
+        "review": 12,
+        "post": 3,
+        "photo": "reviews/photos/1_pzTUipW.jpg"
+    }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 5,
+    "fields": {
+        "review": 13,
+        "post": 12,
+        "photo": "reviews/photos/1_jLdwVLJ.jpg"
+    }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 6,
+    "fields": {
+        "review": 18,
+        "post": 8,
+        "photo": "reviews/photos/1_YuVXDs4.jpg"
+    }
+},
+{
+    "model": "posts.reviewphoto",
+    "pk": 7,
+    "fields": {
+        "review": 19,
+        "post": 9,
+        "photo": "reviews/photos/다운로드.jpeg"
+    }
+}
+]

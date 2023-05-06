@@ -1,0 +1,340 @@
+[
+{
+    "model": "posts.comment",
+    "pk": 2,
+    "fields": {
+        "review": 8,
+        "user": 1,
+        "content": "ㅇㅈ~~~~~~~~~~~~~~~~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:45:24.356Z",
+        "updated_at": "2023-05-06T06:45:24.356Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 3,
+    "fields": {
+        "review": 10,
+        "user": 1,
+        "content": "이벤트도 진행한다구욧!!!!",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:45:56.944Z",
+        "updated_at": "2023-05-06T06:45:56.944Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 4,
+    "fields": {
+        "review": 1,
+        "user": 2,
+        "content": "공감합니다!!",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:46:01.109Z",
+        "updated_at": "2023-05-06T06:46:01.109Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 5,
+    "fields": {
+        "review": 9,
+        "user": 2,
+        "content": "미쳤다~~~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:46:32.995Z",
+        "updated_at": "2023-05-06T06:46:32.995Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 6,
+    "fields": {
+        "review": 9,
+        "user": 5,
+        "content": "오오 가봐야겠다~~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:48:58.392Z",
+        "updated_at": "2023-05-06T06:48:58.392Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 7,
+    "fields": {
+        "review": 11,
+        "user": 5,
+        "content": "슬퍼;;",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:49:50.952Z",
+        "updated_at": "2023-05-06T06:49:50.952Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 8,
+    "fields": {
+        "review": 1,
+        "user": 5,
+        "content": "가봐야겠다 ~~~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:50:19.900Z",
+        "updated_at": "2023-05-06T06:50:19.901Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 9,
+    "fields": {
+        "review": 4,
+        "user": 5,
+        "content": "아기자기 하네요",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:50:44.286Z",
+        "updated_at": "2023-05-06T06:50:44.286Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 10,
+    "fields": {
+        "review": 8,
+        "user": 5,
+        "content": "커피덕커피덕",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:51:34.862Z",
+        "updated_at": "2023-05-06T06:51:34.862Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 11,
+    "fields": {
+        "review": 12,
+        "user": 5,
+        "content": "헐 쿠키 너무 맛있겠다~~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:52:00.975Z",
+        "updated_at": "2023-05-06T06:52:00.975Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 12,
+    "fields": {
+        "review": 10,
+        "user": 6,
+        "content": "ㅎㅎ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:52:17.339Z",
+        "updated_at": "2023-05-06T06:52:17.339Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 13,
+    "fields": {
+        "review": 10,
+        "user": 5,
+        "content": "미쳤다~~~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:52:17.445Z",
+        "updated_at": "2023-05-06T06:52:17.445Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 14,
+    "fields": {
+        "review": 13,
+        "user": 5,
+        "content": "사장님 잘생겼어요",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:53:02.733Z",
+        "updated_at": "2023-05-06T06:53:02.733Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 15,
+    "fields": {
+        "review": 6,
+        "user": 5,
+        "content": "눙물ㅠ ㅋㅋ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:53:37.264Z",
+        "updated_at": "2023-05-06T06:53:37.264Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 16,
+    "fields": {
+        "review": 15,
+        "user": 5,
+        "content": "ㅇㅈㅇㅈ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:54:20.893Z",
+        "updated_at": "2023-05-06T06:54:20.893Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 17,
+    "fields": {
+        "review": 16,
+        "user": 7,
+        "content": "우왕",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:56:14.792Z",
+        "updated_at": "2023-05-06T06:56:14.792Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 18,
+    "fields": {
+        "review": 13,
+        "user": 7,
+        "content": "오오 가봐야겠다~~",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:56:25.050Z",
+        "updated_at": "2023-05-06T06:56:25.050Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 19,
+    "fields": {
+        "review": 17,
+        "user": 7,
+        "content": "저는 귀칼 정복!",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:56:52.400Z",
+        "updated_at": "2023-05-06T06:56:52.400Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 20,
+    "fields": {
+        "review": 18,
+        "user": 7,
+        "content": "이윤이 남는가요?",
+        "parent_comment": null,
+        "created_at": "2023-05-06T06:58:01.133Z",
+        "updated_at": "2023-05-06T06:58:01.133Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 21,
+    "fields": {
+        "review": 15,
+        "user": 7,
+        "content": "ㅇㅈㅇㅈ22222",
+        "parent_comment": null,
+        "created_at": "2023-05-06T07:01:28.859Z",
+        "updated_at": "2023-05-06T07:01:28.859Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 22,
+    "fields": {
+        "review": 4,
+        "user": 7,
+        "content": "헐 저도 마녀배달부 키키 좋아해요",
+        "parent_comment": null,
+        "created_at": "2023-05-06T07:02:24.632Z",
+        "updated_at": "2023-05-06T07:02:24.632Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 23,
+    "fields": {
+        "review": 18,
+        "user": 8,
+        "content": "자선 사업하시나요? ㄷㄷ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T07:02:24.830Z",
+        "updated_at": "2023-05-06T07:02:24.830Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 24,
+    "fields": {
+        "review": 14,
+        "user": 8,
+        "content": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T07:03:27.775Z",
+        "updated_at": "2023-05-06T07:03:27.775Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 25,
+    "fields": {
+        "review": 2,
+        "user": 8,
+        "content": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T07:03:36.409Z",
+        "updated_at": "2023-05-06T07:03:36.409Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 26,
+    "fields": {
+        "review": 16,
+        "user": 8,
+        "content": "다음주에 가야겠당",
+        "parent_comment": null,
+        "created_at": "2023-05-06T07:03:51.190Z",
+        "updated_at": "2023-05-06T07:03:51.190Z",
+        "like_users": []
+    }
+},
+{
+    "model": "posts.comment",
+    "pk": 27,
+    "fields": {
+        "review": 7,
+        "user": 8,
+        "content": "ㅇㅈ",
+        "parent_comment": null,
+        "created_at": "2023-05-06T07:04:02.894Z",
+        "updated_at": "2023-05-06T07:04:02.894Z",
+        "like_users": []
+    }
+}
+]

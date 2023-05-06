@@ -34,7 +34,8 @@
                   <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image">
               </div>
             {% endif %}
-            <div><strong><a href="{% url 'accounts:profile' post.user.username %}">{{ post.user }}</a></strong></div>
+            {% comment %} <div><strong><a href="{% url 'accounts:profile' post.user.username %}">{{ post.user }}</a></strong></div> {% endcomment %}
+            <div><strong><a href="{% url 'accounts:profile' review.user.username %}">{{ review.user }}</a></strong></div>
           </div>
           
             <!-- 팔로우 버튼 -->
