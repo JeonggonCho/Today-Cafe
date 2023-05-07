@@ -29,3 +29,12 @@ const getClock = function () {
 
 getClock()
 let twentyFourInterval = setInterval(getClock, 1000)
+
+
+// 시간대별 랜덤 문구 뽑기
+const coffee = ["아메리카노", "카페라떼", "카푸치노", "콜드브루", "카페모카", "핫초코", "플랫화이트", "에스프레소"];
+
+const indexMenu = document.querySelector(".random-menu");
+const todayCoffee = coffee[Math.floor(Math.random() * coffee.length)];
+
+indexMenu.innerText = `${todayCoffee}`;
