@@ -20,7 +20,7 @@
         <form class="w-75 mb-4 row d-flex justify-content-center align-items-center" action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- update-name and address -->
-            <section class="px-5 border-end col-6">
+            <section class="px-5 border-end col-6 h-100">
                 <div style="overflow:hidden;">
                     <label class="mb-2 fs-5 fw-bold" for="profile_image">프로필 이미지</label>
                     <div class="update-image-container my-5 d-flex flex-column justify-content-center align-items-center">
