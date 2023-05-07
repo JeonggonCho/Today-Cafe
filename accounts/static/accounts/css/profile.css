@@ -12,6 +12,7 @@
 .user-info button {
     font-size: 1.2rem;
 }
+/* 샘플 article */
 .user-article--review__middle__desc {
     display: -webkit-box;
     -webkit-line-clamp: 4;
