@@ -52,12 +52,31 @@
             <a class="btn btn-outline-secondary me-3" href="{% url 'accounts:change_password' %}">비밀번호수정</a>
             <form action="{% url 'accounts:delete' %}" method='POST'>
                 {% csrf_token %}
-                <button type="submit" class="btn btn-outline-secondary" role="button">회원탈퇴</button>
+                <button type="button" class="btn btn-outline-secondary" role="button" data-bs-toggle="modal" data-bs-target="#confirm-modal">회원탈퇴</button>
             </form>
         </div>
     </div>
-  </main>
+</main>
+<!-- Modal -->
+<div class="modal fade" id="confirm-modal" tabindex="-1" aria-labelledby="confirm-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirm-modal-label">회원탈퇴 확인</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                정말로 회원탈퇴를 하시겠습니까?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-danger" onclick="submitForm()">회원탈퇴</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
 {% block script %}
 <script src="{% static 'accounts/js/update__image.js' %}"></script>
+<script src="{% static 'accounts/js/update__delete-user.js' %}"></script>
 {% endblock script %}
