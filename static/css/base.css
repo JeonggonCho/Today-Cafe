@@ -14,6 +14,7 @@
     height: 40px;
     padding-left: 4px;
     padding-right: 4px;
+    margin-right: 45px;
     border-radius: 20px;
     border: 1px solid red;
     background-color: white;
@@ -25,6 +26,7 @@
     border: none;
     overflow: auto;
     margin-left: 8px;
+    margin-right: 60px;
     z-index: -1;
     font-size: 15px;
     transition: all 0.2s linear;
@@ -86,4 +88,12 @@ body {
 #scroll-to-top-button.show {
     opacity: 1;
     visibility: visible;
+}
+.base--cate_btn {
+    color: gray;
+    transition: all 0.1s linear;
+}
+.base--cate_btn:hover {
+    color: black;
+    transform: scale(1.03);
 }

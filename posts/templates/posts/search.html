@@ -1,13 +1,97 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block style %}
-
+<link rel="stylesheet" href="{% static 'posts/css/search.css' %}">
 {% endblock style %}
 
 {% block content %}
-  {% for search in search_list %}
-  <div>
-    <a href="{% url 'posts:post' search.pk %}">{{ search.title }}</a>
+  <div class="container my-5">
+    <h4 class="mb-4"><b>"{{ query }}"으로 검색한 결과입니다 ({{ search_list|length }})</b></h4>
+    {% for search in search_list %}
+    <!-- 카페 상세페이지로 이동 -->
+    <div class="search--cate_form d-flex mb-5">
+      <!-- 카테고리 카페 이미지 -->
+      <div class="search--cate_img_form">
+        <a href='{% url 'posts:post' search.pk %}'>
+          <img src="{{ search.image.url }}" alt="">
+        </a>
+      </div>
+      <div class="w-100">
+        <!-- 카테고리 카페 이름 -->
+        <div class="m-5 d-flex">
+          <div class="col-10 d-flex flex-column justify-content-between">
+            <a href='{% url 'posts:post' search.pk %}'>
+            <div class="d-flex gap-2">
+              <div class="search--cate_form_icon d-flex justify-content-center align-items-center">
+                <span class="material-symbols-outlined">
+                {% if subject == '카공 모각코' %}
+                  stylus
+                {% elif subject == '펫 카페' %}
+                  pets
+                {% elif subject == '북 카페' %}
+                  import_contacts
+                {% endif %}
+                </span>
+              </div>
+              <h2><strong>{{ search.title }}</strong></h2>
+            </div>
+            <div class="mb-5"><strong>주소 |</strong> {{ search.address }}</div>
+
+              {% if search.reviews %}
+                {% for post in posts %}
+                <div class="d-flex align-items-center gap-3">
+                  {% if post.user.profile_image %}
+                    <div class='profile--img_small_form mt-2'>
+                        <img src="{{ post.user.profile_image.url }}" alt="">
+                    </div>
+                  {% else %}
+                    <div class='profile--img_small_form mt-2'>
+                        <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image">
+                    </div>
+                  {% endif %}
+                  <div class="search--cate_content">{{ post.content }}</div>
+                </div>
+                {% endfor %}
+              {% else %}
+                <div class='mx-auto'>리뷰가 없습니다.</div>
+              {% endif %}
+            </a>
+          </div>
+          <div class="col-2 d-flex align-items-end justify-content-between flex-column">
+            <!-- 좋아요 버튼 -->
+            <div>
+              <form action="{% url 'posts:likes' search.pk %}" method="POST">
+                {% csrf_token %}
+                {% if request.user in search.like_users.all %}
+                  <button type="submit" class="border-0 p-0 search--like_btn">
+                    <span class="material-symbols-outlined">
+                      favorite
+                    </span>
+                  </button>
+                {% else %}
+                  <button type="submit" class="border-0 p-0 search--unlike_btn">
+                    <span class="material-symbols-outlined">
+                      favorite
+                    </span>
+                  </button>
+                {% endif %}
+              </form>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined search--cate_icon">favorite</span>
+                <div>{{ posts|length }}</div>
+              </div>
+              <div class="d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined search--cate_icon">mode_comment</span>
+                <div>{{ post.reviews|length }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 {% endblock content %}

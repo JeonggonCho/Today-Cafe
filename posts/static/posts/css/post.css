@@ -11,26 +11,21 @@
 .post--create_btn {
     width: 130px;
     height: 40px;
-    background-color: var(--form-gray);
-    color: white;
     border-radius: 6px;
 }
-.post--create_btn:hover {
-    background-color: darkgray;
-}
 .post--img_form {
-    height: 350px;
+    height: 300px;
     background-color: black;
+    border-radius: 8px;
     overflow: hidden;
 }
 .post--img_form img {
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 .post--map_form {
-    height: 100%;
-    width: 800px;
+    height: 300px;
     border: 1px solid lightgray;
     border-radius: 1rem;
 }

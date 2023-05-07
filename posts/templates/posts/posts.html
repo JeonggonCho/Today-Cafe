@@ -19,8 +19,8 @@
         <img src="{% static 'posts/img/study_cafe.png' %}" alt="">
       {% elif subject == '펫 카페' %}
         <div class="post--banner_text">
-          <h3>귀여운 강아지와 고양이가 보고싶다면?</h3>
-          <h1><b>펫 카페</b></h1>
+          <h3>애완동물과 오늘은 어디갈지 고민된다면?</h3>
+          <h1><b>펫 동반카페</b></h1>
         </div>
         <div class="w-100 h-100 post--banner_filter"></div>
         <img src="{% static 'posts/img/pet_cafe.jpg' %}" alt="">
@@ -40,10 +40,13 @@
         <img src="{% static 'posts/img/all_category.jpg' %}" alt="">
         {% endif %}
       </div>
-    <div class="container my-5">
+    <div class="container mt-4 mb-5">
 
-      <a href="{% url 'posts:create' %}">[CREATE]</a>
+      <a href="{% url 'posts:create' %}" class="btn btn-danger posts--create_btn d-flex align-items-center justify-content-center gap-2 mb-3 ms-auto">
+        <span class="material-symbols-outlined">add</span><div>카페등록</div></a>
 
+      <!-- 지도 -->
+      <div id="map" class="posts--map_form w-100 mb-5"></div>
         {% for post in posts %}
         <!-- 카페 상세페이지로 이동 -->
         <div class="posts--cate_form d-flex mb-5">
@@ -97,16 +100,16 @@
               <div class="col-2 d-flex align-items-end justify-content-between flex-column">
                 <!-- 좋아요 버튼 -->
                 <div>
-                  <form action="{% url 'posts:likes' post.pk %}" method="POST">
+                  <form class="like-forms" data-post-id="{{ post.pk }}">
                     {% csrf_token %}
                     {% if request.user in post.like_users.all %}
-                      <button type="submit" class="border-0 p-0 posts--like_btn">
+                      <button type="submit" class="border-0 p-0 posts--like_btn" id="like-{{ post.pk }}">
                         <span class="material-symbols-outlined">
                           favorite
                         </span>
                       </button>
                     {% else %}
-                      <button type="submit" class="border-0 p-0 posts--unlike_btn">
+                      <button type="submit" class="border-0 p-0 posts--unlike_btn" id="like-{{ post.pk }}">
                         <span class="material-symbols-outlined">
                           favorite
                         </span>
@@ -117,11 +120,11 @@
                 <div class="d-flex align-items-center gap-3">
                   <div class="d-flex align-items-center gap-1">
                     <span class="material-symbols-outlined post--cate_icon">favorite</span>
-                    <div>12</div>
+                    <div>{{ post.count_likes_user }}</div>
                   </div>
                   <div class="d-flex align-items-center gap-1">
                     <span class="material-symbols-outlined post--cate_icon">mode_comment</span>
-                    <div>{{ posts|length }}</div>
+                    <div>{{ post|length }}</div>
                   </div>
                 </div>
               </div>
@@ -187,3 +190,9 @@
     </div>
   </main>
 {% endblock content %}
+
+{% block script %}
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b8f429608439fe66cf463070bdbdb14&libraries=services"></script>
+    <script src="{% static 'posts/js/postsMap.js' %}"></script>
+    <script src="{% static 'posts/js/postsLike.js' %}"></script>
+{% endblock script %}

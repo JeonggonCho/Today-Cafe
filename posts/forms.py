@@ -9,6 +9,7 @@ class PostForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': '카페이름을 입력해주세요',
             },
         ),
     )
@@ -19,6 +20,7 @@ class PostForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': '주소를 입력해주세요',
             },
         ),
     )
@@ -29,6 +31,7 @@ class PostForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': '전화번호를 입력해주세요',
             },
         ),
     )
@@ -39,6 +42,7 @@ class PostForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': '카페의 대표메뉴를 입력해주세요',
             },
         ),
     )
@@ -49,6 +53,7 @@ class PostForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': '영업시간 및 휴무일을 입력해주세요',
             },
         ),
     )
@@ -59,6 +64,7 @@ class PostForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': '방문객을 위한 편의시설 정보를 입력해주세요',
             },
         ),
     )
@@ -78,7 +84,7 @@ class PostForm(forms.ModelForm):
         label='이미지',
         widget=forms.ClearableFileInput(
             attrs={
-                'class': 'form-control form-control-sm',
+                'class': 'form-control',
             },
         )
     )

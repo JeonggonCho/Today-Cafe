@@ -2,8 +2,26 @@
 @import "variables.css";
 
 .create_form {
-    width: 400px;
+    width: 800px;
 }
 .create--submit_btn {
+    margin-top: 38px;
     width: 100%;
+}
+.create--img_preview {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border: 1px solid lightgray;
+}
+.create--img_preview img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.create--back_btn {
+    transition: all 0.1s linear;
+}
+.create--back_btn:hover {
+    transform: scale(1.2);
 }

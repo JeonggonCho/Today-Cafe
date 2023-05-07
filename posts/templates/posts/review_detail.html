@@ -18,7 +18,7 @@
               arrow_back_ios
             </span>
           </a>
-          <h2><strong>스터디 카페</strong></h2>
+          <h2><strong>{{ post.title }}</strong></h2>
         </div>
 
         <!-- 리뷰 -->
@@ -34,7 +34,6 @@
                   <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image">
               </div>
             {% endif %}
-            {% comment %} <div><strong><a href="{% url 'accounts:profile' post.user.username %}">{{ post.user }}</a></strong></div> {% endcomment %}
             <div><strong><a href="{% url 'accounts:profile' review.user.username %}">{{ review.user }}</a></strong></div>
           </div>
           

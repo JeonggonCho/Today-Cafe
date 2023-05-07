@@ -14,6 +14,7 @@ import os
 # Create your views here.
 def posts(request):
     posts = Post.objects.all().order_by('-pk')
+    # reviews = posts.reviews.all()
     page = request.GET.get('page', '1')
     per_page = 6
     paginator = Paginator(posts, per_page)
@@ -21,6 +22,7 @@ def posts(request):
     context = {
         'posts': page_obj,
         'subject': 'all',
+        # 'reviews': reviews,
     }
     return render(request,'posts/posts.html', context)
 
@@ -257,11 +259,16 @@ def comments_delete(request, post_pk, review_pk, comment_pk):
 @login_required
 def likes(request, post_pk):
     post = Post.objects.get(pk=post_pk)
-    if post.like_users.filter(pk=request.user.pk).exists():
-        request.user.like_posts.remove(post)
+    if request.user in post.like_users.all():
+        post.like_users.remove(request.user)
+        is_liked = False
     else:
         post.like_users.add(request.user)
-    return redirect('posts:post', post_pk)
+        is_liked = True
+    context = {
+        'is_liked': is_liked,
+    }
+    return JsonResponse(context)
 
 
 def search(request):
