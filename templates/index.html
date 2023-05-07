@@ -18,7 +18,7 @@
 <main class="container">
     <!-- carousel 화면 -->
     <section class="index__carousel d-flex justify-content-center my-5">
-        <div id="carouselExampleIndicators" class="carousel slide w-50">
+        <div id="carouselExampleIndicators" class="carousel slide w-100">
             <div class="carousel-indicators mb-1">
                 <button type="button" class="active mx-2 rounded-circle" style="width: 0.8rem; height: 0.8rem;"data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" class="mx-2 rounded-circle" style="width: 0.8rem; height: 0.8rem;"data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -45,28 +45,7 @@
             </button>
         </div>
     </section>
-    <!-- category list -->
-    <section class="index__category mb-5">
-        <h3 class="fw-bold mb-3">카테고리</h3>
-        <div class="d-flex justify-content-center">
-            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="{% url 'posts:posts' %}">
-                <span class="material-symbols-outlined me-2">menu</span>
-                <span>모든 카페</span>
-            </a>
-            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="{% url 'posts:category' subject='카공 모각코' %}">
-                <span class="material-symbols-outlined me-2">stylus</span>
-                <span>카공 / 모각코</span>
-            </a>
-            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center me-3" href="{% url 'posts:category' subject='펫 카페' %}">
-                <span class="material-symbols-outlined me-2">pets</span>
-                <span>애견동반</span>
-            </a>
-            <a class="btn btn-secondary w-25 d-flex justify-content-center py-2 align-items-center" href="{% url 'posts:category' subject='북 카페' %}">
-                <span class="material-symbols-outlined me-2">import_contacts</span>
-                <span>동네 책방</span>
-            </a>
-        </div>
-    </section>
+    
     <!-- articels-like -->
     <section class="articles-like--lg-card mb-5">
         <h3 class="fw-bold mb-4">여기 카페 너무 좋아요!</h3>

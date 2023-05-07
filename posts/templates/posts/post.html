@@ -14,68 +14,107 @@
             <div class="d-flex flex-grow-1 align-items-center gap-3">
                 <div class="post--cate_form_icon d-flex justify-content-center align-items-center"><span class="material-symbols-outlined">stylus</span></div>
                 <h2><strong>{{ post.title }}</strong></h2>
+                <div>
+                    <form class="like-forms" data-post-id="{{ post.pk }}">
+                    {% csrf_token %}
+                    {% if request.user in post.like_users.all %}
+                        <button type="submit" class="border-0 p-0 post--like_btn" id="like-{{ post.pk }}">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        </button>
+                    {% else %}
+                        <button type="submit" class="border-0 p-0 post--unlike_btn" id="like-{{ post.pk }}">
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        </button>
+                    {% endif %}
+                    </form>
+                </div>
             </div>
-            <a href="{% url 'posts:review_create' post.pk %}" class="post--create_btn d-flex align-items-center justify-content-center gap-3"><span class="material-symbols-outlined">edit_square</span><div>리뷰작성</div></a>
+            <a href="{% url 'posts:review_create' post.pk %}" class="btn btn-danger post--create_btn d-flex align-items-center justify-content-center gap-3"><span class="material-symbols-outlined">edit_square</span><div>리뷰작성</div></a>
         </div>
+        <!-- 지도 -->
+        <div id="map" class="post--map_form w-100 my-3"></div>
 
-        <!-- 카페사진 -->
-        <div class="d-flex gap-3 mb-3">
-            <div class="post--img_form w-100">
-                <img src="{{ post.image.url }}" alt="">
-            </div>
+        
+        <div class="d-flex mb-3">
             <div class="w-100">
-                <!-- 지도 -->
-                <div class="post--map_form mb-3 w-100"></div>
                 <!-- 카페 기본정보 -->
-                <div class="post--info_form d-flex flex-column justify-content-center w-100">
-                    <!-- 주소 정보 -->
-                    <div class="d-flex mb-3">
-                        <div class="col-4 d-flex gap-2">
-                            <span class="material-symbols-outlined">location_on</span>
-                            <h6><strong>주소</strong></h6>
+                <div class="post--info_form d-flex gap-3">
+                    <div class="d-flex flex-column justify-content-center w-100">
+                        <!-- 주소 정보 -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="col-3 d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined">location_on</span>
+                                <h6 class="m-0"><strong>주소</strong></h6>
+                            </div>
+                            <div class=" flex-grow-1">{{ post.address }}</div>
                         </div>
-                        <div>{{ post.address }}</div>
+    
+                        <!-- 전화번호 -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="col-3 d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined">call</span>
+                                <h6 class="m-0"><strong>전화번호</strong></h6>
+                            </div>
+                            <div>{{ post.phone_number }}</div>
+                        </div>
+    
+                        <!-- 영업시간 -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="col-3 d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined">schedule</span>
+                                <h6 class="m-0"><strong>영업시간</strong></h6>
+                            </div>
+                            <div>{{ post.hours }}</div>
+                        </div>
+    
+                        <!-- 메뉴 -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="col-3 d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined">summarize</span>
+                                <h6 class="m-0"><strong>메뉴</strong></h6>
+                            </div>
+                            <div>{{ post.menu }}</div>
+                        </div>
+    
+                        <!-- 편의시설/정보 -->
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="col-3 d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined">info</span>
+                                <h6 class="m-0"><strong>편의시설 정보</strong></h6>
+                            </div>
+                            <div>{{ post.information }}</div>
+                        </div>
+    
+                        <!-- 태그 -->
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            {% for tag in tags %}
+                                <a href="{% url 'posts:tagged' tag.pk %}">
+                                    <div class="post--tag">#{{ tag.name }}</div>
+                                </a>
+                            {% endfor %}
+                        </div>
+    
+                        <!-- 카페정보 수정 --> 
+                        <div class="d-flex align-items-center">
+                            <span class="me-3 text-secondary update_font">최근 업데이트 : {{ post.updated_at|date:'Y-m-d' }}</span>
+                            <div class="d-flex align-items-center gap-3">
+                                {% if request.user == post.user %}
+                                    <a class="post--update_btn" href="{% url 'posts:update' post.pk %}"><span>수정</span></a>
+                                    <form action="{% url 'posts:delete' post.pk %}" method='POST' class="p-0 m-0">
+                                        {% csrf_token %}
+                                        <input type='submit' class="p-0 border-0 post--delete_btn" value='삭제' onclick="return confirm('삭제 하시겠습니까?')">
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- 전화번호 -->
-                    <div class="d-flex mb-3">
-                        <div class="col-4 d-flex gap-2">
-                            <span class="material-symbols-outlined">call</span>
-                            <h6><strong>전화번호</strong></h6>
-                        </div>
-                        <div>{{ post.phone_number }}</div>
-                    </div>
-
-                    <!-- 영업시간 -->
-                    <div class="d-flex mb-3">
-                        <div class="col-4 d-flex gap-2">
-                            <span class="material-symbols-outlined">schedule</span>
-                            <h6><strong>영업시간</strong></h6>
-                        </div>
-                        <div>{{ post.hours }}</div>
-                    </div>
-
-                    <!-- 편의시설/정보 -->
-                    <div class="d-flex">
-                        <div class="col-4 d-flex gap-2">
-                            <span class="material-symbols-outlined">info</span>
-                            <h6><strong>편의시설 정보</strong></h6>
-                        </div>
-                        <div>{{ post.information }}</div>
-                    </div>
-
-                    <!-- 카페정보 수정 --> 
-                    <div class="d-flex align-items-center justify-content-between mt-3">
-                        <span class="me-3 text-secondary update_font">최근 업데이트 : {{ post.updated_at|date:'Y-m-d' }}</span>
-                        <div class="d-flex align-items-center gap-3">
-                            {% if request.user == post.user %}
-                                <a class="post--update_btn" href="{% url 'posts:update' post.pk %}"><span>수정</span></a>
-                                <form action="{% url 'posts:delete' post.pk %}" method='POST' class="p-0 m-0">
-                                    {% csrf_token %}
-                                    <input type='submit' class="p-0 border-0 post--delete_btn" value='삭제' onclick="return confirm('삭제 하시겠습니까?')">
-                                </form>
-                            {% endif %}
-                        </div>
+                    <!-- 카페사진 -->
+                    <div class="post--img_form w-75">
+                        <img src="{{ post.image.url }}" alt="">
                     </div>
                 </div>
             </div>
@@ -101,7 +140,7 @@
                                 <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="profile_image">
                             </div>
                         {% endif %}
-                        <a href='{% url 'accounts:profile' user.username %}'><strong>{{ review.user.username }}</strong></a>
+                        <a href='{% url 'accounts:profile' review.user.username %}'><strong>{{ review.user.username }}</strong></a>
                     </div>
                     <div class="col-10 d-flex flex-column">
                         <div class="mb-3">
@@ -112,7 +151,7 @@
                             {% endif %}
                         </div>
                         <a href="{% url 'posts:review_detail' post.pk review.pk %}">
-                            <div><strong>{{ review.title }}</strong></div>
+                            <div>평점 : {{ review.star_rating }}</div>
                             <div class="mb-4">{{ review.content }}</div>
                             <div class="d-flex gap-3">
                                 {% for photo in photos %}
@@ -125,9 +164,9 @@
                     </div>
                     <div class="col-1">
                         <div>
-                            <form action="{% url 'posts:likes' post.pk %}" method="POST">
+                            <form action="{% url 'posts:review_likes' post.pk review.pk %}" method="POST">
                             {% csrf_token %}
-                            {% if request.user in post.like_users.all %}
+                            {% if request.user in review.like_users.all %}
                                 <button type="submit" class="border-0 post--like_btn">
                                 <span class="material-symbols-outlined">
                                     favorite
@@ -154,3 +193,9 @@
     </div>
 </main>
 {% endblock content %}
+
+{% block script %}
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b8f429608439fe66cf463070bdbdb14&libraries=services"></script>
+    <script src="{% static 'posts/js/postMap.js' %}"></script>
+    <script src="{% static 'posts/js/postLike.js' %}"></script>
+{% endblock script %}

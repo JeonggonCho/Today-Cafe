@@ -10,25 +10,85 @@
 {% block content %}
     <main>
         <div class="container my-5 create_form">
-            <div class="d-flex align-items-center justify-content-center gap-3 mb-3 me-5">
-                <a href="{% url 'posts:posts' %}">
-                    <span class="material-symbols-outlined">
+            <div class="d-flex align-itmes-center justify-content-center mb-3 position-relative">
+                <a href="{% url 'posts:posts' %}" class="position-absolute start-0 create--back_btn">
+                    <span class="material-symbols-outlined mt-2">
                         arrow_back_ios
                     </span>
                 </a>
                 <h2><strong>카페 등록</strong></h2>
             </div>
             <hr>
-            <form action="{% url 'posts:create'%}" method="POST" enctype='multipart/form-data'>
+            <form action="{% url 'posts:create'%}" method="POST" enctype='multipart/form-data' class="d-flex gap-4">
                 {% csrf_token %}
-                {% for field in form %}
-                <div>
-                    <p>{{ field.label }}</p>
-                    <p>{{ field }}</p>
+                <div class="d-flex flex-column w-100">
+                    <div>
+                        <p><strong>{{ form.title.label }}</strong></p>
+                        <p>{{ form.title }}</p>
+                    </div>
+                    <div>
+                        <p><strong>{{ form.address.label }}</strong></p>
+                        <p>{{ form.address }}</p>
+                    </div>
+                    <div>
+                        <p><strong>{{ form.phone_number.label }}</strong></p>
+                        <p>{{ form.phone_number }}</p>
+                    </div>
+                    <div>
+                        <p><strong>{{ form.menu.label }}</strong></p>
+                        <p>{{ form.menu }}</p>
+                    </div>
+                    <div>
+                        <p><strong>{{ form.hours.label }}</strong></p>
+                        <p>{{ form.hours }}</p>
+                    </div>
+                    <div>
+                        <p><strong>{{ form.information.label }}</strong></p>
+                        <p>{{ form.information }}</p>
+                    </div>
                 </div>
-                {% endfor %}
-                <input type="submit" class="btn btn-secondary create--submit_btn" value="리뷰 작성"></input>
+                <div class="d-flex flex-column w-100">
+                    <div>
+                        <p><strong>{{ form.category.label }}</strong></p>
+                        <p>{{ form.category }}</p>
+                    </div>
+                    <div>
+                        <p><strong>{{ form.image.label }}</strong></p>
+                        <div class="create--img_preview mb-2">
+                            {% if form.image.url %}
+                                <img id="preview" src="{{ form.image.url }}" alt="">
+                            {% else %}
+                                <img id="preview" src="{% static 'posts/img/no_img.jpg' %}" alt="">
+                            {% endif %}
+                        </div>
+                        <p>{{ form.image }}</p>
+                    </div>
+                    <div>
+                        <p><strong>{{ form.tags.label }}</strong></p>
+                        <p>{{ form.tags }}</p>
+                    </div>
+                    <input type="submit" class="btn btn-secondary create--submit_btn" value="카페 등록"></input>
+                </div>
             </form>
         </div>
     </main>
 {% endblock content %}
+
+{% block script %}
+<script>
+    const cafeImageInput = document.getElementById("id_image");
+    const cafeImagePreview = document.getElementById("preview");
+    
+    if (cafeImageInput) {
+        cafeImageInput.addEventListener("change", function () {
+            const file = this.files[0];
+            const reader = new FileReader();
+            reader.addEventListener("load", function () {
+                cafeImagePreview.src = reader.result;
+                cafeImagePreview.style.display = "block";
+            });
+            reader.readAsDataURL(file);
+        });
+    }  
+</script>
+{% endblock script %}

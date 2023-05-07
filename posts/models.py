@@ -36,6 +36,9 @@ class Post(models.Model):
 
     def str(self):
         return self.title
+    
+    def count_likes_user(self):
+        return self.like_users.count()
 
     def delete(self, *args, **kargs):
         if self.image:
