@@ -12,12 +12,15 @@
 <main class="main--signup d-flex">
     <div class="container my-5 p-0 d-flex flex-column align-items-center">
         <!-- update title -->
-        <h3 class="my-0 mb-5 fw-bold">회원정보수정</h3>
+        <div class="d-flex justify-content-center align-items-center position-relative mb-5 w-75">
+            <a class="position-absolute start-0 ms-5 btn btn-outline-secondary" href="{% url 'accounts:profile' user.username %}">뒤로 가기</a>
+            <h2 class="fw-bold">회원정보수정</h2>
+        </div>
         <!-- update form -->
         <form class="w-75 mb-4 row d-flex justify-content-center align-items-center" action="{% url 'accounts:update' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- update-name and address -->
-            <section class="px-5 border-end col-6">
+            <section class="px-5 border-end col-6 h-100">
                 <div style="overflow:hidden;">
                     <label class="mb-2 fs-5 fw-bold" for="profile_image">프로필 이미지</label>
                     <div class="update-image-container my-5 d-flex flex-column justify-content-center align-items-center">

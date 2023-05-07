@@ -73,49 +73,57 @@
         <section id="review-content" class="category-content mb-4" style="display: block;">
           <div>
             <h3 class="user-articles__title mb-4 fw-bold">작성한 리뷰</h3>
-            <div class="user-article__detail">
-              <div id="map" class="w-100 rounded-3 mb-4" style="height: 300px;"></div>
-              <!-- 샘플 article -->
-              <article class="user-article--review p-4">
-                <div class="user-article--review__top d-flex justify-content-between">
-                  <div class="d-flex">
-                    <span class="me-2">From</span>
-                    <h5 class="fw-bold">스터디카페</h5>
+            <div class="user-article__detail row">
+              {% if person.review_set.all %}
+                <div id="map" class="w-100 rounded-3 mb-3 col-12" style="height: 300px;"></div>
+                {% for review in person.review_set.all %}
+                  <div class="col-6 p-0">
+                    <article class="user-article--review p-4 m-1">
+                      <div class="user-article--review__top d-flex justify-content-between">
+                        <div class="d-flex">
+                          <span class="me-2">From</span>
+                          <h5 class="fw-bold">{{ review.post.title }}</h5>
+                        </div>
+                        <div class="user-article--review__like-btn">
+                          <i class="fa-regular fa-heart fs-5"></i>
+                        </div>
+                      </div>
+                      <div class="user-article--review__time mb-2">
+                        <span>날짜</span>
+                        <time class=""> {{ review.updated_at|date:'Y-m-d' }}</time>
+                      </div>
+                      <div class="user-article--review__middle mb-3">
+                        <div class="user-article--review__middle__desc">{{ review.content }}</div>
+                      </div>
+                      <div class="user-article--review__bottom d-flex justify-content-between" style="height: 5rem;">
+                        {% if review.photo %}
+                          <img class="h-100" src="{{ review.photo.url }}" alt="">
+                        {% else %}
+                          <img src="{% static 'posts/img/no_img.jpg' %}" alt="">
+                        {% endif %}
+                        <div class="user-article--review__bottom__more">
+                            <a class="fw-bold" href="">> 더보기</a>
+                        </div>
+                      </div>
+                    </article>
                   </div>
-                  <div class="user-article--review__like-btn">
-                    <i class="fa-regular fa-heart fs-5"></i>
-                  </div>
+                {% endfor %}
+              {% else %}
+                <div>
+                  <span>작성한 리뷰가 없어요.</span>
                 </div>
-                <div class="user-article--review__time mb-2">
-                  <time class="">1일 전</time>
-                </div>
-                <div class="user-article--review__middle mb-3">
-                  <div class="user-article--review__middle__desc">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga nam, accusantium at repudiandae id quo ratione omnis nulla, inventore, adipisci dolorum illo quae odit? Accusantium assumenda enim eligendi hic est.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora molestias cupiditate consequatur dolorem corporis dolores quod totam ad, quam, commodi provident deleniti laborum possimus voluptatibus reiciendis alias. Officia, dolorum recusandae?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit repudiandae sequi perferendis repellat perspiciatis in, voluptatum facilis sit dolores facere tempore ab odit at ipsam. Voluptatum maiores aliquam molestias totam!</p>
-                  </div>
-                </div>
-                <div class="user-article--review__bottom d-flex justify-content-between align-items-end">
-                  <div class="user-article--review__bottom__img">
-                    <img class="h-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0w-dAlJHqqiGQ0VHikKJDHiPgYi4Q5ARwGg&usqp=CAU" alt="">
-                  </div>
-                  <div class="user-article--review__bottom__more">
-                      <a class="fw-bold" href="">> 더보기</a>
-                  </div>
-                </div>
-              </article>
+              {% endif %}
             </div>
           </div>
         </section>
-
         <!-- 작성한 댓글 리스트-->
-        <section id="comment-content" class="category-content mb-4" style="display: none;">
+        <section class="user-articles-inner user-articles--review mb-4">
           <div class="user-articles-inner user-articles--review">
-            <h3 class="user-comments__title mb-4 fw-bold">작성한 댓글</h3>
-            <div class="user-comments__detail">
-              {% for post in person.like_posts.all %}
-                <div>{{ post.title }}</div>
+            <h3 class="user-commentstitle mb-4 fw-bold">작성한 댓글</h3>
+            <div class="user-commentsdetail">
+              {% for comment in person.comment_set.all %}
+                <div>{{ comment.content }}</div>
+                
               {% endfor %}
             </div>
           </div>
@@ -124,21 +132,22 @@
         <!-- 좋아요 게시글 관련 리스트-->
         <section id="like-content" class="category-content mb-4" style="display: none;">
           <div class="user-articles-inner user-articles--review">
-            <h3 class="user-like-cafe__title mb-4 fw-bold">좋아요 게시글</h3>
+            <h3 class="user-like-cafe__title mb-4 fw-bold">좋아요한 가게</h3>
             <div class="user-like-cafe__detail row row-cols-5 g-3">
               {% for post in person.like_posts.all %}
-                <div>{{ post.title }}</div>
+                <article class="col">
+                  <div class="card">
+                    <div style="height: 120px; overflow: hidden; object-fit: contain;">
+                      <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body p-2">
+                      <h6 class="card-title fw-bold d-flex align-items-center"> {{ post.title }}</h6>
+                      <address class="card-text">{{ post.address }}</address>
+                    </div>
+                  </div>
+                </article>
               {% endfor %}
               <!-- 샘플 article -->
-              <article class="col">
-                <div class="card">
-                  <img src="https://cdn.pixabay.com/photo/2017/02/20/08/50/cafe-2081857__340.jpg" class="card-img-top" alt="...">
-                  <div class="card-body p-2">
-                    <h6 class="card-title fw-bold d-flex align-items-center">스터디 카페</h6>
-                    <address class="card-text">서울특별시 영등포구 여의도동</address>
-                  </div>
-                </div>
-              </article>
             </div>
           </div>
         </section>
