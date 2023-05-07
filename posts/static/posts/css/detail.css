@@ -56,11 +56,31 @@
 /* 첨부이미지관련 */
 .photo--form {
     width: 33%;
-    height: 180px;
+    height: 250px;
+    border-radius: 8px;
+    border: 1px solid lightgray;
     overflow: hidden;
 }
 .photo--form img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+}
+/* 좋아요버튼관련 */
+.detail--like_btn {
+    color: red;
+    background-color: transparent;
+    transition: all 0.1s linear;
+}
+.detail--like_btn:hover {
+    transform: scale(1.2);
+}
+.detail--unlike_btn {
+    color: gray;
+    background-color: transparent;
+    transition: all 0.1s linear;
+}
+.detail--unlike_btn:hover {
+    transform: scale(1.2);
+    color: black;
 }

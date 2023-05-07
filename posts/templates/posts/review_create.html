@@ -8,9 +8,9 @@
 {% block content %}
 <main>
     <div class="container my-5 create_form">
-        <div class="d-flex align-items-center justify-content-center gap-3 mb-3 me-5">
-            <a href="{% url 'posts:post' post.pk %}">
-                <span class="material-symbols-outlined">
+        <div class="d-flex align-itmes-center justify-content-center mb-3 position-relative">
+            <a href="{% url 'posts:post' post.pk %}" class="position-absolute start-0 create--back_btn">
+                <span class="material-symbols-outlined mt-2">
                     arrow_back_ios
                 </span>
             </a>

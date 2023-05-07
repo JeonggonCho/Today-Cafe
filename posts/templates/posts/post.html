@@ -141,8 +141,21 @@
                             </div>
                         {% endif %}
                         <a href='{% url 'accounts:profile' review.user.username %}'><strong>{{ review.user.username }}</strong></a>
+
+                        <!-- 타인이면 팔로우 버튼 -->
+                        {% if request.user != review.user %}
+                            <form id="follow-form" data-user-id="{{ review.user.pk }}" class="w-100">
+                                {% csrf_token %}
+                                {% if request.user in review.user.followers.all %}
+                                    <input class="btn btn-secondary w-100" type="submit" value="언팔로우">
+                                {% else %}
+                                    <input class="btn btn-secondary w-100" type="submit" value="팔로우">
+                                {% endif %}
+                            </form>
+                        {% endif %}
                     </div>
-                    <div class="col-10 d-flex flex-column">
+
+                    <div class="col-10 d-flex flex-grow-1 flex-column w-75">
                         <div class="mb-3">
                             {% if review.created_string == False %}
                                 {{ review.created_at|date:'Y-m-d' }}
@@ -150,37 +163,37 @@
                                 {{ review.created_string }}
                             {% endif %}
                         </div>
-                        <a href="{% url 'posts:review_detail' post.pk review.pk %}">
-                            <div>평점 : {{ review.star_rating }}</div>
-                            <div class="mb-4">{{ review.content }}</div>
-                            <div class="d-flex gap-3">
-                                {% for photo in photos %}
-                                    <div class="photo--form">
-                                        <img src="{{ photo.photo.url }}" alt="photo">
-                                    </div>
-                                {% endfor %}
+                        <a href="{% url 'posts:review_detail' post.pk review.pk %}" class="d-flex gap-4">
+                            <div class="post--review_photo_form">
+                                {% if review.reviewphoto_set.exists %}
+                                    <img src="{{ review.reviewphoto_set.first.photo.url }}" alt="">
+                                {% else %}
+                                    <img src="{% static 'posts/img/no_img.jpg' %}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="d-flex flex-column gap-3">
+                                <div class="fs-5">{{ review.star_rating }}</div>
+                                <div class="mb-4">{{ review.content }}</div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-1">
-                        <div>
-                            <form action="{% url 'posts:review_likes' post.pk review.pk %}" method="POST">
-                            {% csrf_token %}
-                            {% if request.user in review.like_users.all %}
-                                <button type="submit" class="border-0 post--like_btn">
-                                <span class="material-symbols-outlined">
-                                    favorite
-                                </span>
-                                </button>
-                            {% else %}
-                                <button type="submit" class="border-0 post--unlike_btn">
-                                <span class="material-symbols-outlined">
-                                    favorite
-                                </span>
-                                </button>
-                            {% endif %}
-                            </form>
-                        </div>
+                    <div class="col-1 d-flex flex-column align-items-end">
+                        <form class="review-like-forms" data-post-id="{{ post.pk }}" data-review-id="{{ review.pk }}">
+                        {% csrf_token %}
+                        {% if request.user in review.like_users.all %}
+                            <button type="submit" class="border-0 post--like_btn" id="like-{{ post.pk }}-{{ review.pk }}">
+                            <span class="material-symbols-outlined">
+                                favorite
+                            </span>
+                            </button>
+                        {% else %}
+                            <button type="submit" class="border-0 post--unlike_btn" id="like-{{ post.pk }}-{{ review.pk }}">
+                            <span class="material-symbols-outlined">
+                                favorite
+                            </span>
+                            </button>
+                        {% endif %}
+                        </form>
                     </div>
                 </div>
             </div>
@@ -198,4 +211,6 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b8f429608439fe66cf463070bdbdb14&libraries=services"></script>
     <script src="{% static 'posts/js/postMap.js' %}"></script>
     <script src="{% static 'posts/js/postLike.js' %}"></script>
+    <script src="{% static 'posts/js/postFollow.js' %}"></script>
+    <script src="{% static 'posts/js/postReviewLike.js' %}"></script>
 {% endblock script %}
