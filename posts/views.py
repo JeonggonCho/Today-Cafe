@@ -98,16 +98,17 @@ def create(request):
 @login_required
 def update(request, post_pk):
     post = Post.objects.get(pk=post_pk)
-    if request.user == post.user:
-        if request.method == 'POST':
-            form = PostForm(request.POST, request.FILES, instance=post)
-            if form.is_valid():
-                form.save()
-                return redirect('posts:post', post.pk)
-        else:
-            form = PostForm(instance=post)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            post.tags.clear()
+            tags = request.POST.get('tags').split(',')
+            for tag in tags:
+                post.tags.add(tag.strip())
+            return redirect('posts:post', post.pk)
     else:
-        return redirect('posts:post', post_pk)
+        form = PostForm(instance=post)
     context = {
         'post': post,
         'form': form,
@@ -204,11 +205,16 @@ def review_update(request, post_pk, review_pk):
 def review_likes(request, post_pk, review_pk):
     review = Review.objects.get(pk=review_pk)
 
-    if review.like_users.filter(pk=request.user.pk).exists():
+    if request.user in review.like_users.all():
         review.like_users.remove(request.user)
+        is_liked = False
     else:
         review.like_users.add(request.user)
-    return redirect('posts:review_detail', post_pk, review_pk)
+        is_liked =True
+    context = {
+        'is_liked': is_liked,
+    }
+    return JsonResponse(context)
 
 
 @login_required

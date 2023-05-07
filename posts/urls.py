@@ -18,7 +18,7 @@ urlpatterns = [
     path('<int:post_pk>/reviews/', views.review_create , name='review_create'),
     path('<int:post_pk>/reviews/<int:review_pk>/update/', views.review_update, name='review_update'),
     path('<int:post_pk>/reviews/<int:review_pk>/delete/', views.review_delete, name='review_delete'),
-    path('<int:post_pk>/reviews/<int:review_pk>/likes', views.review_likes, name='review_likes',),
+    path('<int:post_pk>/reviews/<int:review_pk>/likes/', views.review_likes, name='review_likes',),
     # path('<int:post_pk>/emotes/<int:emotion>/', views.emotes, name='emotes'),
 
 

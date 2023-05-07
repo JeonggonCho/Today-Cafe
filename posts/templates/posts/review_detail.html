@@ -18,7 +18,7 @@
               arrow_back_ios
             </span>
           </a>
-          <h2><strong>{{ post.title }}</strong></h2>
+          <h2>From. <strong>{{ post.title }}</strong></h2>
         </div>
 
         <!-- 리뷰 -->
@@ -35,25 +35,19 @@
               </div>
             {% endif %}
             <div><strong><a href="{% url 'accounts:profile' review.user.username %}">{{ review.user }}</a></strong></div>
+
+            <!-- 타인이면 팔로우 버튼 -->
+            {% if request.user != review.user %}
+            <form id="follow-form" data-user-id="{{ review.user.pk }}" class="w-100">
+                {% csrf_token %}
+                {% if request.user in review.user.followers.all %}
+                    <input class="btn btn-secondary w-100" type="submit" value="언팔로우">
+                {% else %}
+                    <input class="btn btn-secondary w-100" type="submit" value="팔로우">
+                {% endif %}
+              </form>
+          {% endif %}
           </div>
-          
-            <!-- 팔로우 버튼 -->
-            {% comment %} <div class='d-flex align-items-center gap-3'>
-              <div>
-                <form action="{% url 'accounts:follow' person.pk %}" method="POST">
-                  {% csrf_token %}
-                  {% if request.user in person.followers.all %}
-                    <input type="submit" value="UnFollow" class='btn btn-primary'>
-                  {% else %}
-                    {% if request.user.is_authenticated %}
-                    <input type="submit" value="Follow" class='btn btn-primary'>
-                    {% else %}
-                    <input type="submit" value="Follow" disabled class='btn btn-primary'>
-                    {% endif %}
-                  {% endif %}
-                </form>
-              </div>
-          </div> {% endcomment %}
 
           <!-- 리뷰내용 -->
           <div class="w-100">
@@ -66,25 +60,43 @@
                 </div>
                 {% endfor %}
             </div>
-            <div class="d-flex align-items-center gap-3 my-1">
-              <div class="detail--date_font">
-                {% if review.created_string == False %}
-                  {{ review.created_at|date:'Y-m-d' }}
-                {% else %}
-                  {{ review.created_string }}
-                {% endif %}
+            <div class="d-flex justify-content-between align-items-center gap-3 my-1">
+              <div class="d-flex align-items-center gap-3">
+                <div class="detail--date_font">
+                  {% if review.created_string == False %}
+                    {{ review.created_at|date:'Y-m-d' }}
+                  {% else %}
+                    {{ review.created_string }}
+                  {% endif %}
+                </div>
+                <!-- 수정 및 삭제 -->
+                <div class="d-flex align-items-center gap-2">
+                  {% if request.user == review.user %}
+                    <a class="detail--update_btn" href="{% url 'posts:review_update' post.pk review.pk %}"><span>수정</span></a>
+                    <form action="{% url 'posts:review_delete' post.pk review.pk %}" method='POST' class="p-0 m-0">
+                      {% csrf_token %}
+                      <input type='submit' class="p-0 border-0 detail--delete_btn" value='삭제' onclick="return confirm('삭제 하시겠습니까?')">
+                    </form>
+                  {% endif %}
+                </div>
               </div>
 
-              <!-- 수정 및 삭제 -->
-              <div class="d-flex align-items-center gap-2">
-                {% if request.user == post.user %}
-                  <a class="detail--update_btn" href="{% url 'posts:review_update' post.pk review.pk %}"><span>수정</span></a>
-                  <form action="{% url 'posts:review_delete' post.pk review.pk %}" method='POST' class="p-0 m-0">
-                    {% csrf_token %}
-                    <input type='submit' class="p-0 border-0 detail--delete_btn" value='삭제' onclick="return confirm('삭제 하시겠습니까?')">
-                  </form>
+              <form class="review-like-forms " data-post-id="{{ post.pk }}" data-review-id="{{ review.pk }}">
+                {% csrf_token %}
+                {% if request.user in review.like_users.all %}
+                    <button type="submit" class="border-0 detail--like_btn" id="like-{{ post.pk }}-{{ review.pk }}">
+                    <span class="material-symbols-outlined">
+                        favorite
+                    </span>
+                    </button>
+                {% else %}
+                    <button type="submit" class="border-0 detail--unlike_btn" id="like-{{ post.pk }}-{{ review.pk }}">
+                    <span class="material-symbols-outlined">
+                        favorite
+                    </span>
+                    </button>
                 {% endif %}
-              </div>
+                </form>
             </div>
             <div>{{ review.content }}</div>
           </div>
@@ -126,8 +138,8 @@
 
             <div>
               <div class="d-flex align-items-center gap-3 mb-3">
-                <div>
-                  <strong><a href="{% url 'accounts:profile' comment.user.username %}">{{comment.user}}</a></strong>
+                <div class="d-flex align-items-center gap-2">
+                  <strong><a href="{% url 'accounts:profile' comment.user.username %}" class="{% if review.user == comment.user %}text-danger{% endif %}">{{comment.user}}</a></strong>
                 </div>
                 <div class="detail--date_font">
                   {% if comment.created_string == False %}
@@ -152,3 +164,8 @@
     </div>
   </main>
 {% endblock content %}
+
+{% block script %}
+    <script src="{% static 'posts/js/reviewLike.js' %}"></script>
+    <script src="{% static 'posts/js/reviewDetailFollow.js' %}"></script>
+{% endblock script %}

@@ -85,7 +85,7 @@ class Review(models.Model):
 
     def star_rating(self):
         rounded_rating = round(self.rating * 2) / 2
-        return '★' * int(rounded_rating) + '☆' * (rounded_rating % 1 == 0.5)
+        return '⭐' * int(rounded_rating) + '☆' * (rounded_rating % 1 == 0.5)
     
     def count_likes_user(self):
         return self.like_users.count()
