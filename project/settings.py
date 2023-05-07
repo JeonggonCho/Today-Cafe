@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['port-0-todaycafe-e9btb72blgn9ob90.sel3.cloudtype.app']
+ALLOWED_HOSTS = ['port-0-cafecommunity-semiproject-xiy3e2blhdw2sl1.sel4.cloudtype.app']
 
 
 # Application definition
