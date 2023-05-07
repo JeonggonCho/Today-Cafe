@@ -84,7 +84,7 @@ class Review(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def star_rating(self):
-        rounded_rating = round(self.rating * 2) / 2
+        rounded_rating = self.rating
         return '⭐' * int(rounded_rating) + '☆' * (rounded_rating % 1 == 0.5)
     
     def count_likes_user(self):

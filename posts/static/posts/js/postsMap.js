@@ -1,4 +1,6 @@
 // 기본 세팅 (지도 표시 세팅)
+var titles = document.querySelectorAll('#posts-title');
+var addresses = document.querySelectorAll('#posts-address');
 var container = document.getElementById('map');
 var options = {
     center: new kakao.maps.LatLng(37.54, 126.96), //지도의 중심좌표 (구글맵 켜고 특정 위치 찍으면 위도 경도 표시됨)
@@ -13,23 +15,15 @@ var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
 //더미데이터
-const dataSet = [
-    {
-      title: "희락돈까스",
-      address: "서울 영등포구 양산로 210",
-      category: "양식",
-    },
-    {
-      title: "즉석우동짜장",
-      address: "서울 영등포구 대방천로 260",
-      category: "한식",
-    },
-    {
-      title: "아카사카",
-      address: "서울 서초구 서초대로74길 23",
-      category: "일식",
-    },
-  ];
+const dataSet = [];
+for (var i = 0; i < titles.length; i++) {
+  var title = titles[i].textContent;
+  var address = addresses[i].textContent;
+  var dictObject = {};
+  dictObject['title'] = title;
+  dictObject['address'] = address;
+  dataSet.push(dictObject);
+}
 
 //주소 기반으로 여러개 마커 표시하기
 // 주소-좌표 변환 객체 (반복문 이전에 선언 필요)
