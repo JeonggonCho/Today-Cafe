@@ -13,7 +13,7 @@
   <div class="container container d-flex flex-column align-items-center px-0">
     <!-- profile tilte -->
     <div class="d-flex justify-content-center align-items-center position-relative my-5 w-100">
-      <a class="position-absolute start-0 ms-5" href="{% url 'posts:posts' %}">뒤로 가기</a>
+      <a class="position-absolute start-0 ms-5 btn btn-outline-secondary" href="{% url 'index' %}">뒤로 가기</a>
       <h2 class="fw-bold">{{ person.username }}님의 프로필</h2>
     </div>
     <!-- profile main -->
@@ -32,52 +32,49 @@
             <div class="user-info__id mb-3">
               <h3 class="fw-bold m-0">{{ person.username }}</h3>
               {% if person.is_admin %}
-                (관리자)
+                <div>(관리자)</div>
               {% endif %}
             </div>
+            <!-- user-info__팔로우 및 팔로워 현황-->
             <div class="user-info__follow mb-3">
-              <span>팔로워</span><span id="followers-count">{{ person.followers.all|length }}</span>
+              <span>팔로워 </span><span id="followers-count">{{ person.followers.all|length }}</span>
               <span> / </span>
-              <span>팔로잉</span><span id="followings-count">{{ person.followings.all|length }}</span>
+              <span>팔로잉 </span><span id="followings-count">{{ person.followings.all|length }}</span>
             </div>
-            <div class="user-follow w-100 mb-4 d-flex flex-column align-items-center">
-              <a href="{% url 'accounts:update' %}" class="btn btn-secondary w-75 fw-bold">회원정보 수정</a>
-            </div>
-            <div>
-              {% if request.user != person %}
-                <div>
-                  <form id="follow-form" data-user-id="{{ person.pk }}">
-                    {% csrf_token %}
-                    {% if request.user in person.followers.all %}
-                      <input class="btn btn-secondary w-75 fw-bold" type="submit" value="언팔로우">
-                    {% else %}
-                      <input class="btn btn-secondary w-75 fw-bold" type="submit" value="팔로우">
-                    {% endif %}
-                  </form>
+            <!-- user-info__본인 프로필이면 회원정보 수정 / 타인이면 팔로우 버튼 -->
+            <div class="w-100">
+              {% if request.user == person %}
+                <div class="w-100 mb-4 d-flex flex-column align-items-center">
+                  <a href="{% url 'accounts:update' %}" class="btn btn-outline-secondary w-75 fw-bold">회원정보 수정</a>
                 </div>
+              {% else %}
+                <form id="follow-form" data-user-id="{{ person.pk }}" class="w-100 mb-4 d-flex flex-column align-items-center">
+                  {% csrf_token %}
+                  {% if request.user in person.followers.all %}
+                    <input class="btn btn-outline-secondary w-75 fw-bold" type="submit" value="언팔로우">
+                  {% else %}
+                    <input class="btn btn-outline-secondary w-75 fw-bold" type="submit" value="팔로우">
+                  {% endif %}
+                </form>
               {% endif %}
             </div>
           </div>
           <div class="user-articles-category w-100 mb-4 d-flex flex-column align-items-center">
-            <button class="btn btn-danger w-75 fw-bold mb-3">리뷰</button>
-            <button class="btn btn-secondary w-75 fw-bold mb-3">댓글</button>
-            <button class="btn btn-secondary w-75 fw-bold" >좋아요</button>
+            <button class="category-btn btn btn-danger w-75 fw-bold mb-3" data-target="#review-content">리뷰</button>
+            <button class="category-btn btn btn-secondary w-75 fw-bold mb-3" data-target="#comment-content">댓글</button>
+            <button class="category-btn btn btn-secondary w-75 fw-bold" data-target="#like-content">좋아요</button>
           </div>
         </div>
       </section>
 
       <!-- user content -->
       <section class="user-articles-section col-9 p-0">
-        <!-- 리뷰 남긴 곳 지도 표시-->
-        <div class="container mb-3">
-          <h3 class="my-3 fw-bold">map 구현 연습</h3>    
-          <div id="map" class="w-100 rounded-3" style="height: 400px;"></div>
-        </div>
         <!-- 작성한 리뷰 -->
-        <section class="user-articles-inner user-articles--review mb-4">
+        <section id="review-content" class="category-content mb-4" style="display: block;">
           <div>
             <h3 class="user-articles__title mb-4 fw-bold">작성한 리뷰</h3>
             <div class="user-article__detail">
+              <div id="map" class="w-100 rounded-3 mb-4" style="height: 300px;"></div>
               <!-- 샘플 article -->
               <article class="user-article--review p-4">
                 <div class="user-article--review__top d-flex justify-content-between">
@@ -113,7 +110,7 @@
         </section>
 
         <!-- 작성한 댓글 리스트-->
-        <section class="user-articles-inner user-articles--review mb-4">
+        <section id="comment-content" class="category-content mb-4" style="display: none;">
           <div class="user-articles-inner user-articles--review">
             <h3 class="user-comments__title mb-4 fw-bold">작성한 댓글</h3>
             <div class="user-comments__detail">
@@ -125,7 +122,7 @@
         </section>
 
         <!-- 좋아요 게시글 관련 리스트-->
-        <section class="user-article__detail mb-4">
+        <section id="like-content" class="category-content mb-4" style="display: none;">
           <div class="user-articles-inner user-articles--review">
             <h3 class="user-like-cafe__title mb-4 fw-bold">좋아요 게시글</h3>
             <div class="user-like-cafe__detail row row-cols-5 g-3">
@@ -155,40 +152,7 @@
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b8f429608439fe66cf463070bdbdb14&libraries=services"></script>
-<script src="{% static 'map.js' %}"></script>
-<script>
-    const form = document.querySelector('#follow-form')
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-
-    form.addEventListener('submit', function (event) {
-        // 이벤트 기본 동작 취소
-        event.preventDefault()
-  
-        const userId = event.target.dataset.userId
-        axios({
-            method: 'post',
-            url: `/accounts/${userId}/follow/`,
-            headers: {'X-CSRFToken': csrftoken},
-          })
-          .then((response) => {
-            // console.log(response.data)
-            const isFollowed = response.data.is_followed
-            const followBtn = document.querySelector('#follow-form > input[type=submit]')
-
-            if (isFollowed === true) {
-                followBtn.value = '언팔로우'
-              } else {
-                followBtn.value = '팔로우'
-              }
-            const followingCountTag = document.querySelector('#followings-count')
-            const followerCountTag = document.querySelector('#followers-count')
-
-            const followingsCountData = response.data.followings_count
-            const followersCountData = response.data.followers_count
-
-            followingCountTag.textContent = followingsCountData
-            followerCountTag.textContent = followersCountData
-            })
-        })
-</script>
+<script src="{% static 'accounts/js/profile__map.js' %}"></script>
+<script src="{% static 'accounts/js/profile__follow-btn.js' %}"></script>
+<script src="{% static 'accounts/js/profile__category-btn.js' %}"></script>
 {% endblock script %}
