@@ -30,7 +30,7 @@
               {% endif %}
             </div>
             <div class="user-info__id mb-3">
-              <h3 class="fw-bold m-0">{{ person.username }}</h3>
+              <h3 class="fw-bold m-0 w-100 text-center px-2">{{ person.username }}</h3>
               {% if person.is_admin %}
                 <div>(관리자)</div>
               {% endif %}
@@ -101,7 +101,7 @@
                         {% else %}
                           <img src="{% static 'posts/img/no_img.jpg' %}" alt="">
                         {% endif %}
-                        <div class="user-article--review__bottom__more">
+                        <div class="user-article--review__bottom__more d-flex align-items-end">
                             <a class="fw-bold" href="">> 더보기</a>
                         </div>
                       </div>
@@ -109,22 +109,34 @@
                   </div>
                 {% endfor %}
               {% else %}
-                <div>
-                  <span>작성한 리뷰가 없어요.</span>
-                </div>
+              <div class="w-100 d-flex flex-column justify-contents-center align-items-center">
+                <img src="https://img.freepik.com/free-photo/cute-little-dog-impersonating-a-business-person_23-2148985937.jpg" alt="게시글 없음 대체 이미지" class="mb-3">
+                <div class="text-center">작성한 리뷰가 없네요 <br>대신 귀여운 강아지를 드리겠습니다</div>
+              </div>
               {% endif %}
             </div>
           </div>
         </section>
         <!-- 작성한 댓글 리스트-->
-        <section class="user-articles-inner user-articles--review mb-4">
+        <section id="comment-content" class="category-content mb-4" style="display: none;">
           <div class="user-articles-inner user-articles--review">
             <h3 class="user-commentstitle mb-4 fw-bold">작성한 댓글</h3>
             <div class="user-commentsdetail">
-              {% for comment in person.comment_set.all %}
-                <div>{{ comment.content }}</div>
-                
-              {% endfor %}
+              {% if person.comment_set.all %}
+                {% for comment in person.comment_set.all %}
+                  <a class="col" href="" class="p-4 d-block">
+                    <div class="w-100 user-article--review mb-2 p-3 d-flex justify-content-between">
+                      <span>{{ comment.content }}</span>
+                      <span>{{ comment.created_at|date:'Y-m-d' }}</span>
+                    </div>
+                  </a>
+                {% endfor %}
+              {% else %}
+                <div class="w-100 d-flex flex-column justify-contents-center align-items-center mb-2">
+                  <img src="https://img.freepik.com/free-photo/cute-little-dog-impersonating-a-business-person_23-2148985937.jpg" alt="게시글 없음 대체 이미지" class="mb-3">
+                  <div class="text-center">작성한 댓글이 없네요 <br>대신 귀여운 강아지를 드리겠습니다</div>
+                </div>
+              {% endif %}
             </div>
           </div>
         </section>
@@ -133,20 +145,27 @@
         <section id="like-content" class="category-content mb-4" style="display: none;">
           <div class="user-articles-inner user-articles--review">
             <h3 class="user-like-cafe__title mb-4 fw-bold">좋아요한 가게</h3>
-            <div class="user-like-cafe__detail row row-cols-5 g-3">
-              {% for post in person.like_posts.all %}
-                <article class="col">
-                  <div class="card">
-                    <div style="height: 120px; overflow: hidden; object-fit: contain;">
-                      <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+              {% if person.like_posts.all %}
+                <div class="user-like-cafe__detail row row-cols-5 g-3">
+                {% for post in person.like_posts.all %}
+                  <a class="col" href="">
+                    <div class="card">
+                      <div style="height: 120px; overflow: hidden; object-fit: contain;">
+                        <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body p-2">
+                        <h6 class="card-title fw-bold d-flex align-items-center"> {{ post.title }}</h6>
+                        <address class="card-text user-article--review__middle__desc">{{ post.address }}</address>
+                      </div>
                     </div>
-                    <div class="card-body p-2">
-                      <h6 class="card-title fw-bold d-flex align-items-center"> {{ post.title }}</h6>
-                      <address class="card-text">{{ post.address }}</address>
-                    </div>
-                  </div>
-                </article>
-              {% endfor %}
+                  </a>
+                {% endfor %}
+              {% else %}
+              <div class="w-100 d-flex flex-column justify-contents-center align-items-center">
+                <img src="https://img.freepik.com/free-photo/cute-little-dog-impersonating-a-business-person_23-2148985937.jpg" alt="게시글 없음 대체 이미지" class="mb-3">
+                <div class="text-center">좋아요한 가게가 없네요 <br>대신 귀여운 강아지를 드리겠습니다</div>
+              </div>
+              {% endif %}
               <!-- 샘플 article -->
             </div>
           </div>
