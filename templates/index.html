@@ -17,6 +17,9 @@
 </div>
 <main class="container">
     <!-- carousel 화면 -->
+    <section class="index__clock-section">
+        <h3 class="index__clock">00:00:00</h3>
+    </section>
     <section class="index__carousel d-flex justify-content-center my-5">
         <div id="carouselExampleIndicators" class="carousel slide w-100">
             <div class="carousel-indicators mb-1">
@@ -126,3 +129,6 @@
     </section>
 </main>
 {% endblock content %}
+{% block script %}
+<script src="{% static 'js/index__clock.js' %}"></script>
+{% endblock script %}
