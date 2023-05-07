@@ -1,8 +1,13 @@
 // 기본 세팅 (지도 표시 세팅)
+const postTitleElement = document.getElementById("post-title");
+const title = postTitleElement.textContent
+const postAddressElement = document.getElementById("post-address");
+const address = postAddressElement.textContent
+
 var container = document.getElementById('map');
 var options = {
     center: new kakao.maps.LatLng(37.54, 126.96), //지도의 중심좌표 (구글맵 켜고 특정 위치 찍으면 위도 경도 표시됨)
-    level: 1 //지도의 레벨(확대, 축소 정도, 지도에 한번에 보이는 화면)
+    level: 8 //지도의 레벨(확대, 축소 정도, 지도에 한번에 보이는 화면)
 };
 
 //지도 생성 및 객체 리턴
@@ -10,24 +15,13 @@ var map = new kakao.maps.Map(container, options);
 
 // 지도 우측 줌 컨트롤러
 var zoomControl = new kakao.maps.ZoomControl();
-map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT)
 
 //더미데이터
 const dataSet = [
     {
-      title: "희락돈까스",
-      address: "서울 영등포구 양산로 210",
-      category: "양식",
-    },
-    {
-      title: "즉석우동짜장",
-      address: "서울 영등포구 대방천로 260",
-      category: "한식",
-    },
-    {
-      title: "아카사카",
-      address: "서울 서초구 서초대로74길 23",
-      category: "일식",
+      title: title,
+      address: address,
     },
   ];
 
@@ -107,3 +101,12 @@ function makeOutListener(infowindow) {
         infowindow.close();
     };
 }
+
+function makeOverListener(map, marker, infowindow, coords) {
+  return function() {
+      closeInfiWindow()
+      infowindow.open(map, marker)
+      map.panTo(coords) // 해당 마커의 좌표값으로 지도 이동
+  };
+}
+

@@ -14,7 +14,6 @@ import os
 # Create your views here.
 def posts(request):
     posts = Post.objects.all().order_by('-pk')
-    # reviews = posts.reviews.all()
     page = request.GET.get('page', '1')
     per_page = 6
     paginator = Paginator(posts, per_page)
@@ -22,7 +21,6 @@ def posts(request):
     context = {
         'posts': page_obj,
         'subject': 'all',
-        # 'reviews': reviews,
     }
     return render(request,'posts/posts.html', context)
 
