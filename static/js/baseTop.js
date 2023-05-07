@@ -1,13 +1,18 @@
-// top 버튼
-window.addEventListener('load', function() {
-    window.addEventListener('scroll', function() {
-        var scrollPosition = window.scrollY;
-        var button = document.getElementById('topBtn');
+const scrollToTopButton = document.getElementById('scroll-to-top-button');
 
-        if (scrollPosition > 250) {
-            button.style.display = 'block';
-        } else {
-            button.style.display = 'none';
-        }
+function toggleScrollToTopButton() {
+    if (window.scrollY > 0) {
+        scrollToTopButton.classList.toggle('show');
+    } else {
+        scrollToTopButton.classList.toggle('show');
+    }
+}
+
+window.addEventListener('scroll', toggleScrollToTopButton);
+
+scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
     });
 });

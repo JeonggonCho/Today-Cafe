@@ -68,13 +68,22 @@
 body {
     position: relative;
 }
-.base--top_btn {
-    position: fixed;
+#scroll-to-top-button {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    z-index: 100;
-    right: 5%;
-    bottom: 8%;
-    display: none;
+
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all 0.3s ease-out;
+    z-index: 999;
+}
+#scroll-to-top-button.show {
+    opacity: 1;
+    visibility: visible;
 }

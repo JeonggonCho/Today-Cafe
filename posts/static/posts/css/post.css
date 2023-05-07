@@ -19,8 +19,7 @@
     background-color: darkgray;
 }
 .post--img_form {
-    height: 500px;
-    border-radius: 1rem;
+    height: 350px;
     background-color: black;
     overflow: hidden;
 }
@@ -30,13 +29,13 @@
     object-fit: contain;
 }
 .post--map_form {
-    height: 242px;
+    height: 100%;
+    width: 800px;
     border: 1px solid lightgray;
     border-radius: 1rem;
 }
 .post--info_form {
-    width: 50%;
-    height: 242px;
+    height: 100%;
     background-color: var(--form-lightgray);
     border-radius: 1rem;
     padding: 2rem;
@@ -105,4 +104,17 @@
 }
 .update_font {
     font-size: 14px;
+}
+.post--tag {
+    border-radius: 15px;
+    padding: 3px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: #888888;
+    color: white;
+    transition: all 0.2s linear;
+}
+.post--tag:hover {
+    color: black;
+    background-color: #d6d6d6;
 }

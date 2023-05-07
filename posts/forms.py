@@ -159,7 +159,7 @@ class CommentForm(forms.ModelForm):
         label='Comment',
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control focus-ring focus-ring-danger',
             },
         ),
     )

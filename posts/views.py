@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from .models import Post, Review, Comment, Emote, ReviewPhoto
 from .forms import PostForm, CommentForm, ReviewForm, ReCommentForm
 from django.core.paginator import Paginator
@@ -46,7 +47,7 @@ EMOTIONS = [
 
 def post(request, post_pk):
     post = Post.objects.get(pk=post_pk)
-    tags = Post.tags.all()
+    tags = post.tags.all()
     reviews = Review.objects.filter(post_id=post_pk).order_by('-created_at')
     context = {
         'post': post,
@@ -72,7 +73,7 @@ def emotes(request, review_pk, emotion):
     return redirect('posts:post', review_pk)
 
 
-@login_required
+@staff_member_required
 def create(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
