@@ -73,45 +73,41 @@
         <section id="review-content" class="category-content mb-4" style="display: block;">
           <div>
             <h3 class="user-articles__title mb-4 fw-bold">작성한 리뷰</h3>
-            <div class="user-article__detail row">
+            <div class="row" style="min-height: 45rem;">
               {% if person.review_set.all %}
                 <div id="map" class="w-100 rounded-3 mb-3 col-12" style="height: 300px;"></div>
                 {% for review in person.review_set.all %}
                   <div class="col-6 p-0">
-                    <article class="user-article--review p-4 m-1">
-                      <div class="user-article--review__top d-flex justify-content-between">
-                        <div class="d-flex">
+                    <article class="user-article--review p-4 m-1 d-flex justify-content-center row">
+                      <!-- 리뷰 이미지-->
+                      <div style="width: 7rem; height: 7rem; overflow: hidden;" class="d-flex justify-content-center col-2">
+                        {% if review.reviewphoto_set.exists %}
+                          <img class="h-100" style="object-fit: contain;" src="{{ review.reviewphoto_set.first.photo.url }}" alt="">
+                        {% else %}
+                          <img class="h-100" style="object-fit: contain;" src="{% static 'posts/img/no_img.jpg' %}" alt="">
+                        {% endif %}
+                      </div>
+                      <!-- 리뷰 content-->
+                      <div class="col-9 px-3 d-flex flex-column justify-content-between">
+                        <div class="d-flex" >
                           <span class="me-2">From</span>
                           <h5 class="fw-bold">{{ review.post.title }}</h5>
                         </div>
-                        <div class="user-article--review__like-btn">
-                          <i class="fa-regular fa-heart fs-5"></i>
+                        <div class="user-article--review__time mb-2">
+                          <span>날짜</span>
+                          <time class=""> {{ review.updated_at|date:'Y-m-d' }}</time>
                         </div>
-                      </div>
-                      <div class="user-article--review__time mb-2">
-                        <span>날짜</span>
-                        <time class=""> {{ review.updated_at|date:'Y-m-d' }}</time>
-                      </div>
-                      <div class="user-article--review__middle mb-3">
-                        <div class="user-article--review__middle__desc">{{ review.content }}</div>
-                      </div>
-                      <div class="user-article--review__bottom d-flex justify-content-between" style="height: 5rem;">
-                        {% if review.photo %}
-                          <img class="h-100" src="{{ review.photo.url }}" alt="">
-                        {% else %}
-                          <img src="{% static 'posts/img/no_img.jpg' %}" alt="">
-                        {% endif %}
-                        <div class="user-article--review__bottom__more d-flex align-items-end">
-                            <a class="fw-bold" href="">> 더보기</a>
+                        <div class="user-article--review__middle mb-3">
+                          <div class="user-article--review__middle__desc">{{ review.content }}</div>
                         </div>
                       </div>
                     </article>
                   </div>
                 {% endfor %}
               {% else %}
-              <div class="w-100 d-flex flex-column justify-contents-center align-items-center">
-                <img src="https://img.freepik.com/free-photo/cute-little-dog-impersonating-a-business-person_23-2148985937.jpg" alt="게시글 없음 대체 이미지" class="mb-3">
-                <div class="text-center">작성한 리뷰가 없네요 <br>대신 귀여운 강아지를 드리겠습니다</div>
+              <div class="w-100 d-flex flex-column justify-contents-center align-items-center my-5">
+                <img src="https://img.freepik.com/free-photo/cute-little-dog-impersonating-a-business-person_23-2148985937.jpg" alt="게시글 없음 대체 이미지" class="mb-5">
+                <div class="text-center fs-4 fw-bold mb-5">작성한 리뷰가 없네요 <br>대신 귀여운 강아지를 드리겠습니다</div>
               </div>
               {% endif %}
             </div>
@@ -121,7 +117,7 @@
         <section id="comment-content" class="category-content mb-4" style="display: none;">
           <div class="user-articles-inner user-articles--review">
             <h3 class="user-commentstitle mb-4 fw-bold">작성한 댓글</h3>
-            <div class="user-commentsdetail">
+            <div style="min-height: 45rem;">
               {% if person.comment_set.all %}
                 {% for comment in person.comment_set.all %}
                   <a class="col" href="" class="p-4 d-block">
@@ -132,9 +128,9 @@
                   </a>
                 {% endfor %}
               {% else %}
-                <div class="w-100 d-flex flex-column justify-contents-center align-items-center mb-2">
-                  <img src="https://img.freepik.com/free-photo/cute-little-dog-impersonating-a-business-person_23-2148985937.jpg" alt="게시글 없음 대체 이미지" class="mb-3">
-                  <div class="text-center">작성한 댓글이 없네요 <br>대신 귀여운 강아지를 드리겠습니다</div>
+                <div class="w-100 d-flex flex-column justify-contents-center align-items-center my-5">
+                  <img src="https://img.freepik.com/free-photo/cute-little-dog-impersonating-a-business-person_23-2148985937.jpg" alt="게시글 없음 대체 이미지" class="mb-5">
+                  <div class="text-center fs-4 fw-bold mb-5">작성한 댓글이 없네요 <br>대신 귀여운 강아지를 드리겠습니다</div>
                 </div>
               {% endif %}
             </div>
@@ -145,6 +141,7 @@
         <section id="like-content" class="category-content mb-4" style="display: none;">
           <div class="user-articles-inner user-articles--review">
             <h3 class="user-like-cafe__title mb-4 fw-bold">좋아요한 가게</h3>
+            <div style="min-height: 45rem;">
               {% if person.like_posts.all %}
                 <div class="user-like-cafe__detail row row-cols-5 g-3">
                 {% for post in person.like_posts.all %}
@@ -161,9 +158,9 @@
                   </a>
                 {% endfor %}
               {% else %}
-              <div class="w-100 d-flex flex-column justify-contents-center align-items-center">
-                <img src="https://img.freepik.com/free-photo/cute-little-dog-impersonating-a-business-person_23-2148985937.jpg" alt="게시글 없음 대체 이미지" class="mb-3">
-                <div class="text-center">좋아요한 가게가 없네요 <br>대신 귀여운 강아지를 드리겠습니다</div>
+              <div class="w-100 d-flex flex-column justify-contents-center align-items-center my-5">
+                <img src="https://img.freepik.com/free-photo/cute-little-dog-impersonating-a-business-person_23-2148985937.jpg" alt="게시글 없음 대체 이미지" class="mb-5">
+                <div class="text-center fs-4 fw-bold mb-5">좋아요한 가게가 없네요 <br>대신 귀여운 강아지를 드리겠습니다</div>
               </div>
               {% endif %}
               <!-- 샘플 article -->
