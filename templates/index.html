@@ -15,12 +15,12 @@
         <span>Loading</span>
     </div>
 </div>
-<main class="container">
+<main class="container my-3">
     <!-- carousel 화면 -->
     <section class="index__clock-section">
-        <h3 class="index__clock">00:00:00</h3>
+        <h4 class="index__clock fw-bold">00:00:00</h4>
     </section>
-    <section class="index__carousel d-flex justify-content-center my-5">
+    <section class="index__carousel d-flex justify-content-center mt-3 mb-5">
         <div id="carouselExampleIndicators" class="carousel slide w-100">
             <div class="carousel-indicators mb-1">
                 <button type="button" class="active mx-2 rounded-circle" style="width: 0.8rem; height: 0.8rem;"data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
@@ -48,83 +48,32 @@
             </button>
         </div>
     </section>
-    
-    <!-- articels-like -->
-    <section class="articles-like--lg-card mb-5">
-        <h3 class="fw-bold mb-4">여기 카페 너무 좋아요!</h3>
-        <div class="w-100 row row-cols-2 g-4">
-            <article class="col">
-                <div class="card">
-                    <div class="article-thumbnail__img position-relative">
-                        <img class="card-img-top article-like-card--lg" src="https://img.lovepik.com/photo/20211120/small/lovepik-cafe-interior-decoration-picture_500515446.jpg" alt="...">
-                        <div class="article-thumbnail__img__like position-absolute top-0 end-0 m-3 d-flex justify-content-center align-items-center">
-                            <span class="material-symbols-outlined">favorite</span>
-                        </div>
-                    </div>
-                    <div class="card-body bg-light">
-                        <div class="article-thumbnail__user-info d-flex align-items-center mb-3">
-                            <div class="article-thumbnail__user-info__avatar me-2">
-                                {% if person.profile_image %}
-                                    <img src="{{ person.profile_image.url }}" alt="프로필이미지">
-                                {% else %}
-                                    <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="프로필 없음">
-                                {% endif %}
-                            </div>
-                            <span class="article-thumbnail__user-info__username fw-bold me-2">User123{{ person.username }}</span>
-                            <button class="btn btn-secondary btn-sm">팔로우</button>
-                        </div>
-                        <h5 class="card-title fw-bold">STARBUCKS</h5>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="card-content card-text col-6 text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo nulla labore ea id quae, magnam itaque tenetur amet laudantium dolor natus rem alias molestiae incidunt a ex inventore doloribus ratione.</div>
-                            <div class="d-flex align-items-center">
-                                <span class="material-symbols-outlined me-1">favorite</span>
-                                <span class="me-2">12</span>
-                                <span class="material-symbols-outlined me-1">mode_comment</span>
-                                <span>12</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
     <!-- articles-recent-->
     <section class="articles-recent--sm-card mb-5">
-        <h3 class="fw-bold mb-4">최근에 다녀왔어요!</h3>
+        <h3 class="fw-bold mb-4">신규 등록된 카페</h3>
         <div class="row row-cols-4 g-4">
+            {% for post in recent_posts %}
             <article class="col">
                 <div class="card">
-                    <div class="article-thumbnail__img position-relative">
-                        <img class="card-img-top" src="https://img.lovepik.com/photo/20211120/small/lovepik-cafe-interior-decoration-picture_500515446.jpg" alt="...">
+                    <div class="article-thumbnail__img position-relative d-flex align-items-center justify-content-center" style="height: 200px; overflow: hidden;">
+                        <img class="card-img-top w-100" src="{{ post.image.url }}" alt="...">
                         <div class="article-thumbnail__img__like position-absolute top-0 end-0 m-3 d-flex justify-content-center align-items-center">
                             <span class="material-symbols-outlined">favorite</span>
                         </div>
                     </div>
-                    <div class="card-body bg-light">
-                        <div class="article-thumbnail__user-info d-flex align-items-center mb-3">
-                            <div class="article-thumbnail__user-info__avatar me-2">
-                                {% if person.profile_image %}
-                                    <img src="{{ person.profile_image.url }}" alt="프로필이미지">
-                                {% else %}
-                                    <img src="{% static 'accounts/img/no_profile.jpeg' %}" alt="프로필 없음">
-                                {% endif %}
-                            </div>
-                            <span class="article-thumbnail__user-info__username fw-bold me-2">User123{{ person.username }}</span>
-                            <button class="btn btn-secondary btn-sm">팔로우</button>
+                    <a href="" class="card-body bg-light">
+                        <span class="card-title fw-bold mb-3">{{ post.title }}</span>
+                        <div class="card-content card-text col-12 text-truncate mb-2"><span class="me-3 fw-bold">주소</span>{{ post.address }}</div>
+                        <div class="d-flex align-items-center justify-content-end">
+                            <span class="material-symbols-outlined me-2">favorite</span>
+                            <span class="me-3">{{ post.count_likes_user }}</span>
+                            <span class="material-symbols-outlined me-2">mode_comment</span>
+                            <span>{{ post.review_set.all|length }}</span>
                         </div>
-                        <h5 class="card-title fw-bold">STARBUCKS</h5>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="card-content card-text col-6 text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo nulla labore ea id quae, magnam itaque tenetur amet laudantium dolor natus rem alias molestiae incidunt a ex inventore doloribus ratione.</div>
-                            <div class="d-flex align-items-center">
-                                <span class="material-symbols-outlined me-1">favorite</span>
-                                <span class="me-2">12</span>
-                                <span class="material-symbols-outlined me-1">mode_comment</span>
-                                <span>12</span>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </article>
+            {% endfor %}
         </div>
     </section>
 </main>
