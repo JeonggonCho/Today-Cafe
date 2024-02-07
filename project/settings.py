@@ -21,15 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'bxia!b9%=o&+c!+x0(v7j5dp&hcof1w-b*o3798b+#wr)(&w$w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['port-0-cafecommunity-semiproject-xiy3e2blhdw2sl1.sel4.cloudtype.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
