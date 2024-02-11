@@ -77,7 +77,7 @@ $ python manage.py runserver
 ### 타겟
 
 <p align="center">
-    <img src="readme_assets/target.png" width="600">
+    <img src="readme_assets/target.png" width="800">
 </p>
 
 <br>
@@ -169,101 +169,70 @@ $ python manage.py runserver
 
 ### Frontend
 
-<ul>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/django.png" width="20px"><h4>Django (ver. 3.2.18.)</h4>
-        </div>
-        <div>: Python을 사용하는 풀스택 웹 프레임워크로서 다양한 라이브러리들을 이용할 수 있으며, 내장 기능을 통해 로그인, 회원가입, 인증 등의 구현을 쉽게 처리할 수 있다. MTV 패턴을 활용하여 Template의 HTML에 DTL문법을 접목하여 특수한 상황 조작이 가능하며, 이러한 특징들을 통해 개발시간을 크게 단축 시킬 수 있다.</div>
-    </li>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/Bootstrap.png" width="20px"><h4>Bootstrap (ver. 5.3.0.)</h4>
-        </div>
-        <div>: 부트스트랩은 웹사이트를 쉽게 만들 수 있게 도와주는 CSS, JS 프레임워크로 제공하는 컴포넌트들을 활용하여 빠르게 UI를 구축할 수 있도록 도와준다. 또한 클래스를 통해 커스텀이 가능하다. CSS 프레임워크 중 가장 높은 점유율로 협업 시, 좀 더 유리한 편이다.</div>
-    </li>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/HTML.png" width="20px"><h4>HTML</h4>
-        </div>
-        <div>: Django의 Template 구축에 활용한다.</div>
-    </li>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/CSS.png" width="20px"><h4>CSS</h4>
-        </div>
-        <div>: Bootstrap을 통해 커스텀 하기 어렵거나 세부적인 스타일링이 필요할 경우, 활용한다.</div>
-    </li>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/JavaScript.png" width="18px"><h4>JavaScript</h4>
-        </div>
-        <div>: DOM 조작을 통해 웹 사이트와 상호작용하기 위해 사용한다.</div>
-    </li>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/Axios.png" width="15px"><h4>Axios</h4>
-        </div>
-        <div>: Axios는 Node.js와 브라우저를 위한 Promise API를 활용하는 HTTP 통신 라이브러리로 비동기 HTTP 통신이 가능하다. 크로스 브라우징 최적화로 여러 브라우저에서 호환성(구형 브라우저 지원)이 뛰어나며, response Timeout으로 인해 특정 시간이 지나면 통신이 자동으로 중단되는 JavaScript의 fetch와 비교 시, Axios는 이를 적절히 처리(에러페이지 보여주기) 할 수 있다.</div>
-    </li>
-</ul>
+<img src="readme_assets/django.png" width="20px"> <b>Django (ver. 3.2.18.)</b>
+
+- Python을 사용하는 풀스택 웹 프레임워크로서 다양한 라이브러리들을 이용할 수 있으며, 내장 기능을 통해 로그인, 회원가입, 인증 등의 구현을 쉽게 처리할 수 있다. MTV 패턴을 활용하여 Template의 HTML에 DTL문법을 접목하여 특수한 상황 조작이 가능하며, 이러한 특징들을 통해 개발시간을 크게 단축 시킬 수 있다.
+        
+
+<img src="readme_assets/Bootstrap.png" width="20px"> <b>Bootstrap (ver. 5.3.0.)</b>
+
+- 부트스트랩은 웹사이트를 쉽게 만들 수 있게 도와주는 CSS, JS 프레임워크로 제공하는 컴포넌트들을 활용하여 빠르게 UI를 구축할 수 있도록 도와준다. 또한 클래스를 통해 커스텀이 가능하다. CSS 프레임워크 중 가장 높은 점유율로 협업 시, 좀 더 유리한 편이다.
+
+<img src="readme_assets/html.png" width="20px"> <b>HTML</b>
+
+- Django의 Template 구축에 활용한다.
+
+<img src="readme_assets/css.png" width="20px"> <b>CSS</b>
+
+- Bootstrap을 통해 커스텀 하기 어렵거나 세부적인 스타일링이 필요할 경우, 활용한다.
+
+<img src="readme_assets/javascript.png" width="18px"> <b>JavaScript</b>
+
+- DOM 조작을 통해 웹 사이트와 상호작용하기 위해 사용한다.</div>
+
+<img src="readme_assets/Axios.png" width="15px"> <b>Axios</b>
+
+- Axios는 Node.js와 브라우저를 위한 Promise API를 활용하는 HTTP 통신 라이브러리로 비동기 HTTP 통신이 가능하다. 크로스 브라우징 최적화로 여러 브라우저에서 호환성(구형 브라우저 지원)이 뛰어나며, response Timeout으로 인해 특정 시간이 지나면 통신이 자동으로 중단되는 JavaScript의 fetch와 비교 시, Axios는 이를 적절히 처리(에러페이지 보여주기) 할 수 있다.
+
+<br>
 
 ### Backend
 
-<ul>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/django.png" width="20px"><h4>Django (ver. 3.2.18.)</h4>
-        </div>
-        <div>: Python을 사용하는 풀스택 웹 프레임워크로서 Python의 Class를 통해 Model 생성(Schema)과 동시에 데이터 베이스를 생성할 수 있으며, View에서 QuerySet API를 통해 데이터를 Query하는 것이 가능하다.</div>
-    </li>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/python.png" width="20px"><h4>Python</h4>
-        </div>
-        <div>: Python은 직관적이고 간결한 문법으로, 프로그래머들은 물론 비전공자들 사이에서도 최근 가장 주목받는 언어이다. 또한 스크립트 언어이기에 별도의 컴파일 과정없이 실행결과를 바로 확인하며 개발할 수 있다.</div>
-    </li>
-    <li style="list-style: none;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/sqlite3.png" width="20px"><h4>SQLite</h4>
-        </div>
-        <div>: 데이터베이스 관리 시스템으로 Python환경에선 sqlite3모듈을 통해 쉽게 사용할 수 있기에 Django로 개발하는 경우, 활용하기에 좋다. 대규모 프로젝트에서는 적합하지 않으나, 우리의 커뮤니티 사이트는 규모가 크지 않기에 간편하고 가볍기에 사용성에 좋다고 판단되어 도입하였다.</div>
-    </li>
-</ul>
+<img src="readme_assets/django.png" width="20px"> <b>Django (ver. 3.2.18.)</b>
+
+- Python을 사용하는 풀스택 웹 프레임워크로서 Python의 Class를 통해 Model 생성(Schema)과 동시에 데이터 베이스를 생성할 수 있으며, View에서 QuerySet API를 통해 데이터를 Query하는 것이 가능하다.
+
+<img src="readme_assets/python.png" width="20px"> <b>Python</b>
+
+- Python은 직관적이고 간결한 문법으로, 프로그래머들은 물론 비전공자들 사이에서도 최근 가장 주목받는 언어이다. 또한 스크립트 언어이기에 별도의 컴파일 과정없이 실행결과를 바로 확인하며 개발할 수 있다.
+
+<img src="readme_assets/sqlite3.png" width="20px"> <b>SQLite</b>
+
+- 데이터베이스 관리 시스템으로 Python환경에선 sqlite3모듈을 통해 쉽게 사용할 수 있기에 Django로 개발하는 경우, 활용하기에 좋다. 대규모 프로젝트에서는 적합하지 않으나, 우리의 커뮤니티 사이트는 규모가 크지 않기에 간편하고 가볍기에 사용성에 좋다고 판단되어 도입하였다.
+
+<br>
 
 ### 협업툴
 
-<ul>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/figma.png" width="12px"><h4>Figma</h4>
-        </div>
-        <div>: 디자인을 위한 툴로서 와이어프레임, 목업, 프로토타입 제작에 용이하며, 실시간 협업이 가능하다.</div>
-    </li>
-    <li style="list-style: none; margin-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/Notion.png" width="20px"><h4>Notion</h4>
-        </div>
-        <div>: Markdown 문법을 지원하며, 명세서 등의 문서화에 특화되어있다.</div>
-    </li>
-    <li style="list-style: none;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/Discord.png" width="20px"><h4>Discord</h4>
-        </div>
-        <div>: 회의 및 데일리 스크럼을 진행할 경우, 실시간 화면 공유를 통해 빠르고 정확한 정보 공유가 가능하다</div>
-    </li>
-</ul>
+<img src="readme_assets/figma.png" width="12px"> <b>Figma</b>
+
+- 디자인을 위한 툴로서 와이어프레임, 목업, 프로토타입 제작에 용이하며, 실시간 협업이 가능하다.
+
+<img src="readme_assets/Notion.png" width="20px"> <b>Notion</b>
+
+- Markdown 문법을 지원하며, 명세서 등의 문서화에 특화되어있다.
+
+<img src="readme_assets/Discord.png" width="20px"> <b>Discord</b>
+
+- 회의 및 데일리 스크럼을 진행할 경우, 실시간 화면 공유를 통해 빠르고 정확한 정보 공유가 가능하다.
+
+<br>
 
 ### Deployment
 
-<ul>
-    <li style="list-style: none;">
-        <div style="display: flex; align-items: center; gap: 5px;">
-            <img src="readme_assets/cloudtype.jpg" width="20px"><h4>Cloudtype</h4>
-        </div>
-        <div>: 클라우드타입의 경우, 어플리케이션을 빠르고 편리하게 배포할 수 있는 컨테이너 기반 클라우드 서비스로서</div>
-    </li>
-</ul>
+<img src="readme_assets/cloudtype.jpg" width="20px"> <b>Cloudtype</b>
+
+- 클라우드타입의 경우, 어플리케이션을 빠르고 편리하게 배포할 수 있는 컨테이너 기반 클라우드 서비스로서
 
 <br>
 <br>
