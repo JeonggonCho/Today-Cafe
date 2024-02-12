@@ -140,27 +140,58 @@ $ python manage.py runserver
 
 ### 👨‍💻 최충현
 
-[//]: # (1. 프로젝트 스케줄 관리)
-
-[//]: # (2. 데일리 스크럼 진행)
+1. 프로젝트 스케줄 관리
+2. 데일리 스크럼 진행
+3. Post 모델, Comment 모델 생성
+4. Post 생성 폼, Comment 생성 폼 작성
+5. posts 관련 URL 제작
+6. index 페이지 조회, 디테일 페이지 조회, Post 생성, Post 수정, Post 삭제, Comment 생성, Comment 삭제, Post 좋아요 view 함수 생성
+7. taggit 라이브러리 도입 및 Post 폼 수정, view 함수 수정으로 태그 지정 및 태그 검색 기능 도입
 
 <br>
 
 ### ‍👨‍💻 조정곤
 
-[//]: # (1. Figma를 이용한 와이어프레임 및 목업 제작)
+1. Figma를 이용한 와이어프레임 및 목업 제작
+2. base_template, header, footer 제작하여 다른 템플릿 기본 레이아웃 제공
+3. post_update 템플릿 제작
+4. Bootstrap을 이용하여 Post 생성 폼, 댓글 생성 폼 커스텀
+5. Post 생성 시, 사진 첨부 할 수 있도록 PostPhoto 모델 생성
+6. 템플릿에서 첨부한 사진 미리보기 제공
+7. 리뷰 사진 복수 첨부 가능하도록 모델 및 view 함수 수정
+8. 모든 카페, 북카페, 펫카페, 스터디카페 각 카테고리 별 인덱스 템플릿 제작, 페이지네이션 도입
+9. 카페 등록 및 수정 템플릿 제작
+10. 리뷰 생성, 리뷰 상세 페이지, 리뷰 수정 템플릿 제작
+11. post 좋아요 비동기 처리
 
 <br>
 
 ### 👩‍💻 김민지
 
-[//]: # (1. Notion을 통해 스케쥴, 규칙, 이슈 등 명세화)
+1. Notion을 통해 스케쥴, 규칙, 이슈 등 명세화
+2. login 템플릿 제작
+3. 회원가입 템플릿 제작
+4. 프로필 템플릿 제작
+5. Bootstrap을 이용하여 회원가입 폼, 로그인 폼 커스텀
+6. index 페이지 제작 및 loading script 제작
+7. 카카오 지도 API 세팅
+8. top 버튼 생성
+9. 팔로우 버튼 비동기 처리
+10. 회원탈퇴 시, modal 생성
+11. index 페이지 시계 및 랜덤 함수를 이용한 커피 추천 script 제작
 
 <br>
 
 ### ‍👨‍💻 전성재
 
-[//]: # (1. )
+1. User 모델 생성
+2. User 모델을 활용하여 회원가입 및 회원정보 수정 폼 작성
+3. accounts 관련 URL 제작
+4. 프로필 조회, 팔로우, 로그인, 로그아웃, 회원가입, 회원탈퇴, 회원정보 수정, 비밀번호 수정 view 함수 생성
+5. 검색 페이지 생성
+6. 회원가입 및 수정 폼에서 ResizeToFill을 사용하여 사용자 프로필 이미지 사이즈를 저해상도로 저장하여 최적화
+7. Fixture json 파일 생성
+8. Cloudtype 서비스를 통한 배포
 
 <br>
 <br>
@@ -171,7 +202,7 @@ $ python manage.py runserver
 
 <img src="readme_assets/django.png" width="20px"> <b>Django (ver. 3.2.18.)</b>
 
-- Python을 사용하는 풀스택 웹 프레임워크로서 다양한 라이브러리들을 이용할 수 있으며, 내장 기능을 통해 로그인, 회원가입, 인증 등의 구현을 쉽게 처리할 수 있다. MTV 패턴을 활용하여 Template의 HTML에 DTL문법을 접목하여 특수한 상황 조작이 가능하며, 이러한 특징들을 통해 개발시간을 크게 단축 시킬 수 있다.
+- Python을 사용하는 풀스택 웹 프레임워크로서 다양한 라이브러리들을 이용할 수 있으며, 내장 기능을 통해 로그인, 회원가입, 인증 등의 구현을 쉽게 처리할 수 있다. MTV 패턴을 활용하며 Template의 HTML에 DTL문법을 접목하여 특수한 상황 조작이 가능하다. 이러한 특징들을 통해 개발시간을 크게 단축 시킬 수 있다.
         
 
 <img src="readme_assets/Bootstrap.png" width="20px"> <b>Bootstrap (ver. 5.3.0.)</b>
@@ -214,6 +245,10 @@ $ python manage.py runserver
 
 ### 협업툴
 
+<img src="readme_assets/GitHub.png" width="20px"> <b>Github</b>
+
+- 대표적인 버전관리 사이트로 레포지토리 생성 후, pull request를 통해 팀원들과 코드를 관리할 수 있다.
+
 <img src="readme_assets/figma.png" width="12px"> <b>Figma</b>
 
 - 디자인을 위한 툴로서 와이어프레임, 목업, 프로토타입 제작에 용이하며, 실시간 협업이 가능하다.
@@ -226,13 +261,17 @@ $ python manage.py runserver
 
 - 회의 및 데일리 스크럼을 진행할 경우, 실시간 화면 공유를 통해 빠르고 정확한 정보 공유가 가능하다.
 
+<img src="readme_assets/live_server.png" width="20px"> <b>Live server</b>
+
+- 코드 작성에 어려움이 있어서 팀원들과 다같이 문제를 해결 하고자 할 경우, IDE의 플러그인인 Live server를 통해 실시간 코드 작성이 가능하다.
+
 <br>
 
 ### Deployment
 
 <img src="readme_assets/cloudtype.jpg" width="20px"> <b>Cloudtype</b>
 
-- 클라우드타입의 경우, 어플리케이션을 빠르고 편리하게 배포할 수 있는 컨테이너 기반 클라우드 서비스로서
+- 어플리케이션을 빠르고 편리하게 배포할 수 있는 컨테이너 기반 클라우드 서비스로서 코드가 이미지로 빌드(모든 필수 구성 요소가 포함된 독립적인 컨테이너 이미지가 생성) 되어 언제나 동일한 환경이 보장되며 무중단 배포가 가능하다. 또한 버전 관리에 용이하며, 변경사항을 롤백하거나 특정 버전으로 다시 배포하는 것이 간단하다.
 
 <br>
 <br>
@@ -379,23 +418,25 @@ Today_Cafe
 
 ### accounts
 
-| 기능      | 메소드      | 요청 url                        | name            |
-|---------|----------|-------------------------------|-----------------|
-| 프로필     | GET      | /accounts/profile/<username>/ | profile         |
-| 팔로우     | POST     | /accounts/<user_pk>/follow/   | follow          |
-| 로그인     | GET/POST | /accounts/login/              | login           |
-| 로그아웃    | POST     | /accounts/logout/             | logout          |
-| 회원가입    | GET/POST | /accounts/signup/             | signup          |
-| 회원탈퇴    | POST     | /accounts/delete/             | delete          |
-| 회원정보 수정 | GET/POST | /accounts/update/             | update          |
-| 비밀번호 수정 | GET/POST | /accounts/password/           | change_password |
+| 기능      | 메소드      | 요청 url                         | name            |
+|---------|----------|--------------------------------|-----------------|
+| 프로필     | GET      | /accounts/profile/\<username>/ | profile         |
+| 팔로우     | POST     | /accounts/<user_pk>/follow/    | follow          |
+| 로그인     | GET/POST | /accounts/login/               | login           |
+| 로그아웃    | POST     | /accounts/logout/              | logout          |
+| 회원가입    | GET/POST | /accounts/signup/              | signup          |
+| 회원탈퇴    | POST     | /accounts/delete/              | delete          |
+| 회원정보 수정 | GET/POST | /accounts/update/              | update          |
+| 비밀번호 수정 | GET/POST | /accounts/password/            | change_password |
+
+<br>
 
 ### posts
 
 | 기능         | 메소드      | 요청 url                                                              | name            |
 |------------|----------|---------------------------------------------------------------------|-----------------|
 | 홈 화면       | GET      | /posts/                                                             | posts           |
-| 카테고리 별 화면  | GET      | /posts/category/<subject>/                                          | category        |
+| 카테고리 별 화면  | GET      | /posts/category/\<subject>/                                         | category        |
 | 개별 게시글 조회  | GET      | /posts/<post_pk>/                                                   | post            |
 | 카페 포스트 생성  | GET/POST | /posts/create/                                                      | create          |
 | 카페 포스트 삭제  | POST     | /posts/<post_pk>/delete/                                            | delete          |
@@ -420,13 +461,6 @@ Today_Cafe
 ### 인덱스 페이지
 
 ![인덱스](readme_assets/index_page.gif)
-
-- CSS animation을 활용한 `splash screen`
-- Date 생성자 함수 활용한 `초단위 + 12시간 단위 시계`
-- random 함수 활용한 `오늘의 카페 메뉴 추천`
-- Bootstrap을 활용한 `Carousel 템플릿`
-  (각 카테고리별 페이지로 이동할 수 있는 이미지를 넣으려고 했음)
-- 스크롤을 진행할 경우 상단으로 이동할 수 있는 `top button`
 
 <br>
 
@@ -486,6 +520,21 @@ Today_Cafe
 <br>
 
 ## 11. 이슈
+
+### Git branch의 중요성
+
+- git branch를 생성하지 않고, main branch에서 실수로 작업 후, push 및 merge를 진행할 경우, merge conflict가 빈번하게 발생하였음. 꼭 기능별로 branch를 관리하는 것이 협업에 있어 중요함을 다시금 상기할 수 있었음
+
+<br>
+
+### URL, Template, view함수 name이 정리되지 않아 문제 발생
+
+- 문제 보고 : 조정곤
+- Django의 MTV 패턴은 URL, Model, Template, View 함수가 서로 데이터를 주고 받는데 프로젝트 초기에 명칭이 확실하게 정의되지 않은 상태에서 개발을 진행하다보니 posts 앱에서 명칭이 혼동되는 문제가 발생하였다. 따라서 비효율성을 발생시키지 않도록 하기위해 작업을 중단하고 Figma로 표를 만들어 공유하여 해당 규칙을 기반으로 개발 진행을 유도함
+
+![명칭 규칙](readme_assets/naming_issue.png)
+
+<posts 앱 네이밍 규칙>
 
 <br>
 <br>
